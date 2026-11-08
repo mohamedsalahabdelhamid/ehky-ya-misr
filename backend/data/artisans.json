@@ -1,0 +1,198 @@
+[
+  {
+    "id": "artisan-ragab",
+    "name": "عم رجب النحاس",
+    "craftId": "copper-engraving",
+    "craftName": "النقش على النحاس",
+    "provinceId": "cairo",
+    "provinceName": "القاهرة",
+    "workshop": "ورشة خان الخليلي — سوق النحاسين، حي الجمالية",
+    "experienceYears": 42,
+    "rating": 4.9,
+    "avatar": "assets/pharaoh-avatar.svg",
+    "bio": "من شيوخ صنعة النقش على النحاس في القاهرة؛ تتلمذ على يد والده منذ عام 1982. متحصص في حفر الزخارف الفاطمية والمملوكية وآيات القرآن الكريم على الصواني والمشكاوات النحاسية.",
+    "verified": true,
+    "phone": "+20 100 123 4567",
+    "readyItems": [
+      {
+        "title": "صينية نحاس فاطمية منقوشة يدوياً مقاس 40 سم",
+        "price": 850,
+        "currency": "EGP"
+      },
+      {
+        "title": "مبخرة نحاس أرابيسك مفرغة ومطعمة فضة",
+        "price": 480,
+        "currency": "EGP"
+      },
+      {
+        "title": "لوحة نحاس محفورة آية الكرسي 60×40 سم",
+        "price": 1400,
+        "currency": "EGP"
+      }
+    ],
+    "acceptsCustomOrders": true,
+    "customOrderLeadDays": "7 - 14 يوم"
+  },
+  {
+    "id": "artisan-kamla",
+    "name": "الحاجة كاملة (ملكة الخوص)",
+    "craftId": "palm-weaving",
+    "craftName": "صناعة الخوص ومنتجات النخيل",
+    "provinceId": "fayoum",
+    "provinceName": "الفيوم",
+    "regions": "قرية الإعلام — محافظة الفيوم",
+    "workshop": "مركز الإعلام للحرف النخيلية بالفيوم",
+    "experienceYears": 35,
+    "rating": 5.0,
+    "avatar": "assets/pharaoh-avatar.svg",
+    "bio": "علمت أكثر من 7000 سيدة وفتاة في قرى الفيوم فنون حياكة الخوص والجريد. تصدر منتجاتها إلى معارض الحرف التراثية في أوروبا ودول الخليج وأمريكا.",
+    "verified": true,
+    "phone": "+20 102 345 6789",
+    "readyItems": [
+      {
+        "title": "طقم أطباق خوص نوبية ملونة لحفظ الخبز (3 قطع)",
+        "price": 380,
+        "currency": "EGP"
+      },
+      {
+        "title": "سلة خوص يدوية للشاطئ والرحلات بتطريز ريفي",
+        "price": 290,
+        "currency": "EGP"
+      },
+      {
+        "title": "مفرش خوص دائري للطاولات والمجالس 50 سم",
+        "price": 220,
+        "currency": "EGP"
+      }
+    ],
+    "acceptsCustomOrders": true,
+    "customOrderLeadDays": "5 - 10 أيام"
+  },
+  {
+    "id": "artisan-hamed",
+    "name": "الأسطى حامد مرزوق",
+    "craftId": "boats",
+    "craftName": "صناعة المراكب وسفن الصيد",
+    "provinceId": "alex",
+    "provinceName": "الإسكندرية",
+    "regions": "الأنفوشي وأبو قير",
+    "workshop": "ورش صناعة السفن برأس التين والأنفوشي بالإسكندرية",
+    "experienceYears": 38,
+    "rating": 4.8,
+    "avatar": "assets/pharaoh-avatar.svg",
+    "bio": "كبير نجارين ومصممي سفن الصيد والفلوكات بالأنفوشي. يمتلك خبرة عقود في انتقاء أخشاب السنط والتوت وعزل السفن ضد ملوحة البحر المتوسط.",
+    "verified": true,
+    "phone": "+20 122 456 7890",
+    "readyItems": [
+      {
+        "title": "مجسم فلوكة إسكندراني خشبي تراثي مكتمل الشراع 50 سم",
+        "price": 650,
+        "currency": "EGP"
+      },
+      {
+        "title": "سفينة خشبية نموذج متحفي بتفاصيل الحبال والأضلاع 80 سم",
+        "price": 1200,
+        "currency": "EGP"
+      }
+    ],
+    "acceptsCustomOrders": true,
+    "customOrderLeadDays": "14 - 30 يوم"
+  },
+  {
+    "id": "artisan-fawzy",
+    "name": "عم فوزي الخراط",
+    "craftId": "arabesque-inlay",
+    "craftName": "الأرابيسك وتطعيم الصدف",
+    "provinceId": "cairo",
+    "provinceName": "القاهرة",
+    "workshop": "حارة الدرب الأصفر المتفرعة من شارع المعز لدين الله",
+    "experienceYears": 46,
+    "rating": 4.9,
+    "avatar": "assets/pharaoh-avatar.svg",
+    "bio": "خراط أخشاب عربي أصيل متخصص في تصنيع وحدات المشربية الإسلامية والصناديق التراثية المرصعة بصدف البحر الأحمر والأبيض الطبيعي وعظم الجمل.",
+    "verified": true,
+    "phone": "+20 111 234 5678",
+    "readyItems": [
+      {
+        "title": "صندوق مجوهرات خشب زان مطعم بالصدف الطبيعي الفاخر",
+        "price": 750,
+        "currency": "EGP"
+      },
+      {
+        "title": "طاولة شطرنج وطاولة زهر أرابيسك بالصدف والزان 40×40 سم",
+        "price": 1100,
+        "currency": "EGP"
+      },
+      {
+        "title": "إطار مرآة مشربية إسلامية مخروطة يدوياً 50×70 سم",
+        "price": 1650,
+        "currency": "EGP"
+      }
+    ],
+    "acceptsCustomOrders": true,
+    "customOrderLeadDays": "10 - 20 يوم"
+  },
+  {
+    "id": "artisan-qasim",
+    "name": "عم قاسم القناوي",
+    "craftId": "pottery-making",
+    "craftName": "صناعة الفخار والقلل",
+    "provinceId": "qena",
+    "provinceName": "قنا",
+    "workshop": "قرية الفواخير بمصر القديمة ومصانع قنا التراثية",
+    "experienceYears": 45,
+    "rating": 5.0,
+    "avatar": "assets/pharaoh-avatar.svg",
+    "bio": "ورث دولاب الفخار عن أجداده في قنا؛ يشكل الطمي النيلي والصلصال الأسواني بدقة انسيابية نادرة ليصنع القلل والزبادي وأواني الطهي الفخارية الصحية.",
+    "verified": true,
+    "phone": "+20 106 789 0123",
+    "readyItems": [
+      {
+        "title": "طقم قلل قناوي طبيعية لتبريد المياه مع قواعدها الفخارية (قطعتين)",
+        "price": 180,
+        "currency": "EGP"
+      },
+      {
+        "title": "طاجن فخار أسواني معالج لحرارة الفرن مع غطاء 30 سم",
+        "price": 240,
+        "currency": "EGP"
+      },
+      {
+        "title": "فازة فخار مفرغة بزخارف نيلية ملونة 45 سم",
+        "price": 320,
+        "currency": "EGP"
+      }
+    ],
+    "acceptsCustomOrders": true,
+    "customOrderLeadDays": "4 - 8 أيام"
+  },
+  {
+    "id": "artisan-ramadan",
+    "name": "الأسطى رمضان الفوال",
+    "craftId": "ramadan-lanterns",
+    "craftName": "صناعة الفوانيس الشعبية",
+    "provinceId": "cairo",
+    "provinceName": "القاهرة",
+    "workshop": "بركة الفيل بالسيدة زينب — القاهرة",
+    "experienceYears": 28,
+    "rating": 4.8,
+    "avatar": "assets/pharaoh-avatar.svg",
+    "bio": "صانع بهجة رمضان وسليل أسرة عريقة في سمكرة الفوانيس بالصفيح والزجاج الملون يدوياً بحي السيدة زينب.",
+    "verified": true,
+    "phone": "+20 120 345 6789",
+    "readyItems": [
+      {
+        "title": "فانوس صفيح وزجاج ملون تقليدي طراز فاروق ارتفاع 60 سم",
+        "price": 420,
+        "currency": "EGP"
+      },
+      {
+        "title": "فانوس معدني مزخرف بالنجوم والأهلة طراز البرلمان 85 سم",
+        "price": 780,
+        "currency": "EGP"
+      }
+    ],
+    "acceptsCustomOrders": true,
+    "customOrderLeadDays": "5 - 10 أيام"
+  }
+]

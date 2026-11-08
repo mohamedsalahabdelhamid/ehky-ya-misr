@@ -5,4 +5,5 @@ node_modules/
 Thumbs.db
 build_dataset.py
 update_service.py
+frontend/local_videos/
 

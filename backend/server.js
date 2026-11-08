@@ -29,6 +29,24 @@ app.use('/api/crafts', (req, res, next) => {
 });
 app.use('/api/chat', chatRoutes);
 
+app.get('/api/foods', (req, res) => {
+  try {
+    const foods = require('./data/foods.json');
+    res.json(foods);
+  } catch (e) {
+    res.json([]);
+  }
+});
+
+app.get('/api/artisans', (req, res) => {
+  try {
+    const artisans = require('./data/artisans.json');
+    res.json(artisans);
+  } catch (e) {
+    res.json([]);
+  }
+});
+
 // Health check endpoint
 app.get('/api/health', (req, res) => {
   res.json({
