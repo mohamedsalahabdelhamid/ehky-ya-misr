@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="100%" height="100%">
+  <defs>
+    <!-- Gold Gradient -->
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE79A"/>
+      <stop offset="35%" stop-color="#D4AF37"/>
+      <stop offset="70%" stop-color="#AA771C"/>
+      <stop offset="100%" stop-color="#5B3E08"/>
+    </linearGradient>
+    
+    <!-- Lapis Lazuli Deep Blue Gradient -->
+    <linearGradient id="lapisGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1B3B6F"/>
+      <stop offset="50%" stop-color="#0F2147"/>
+      <stop offset="100%" stop-color="#060E20"/>
+    </linearGradient>
+
+    <!-- Royal Turquoise Gradient -->
+    <linearGradient id="turquoiseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4ECCD3"/>
+      <stop offset="100%" stop-color="#1A7B88"/>
+    </linearGradient>
+
+    <!-- Skin Tone Gradient -->
+    <linearGradient id="skinGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#E2A76F"/>
+      <stop offset="100%" stop-color="#C2824C"/>
+    </linearGradient>
+
+    <!-- Soft Glow Filter -->
+    <filter id="pharaohGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#D4AF37" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- Background Medallion -->
+  <circle cx="120" cy="120" r="114" fill="url(#lapisGrad)" stroke="url(#goldGrad)" stroke-width="5" filter="url(#pharaohGlow)"/>
+  <circle cx="120" cy="120" r="106" fill="none" stroke="#D4AF37" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.7"/>
+
+  <!-- Sun Disk behind Head -->
+  <circle cx="120" cy="95" r="58" fill="url(#goldGrad)" opacity="0.3"/>
+
+  <!-- Nemes (Headdress) Backing Wings -->
+  <path d="M 50 115 C 42 145 52 178 72 195 C 80 178 86 160 88 145 Z" fill="url(#lapisGrad)" stroke="#D4AF37" stroke-width="2"/>
+  <path d="M 190 115 C 198 145 188 178 168 195 C 160 178 154 160 152 145 Z" fill="url(#lapisGrad)" stroke="#D4AF37" stroke-width="2"/>
+
+  <!-- Nemes Stripes on Wings -->
+  <!-- Left Wing Stripes -->
+  <path d="M 48 128 Q 68 134 87 132" stroke="url(#goldGrad)" stroke-width="4" fill="none"/>
+  <path d="M 47 146 Q 66 150 84 148" stroke="url(#goldGrad)" stroke-width="4" fill="none"/>
+  <path d="M 52 164 Q 68 168 80 166" stroke="url(#goldGrad)" stroke-width="4" fill="none"/>
+  <path d="M 60 180 Q 72 184 76 182" stroke="url(#goldGrad)" stroke-width="4" fill="none"/>
+
+  <!-- Right Wing Stripes -->
+  <path d="M 192 128 Q 172 134 153 132" stroke="url(#goldGrad)" stroke-width="4" fill="none"/>
+  <path d="M 193 146 Q 174 150 156 148" stroke="url(#goldGrad)" stroke-width="4" fill="none"/>
+  <path d="M 188 164 Q 172 168 160 166" stroke="url(#goldGrad)" stroke-width="4" fill="none"/>
+  <path d="M 180 180 Q 168 184 164 182" stroke="url(#goldGrad)" stroke-width="4" fill="none"/>
+
+  <!-- Wesekh Broad Collar (Necklace) -->
+  <path d="M 66 180 C 82 212 158 212 174 180 C 160 196 140 204 120 204 C 100 204 80 196 66 180 Z" fill="url(#goldGrad)" stroke="#664608" stroke-width="2"/>
+  <path d="M 80 190 C 95 210 145 210 160 190" stroke="url(#turquoiseGrad)" stroke-width="5" fill="none"/>
+  <path d="M 88 198 C 100 212 140 212 152 198" stroke="url(#lapisGrad)" stroke-width="4" fill="none"/>
+
+  <!-- Main Headdress (Top Dome) -->
+  <path d="M 54 112 C 54 52 82 34 120 34 C 158 34 186 52 186 112 C 172 118 160 120 120 120 C 80 120 68 118 54 112 Z" fill="url(#lapisGrad)" stroke="url(#goldGrad)" stroke-width="2.5"/>
+
+  <!-- Top Nemes Alternating Stripes -->
+  <path d="M 64 88 C 76 60 100 48 120 48 C 140 48 164 60 176 88" stroke="url(#goldGrad)" stroke-width="6" fill="none"/>
+  <path d="M 58 102 C 70 76 96 66 120 66 C 144 66 170 76 182 102" stroke="url(#goldGrad)" stroke-width="6" fill="none"/>
+  <path d="M 55 114 C 70 94 94 84 120 84 C 146 84 170 94 185 114" stroke="url(#goldGrad)" stroke-width="5" fill="none"/>
+
+  <!-- Golden Headband -->
+  <path d="M 60 114 Q 120 122 180 114 L 180 123 Q 120 131 60 123 Z" fill="url(#goldGrad)" stroke="#AA771C" stroke-width="1.5"/>
+
+  <!-- Face -->
+  <path d="M 76 122 C 76 156 94 184 120 184 C 146 184 164 156 164 122 C 144 127 96 127 76 122 Z" fill="url(#skinGrad)" stroke="#8C4E28" stroke-width="1.5"/>
+
+  <!-- Ears & Earrings -->
+  <ellipse cx="73" cy="142" rx="4.5" ry="9" fill="#D38A56" stroke="#8C4E28" stroke-width="1"/>
+  <ellipse cx="167" cy="142" rx="4.5" ry="9" fill="#D38A56" stroke="#8C4E28" stroke-width="1"/>
+  <circle cx="73" cy="151" r="3" fill="url(#goldGrad)"/>
+  <circle cx="167" cy="151" r="3" fill="url(#goldGrad)"/>
+
+  <!-- Pharaonic Beard (Osiris Divine Beard) -->
+  <path d="M 114 183 L 115 218 Q 120 224 125 218 L 126 183 Z" fill="url(#goldGrad)" stroke="#5B3E08" stroke-width="1.5"/>
+  <line x1="114" y1="190" x2="126" y2="190" stroke="#1B3B6F" stroke-width="2"/>
+  <line x1="114" y1="198" x2="126" y2="198" stroke="#1B3B6F" stroke-width="2"/>
+  <line x1="115" y1="206" x2="125" y2="206" stroke="#1B3B6F" stroke-width="2"/>
+  <line x1="116" y1="214" x2="124" y2="214" stroke="#1B3B6F" stroke-width="2"/>
+
+  <!-- Eyebrows with Kohl Extension -->
+  <path d="M 86 136 Q 100 132 110 137" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <path d="M 154 136 Q 140 132 130 137" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <!-- Kohl line extensions to temples -->
+  <path d="M 86 136 L 79 137" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <path d="M 154 136 L 161 137" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" fill="none"/>
+
+  <!-- Eyes of Horus Style (Almond shaped with eyeliner) -->
+  <!-- Left Eye -->
+  <path d="M 87 145 Q 98 138 110 145 Q 98 150 87 145 Z" fill="#FFFFFF" stroke="#111111" stroke-width="1.8"/>
+  <circle cx="99" cy="144" r="4" fill="#3D2314"/>
+  <circle cx="99" cy="144" r="2.2" fill="#000000"/>
+  <circle cx="100.5" cy="143" r="1.2" fill="#FFFFFF"/>
+  <path d="M 87 145 L 80 147" stroke="#111111" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Right Eye -->
+  <path d="M 130 145 Q 142 138 153 145 Q 142 150 130 145 Z" fill="#FFFFFF" stroke="#111111" stroke-width="1.8"/>
+  <circle cx="141" cy="144" r="4" fill="#3D2314"/>
+  <circle cx="141" cy="144" r="2.2" fill="#000000"/>
+  <circle cx="142.5" cy="143" r="1.2" fill="#FFFFFF"/>
+  <path d="M 153 145 L 160 147" stroke="#111111" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Nose -->
+  <path d="M 120 138 L 118 156 Q 120 159 123 156" stroke="#9E5D32" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- Lips -->
+  <path d="M 112 168 Q 120 165 128 168 Q 120 174 112 168 Z" fill="#A85741" stroke="#7A3423" stroke-width="1"/>
+
+  <!-- Uraeus (Royal Cobra on Forehead) -->
+  <g id="uraeus">
+    <path d="M 120 114 Q 117 100 120 94 Q 123 90 120 84 Q 116 78 120 72" stroke="url(#goldGrad)" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+    <ellipse cx="120" cy="72" rx="4.5" ry="6" fill="url(#goldGrad)" stroke="#664608" stroke-width="1"/>
+    <!-- Cobra hood flare -->
+    <path d="M 115 80 Q 120 75 125 80 Q 120 86 115 80 Z" fill="url(#turquoiseGrad)"/>
+    <!-- Small red ruby stone on crown -->
+    <circle cx="120" cy="71" r="2" fill="#C70039"/>
+  </g>
+
+  <!-- Divine Sparkle Star in Corner -->
+  <path d="M 195 55 L 200 63 L 208 68 L 200 73 L 195 81 L 190 73 L 182 68 L 190 63 Z" fill="url(#goldGrad)" opacity="0.85"/>
+  <circle cx="195" cy="68" r="2" fill="#FFFFFF"/>
+</svg>
+
