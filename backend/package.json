@@ -1,0 +1,27 @@
+{
+  "name": "ehky-ya-misr-backend",
+  "version": "1.0.0",
+  "description": "Backend REST API for Ehky Ya Misr (احكي يا مصر)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "heritage",
+    "egypt",
+    "culture",
+    "rest-api",
+    "express"
+  ],
+  "author": "Ehky Ya Misr Team",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}
+

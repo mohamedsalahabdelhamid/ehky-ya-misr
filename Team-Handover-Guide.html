@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <title>دليل توزيع المهام والتكامل البرمجي — مشروع احكي يا مصر</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 15mm 15mm 15mm 15mm;
+    }
+    
+    :root {
+      --gold: #c59b27;
+      --gold-dark: #8c6a15;
+      --gold-light: #fdf6e2;
+      --navy: #0f2147;
+      --navy-light: #1c3d7a;
+      --turquoise: #1a7b88;
+      --bg: #ffffff;
+      --paper: #faf8f5;
+      --text: #222222;
+      --text-muted: #555555;
+      --border: #e6dfd1;
+      --success: #2e7d32;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 13px;
+      direction: rtl;
+    }
+
+    .header-cover {
+      background: linear-gradient(135deg, var(--navy) 0%, #060e20 100%);
+      color: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      margin-bottom: 25px;
+      border: 2px solid var(--gold);
+      position: relative;
+    }
+
+    .header-cover h1 {
+      margin: 0 0 8px;
+      font-size: 26px;
+      color: #ffe89a;
+      letter-spacing: -0.5px;
+    }
+
+    .header-cover .subtitle {
+      font-size: 14px;
+      color: #dbe4ee;
+      margin: 0 0 15px;
+    }
+
+    .badge-bar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(212, 175, 55, 0.2);
+      border: 1px solid var(--gold);
+      color: #ffe89a;
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-weight: bold;
+    }
+
+    h2 {
+      color: var(--navy);
+      font-size: 18px;
+      border-bottom: 2px solid var(--gold);
+      padding-bottom: 6px;
+      margin-top: 25px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    h3 {
+      color: var(--navy-light);
+      font-size: 15px;
+      margin: 15px 0 8px;
+    }
+
+    p {
+      margin: 0 0 10px;
+      color: var(--text);
+      text-align: justify;
+    }
+
+    /* Matrix Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+      font-size: 12px;
+    }
+
+    table th {
+      background: var(--navy);
+      color: #ffffff;
+      padding: 10px 12px;
+      text-align: right;
+      border: 1px solid var(--navy);
+    }
+
+    table td {
+      padding: 9px 12px;
+      border: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    table tr:nth-child(even) {
+      background: var(--paper);
+    }
+
+    /* Cards */
+    .team-box {
+      background: var(--paper);
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 18px;
+      border: 1px solid var(--border);
+      border-right: 5px solid var(--gold);
+      page-break-inside: avoid;
+    }
+
+    .team-box.frontend {
+      border-right-color: var(--turquoise);
+    }
+
+    .team-box.chatbot {
+      border-right-color: var(--gold);
+    }
+
+    .team-box.database {
+      border-right-color: var(--navy-light);
+    }
+
+    .team-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .team-title h3 {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .tag {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+
+    .tag-fe { background: #e0f2f1; color: #00695c; }
+    .tag-ai { background: #fff8e1; color: #f57f17; }
+    .tag-db { background: #e8eaf6; color: #283593; }
+
+    ul {
+      margin: 6px 0 10px;
+      padding-right: 20px;
+    }
+
+    li {
+      margin-bottom: 4px;
+    }
+
+    code {
+      background: #eee8dc;
+      color: #8c4e00;
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-size: 11.5px;
+      font-family: Consolas, monospace;
+      direction: ltr;
+      display: inline-block;
+    }
+
+    .code-block {
+      background: #1e1e1e;
+      color: #d4d4d4;
+      padding: 12px 14px;
+      border-radius: 8px;
+      font-family: Consolas, monospace;
+      font-size: 11px;
+      direction: ltr;
+      text-align: left;
+      margin: 8px 0;
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
+
+    .code-block .keyword { color: #569cd6; }
+    .code-block .string { color: #ce9178; }
+    .code-block .comment { color: #6a9955; }
+    .code-block .property { color: #9cdcfe; }
+
+    .callout {
+      background: var(--gold-light);
+      border: 1px solid var(--gold);
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin: 15px 0;
+      color: var(--gold-dark);
+      font-size: 12.5px;
+    }
+
+    .callout strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #553b00;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+
+    .footer-note {
+      text-align: center;
+      margin-top: 30px;
+      padding-top: 15px;
+      border-top: 1px dashed var(--border);
+      color: var(--text-muted);
+      font-size: 11px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Cover / Header -->
+  <div class="header-cover">
+    <h1>🏛️ مشروع «احكي يا مصر» — دليل تكامل الفرق وتوزيع المهام</h1>
+    <div class="subtitle">المعمارية المعزولة: دليل المطورين لفرق (الفرونت إند • الشات بوت والذكاء الاصطناعي • قاعدة البيانات والباك إند)</div>
+    <div class="badge-bar">
+      <span class="badge">معمارية مفصولة بالكامل</span>
+      <span class="badge">الفرونت يعمل بدون سيرفر</span>
+      <span class="badge">عزل تام للملفات (Zero Conflict)</span>
+      <span class="badge">جاهز لربط الـ APIs</span>
+    </div>
+  </div>
+
+  <p>
+    تم تصميم هذه المعمارية خصيصاً لتمكين <strong>ثلاثة تيمات مختلفة</strong> من العمل في نفس الوقت بالتوازي (Parallel Development) دون أن ينتظر أحد أحداً، ودون أن يمسح تيم شغل الآخر أو يتسبب في تضارب ملفات (Merge Conflicts).
+  </p>
+
+  <!-- Section 1: Summary Matrix -->
+  <h2>1. مصفوفة المسؤوليات وتوزيع الملفات السريع</h2>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 22%;">الفريق البرمجي</th>
+        <th style="width: 28%;">المجلد المخصص له</th>
+        <th style="width: 25%;">الملفات المسموح بتعديلها</th>
+        <th style="width: 25%;">نقطة الربط والتسليم (Integration Hook)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>🎨 تيم الفرونت إند<br><small>(Frontend UI/UX)</small></strong></td>
+        <td><code>frontend/</code></td>
+        <td>
+          <code>index.html</code><br>
+          <code>css/style.css</code><br>
+          <code>js/app.js</code><br>
+          <code>assets/</code>
+        </td>
+        <td>يستهلك دوال <code>window.HeritageService</code> بدون كتابة كود باك إند.</td>
+      </tr>
+      <tr>
+        <td><strong>🤖 تيم الشات بوت<br><small>(AI / Chatbot)</small></strong></td>
+        <td><code>frontend/components/chatbot/</code></td>
+        <td>
+          <code>chatbot.js</code><br>
+          <code>chatbot.css</code><br>
+          <code>backend/controllers/chatController.js</code>
+        </td>
+        <td>يغير متغير <code>USE_REMOTE_API = true</code> في <code>chatbot.js</code> ويوصل رابطه.</td>
+      </tr>
+      <tr>
+        <td><strong>🗄️ تيم الداتا بيز<br><small>(Database & Backend)</small></strong></td>
+        <td><code>backend/</code></td>
+        <td>
+          <code>server.js</code><br>
+          <code>controllers/</code><br>
+          <code>routes/</code><br>
+          <code>models/ & DB</code>
+        </td>
+        <td>يفعل <code>USE_REMOTE_API = true</code> في <code>heritageService.js</code> ويربط رابط الـ API.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Section 2: Detailed Team Guides -->
+  <h2>2. التفاصيل الدقيقة لمهام كل فريق</h2>
+
+  <!-- Frontend Team -->
+  <div class="team-box frontend">
+    <div class="team-title">
+      <h3>🎨 أ. فريق الفرونت إند (Frontend & UI/UX Developers)</h3>
+      <span class="tag tag-fe">المجلد: frontend/</span>
+    </div>
+    <p><strong>طبيعة العمل:</strong> تطوير الواجهات، الصفحات، الألوان، الخريطة، والتجاوب مع شاشات الموبايل.</p>
+    <ul>
+      <li><strong>التشغيل المستقل:</strong> يمكنكم فتح ملف <code>frontend/index.html</code> مباشرة بنقرة مزدوجة في أي متصفح دون تشغيل أي خادم أو بايثون.</li>
+      <li><strong>تطوير الصفحات والتصميم:</strong> كل التعديلات البصرية تكتب داخل <code>frontend/css/style.css</code>.</li>
+      <li><strong>التنقل والصفحات:</strong> يتم التحكم بالمسارات (Routes) من خلال <code>frontend/js/app.js</code>.</li>
+      <li><strong>إضافة الصور والمشاهد:</strong> توضع جميع الصور داخل مجلد <code>frontend/assets/</code>.</li>
+    </ul>
+    <div class="callout">
+      <strong>⚠️ تنبيه أمان لتيم الفرونت إند:</strong>
+      لا تقم بتعديل أو حذف الملفين <code>frontend/components/chatbot/</code> أو <code>frontend/js/services/heritageService.js</code> لأن هذين الملفين مخصصان لتيم الشات بوت والداتا بيز لربط خدماتهم.
+    </div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- Chatbot Team -->
+  <div class="team-box chatbot">
+    <div class="team-title">
+      <h3>🤖 ب. فريق الشات بوت والذكاء الاصطناعي (AI & Chatbot Team)</h3>
+      <span class="tag tag-ai">المجلد: frontend/components/chatbot/</span>
+    </div>
+    <p><strong>طبيعة العمل:</strong> برمجة "حكيم مصر" (المرشد الفرعوني)، هندسة الأوامر (Prompt Engineering)، وربط نماذج الذكاء الاصطناعي (Gemini / OpenAI / LangChain).</p>
+    <ul>
+      <li><strong>الأفاتار الفرعوني الملكي:</strong> تم إعداد أفاتار فرعوني عالي الجودة باسم <code>pharaoh-avatar.svg</code> جاهز ومربوط مسبقاً.</li>
+      <li><strong>كود الشات المنفصل:</strong> كل منطق الشات موجود داخل <code>frontend/components/chatbot/chatbot.js</code>.</li>
+      <li><strong>تنسيقات الشات:</strong> ألوان الذهب واللازورد موجودة داخل <code>chatbot.css</code> ويمكن تخصيصها دون لمس باقي الموقع.</li>
+      <li><strong>في الباك إند:</strong> متاح لكم ملف <code>backend/controllers/chatController.js</code> لوضع مفتاح الـ API والاتصال بنموذج الذكاء الاصطناعي.</li>
+    </ul>
+    <p><strong>كيف يربط فريق الشات بوت شغلهم بالفرونت إند؟</strong></p>
+    <p>عند اكتمال نموذج الذكاء الاصطناعي، يفتح الفريق ملف <code>chatbot.js</code> ويعدل السطور الأولى فقط:</p>
+    <div class="code-block">
+<span class="keyword">window</span>.<span class="property">EhkyChatbotConfig</span> = {
+  <span class="property">USE_REMOTE_API</span>: <span class="keyword">true</span>, <span class="comment">// تفعيل الربط السحابي بالذكاء الاصطناعي</span>
+  <span class="property">apiUrl</span>: <span class="string">'http://localhost:5000/api/chat'</span>, <span class="comment">// رابط سيرفركم</span>
+  <span class="property">botName</span>: <span class="string">'حكيم مصر'</span>
+};
+    </div>
+  </div>
+
+  <!-- Database Team -->
+  <div class="team-box database">
+    <div class="team-title">
+      <h3>🗄️ ج. فريق قاعدة البيانات والباك إند (Database & Backend Team)</h3>
+      <span class="tag tag-db">المجلد: backend/</span>
+    </div>
+    <p><strong>طبيعة العمل:</strong> بناء جداول قاعدة البيانات (PostgreSQL / MongoDB / MySQL)، وحفظ استمارات التوثيق وبناء مسارات الـ REST API.</p>
+    <ul>
+      <li><strong>الملفات المخصصة لهم:</strong> مجلد <code>backend/</code> بالكامل، وملف الدليل الشامل <code>frontend/js/services/DATABASE_INTEGRATION.md</code>.</li>
+      <li><strong>الخادم المجهز:</strong> سيرفر Express مبني بالكامل في <code>backend/server.js</code> مع تقسيم احترافي للـ Routes والـ Controllers.</li>
+      <li><strong>الـ Endpoints الأربعة المطلوبة:</strong>
+        <ul>
+          <li><code>GET /api/provinces</code> — قائمة المحافظات الـ 27</li>
+          <li><code>GET /api/heritage</code> — فلترة وبحث التراث (حرف، مأكولات، فنون)</li>
+          <li><code>GET /api/crafts/:id</code> — استرجاع تفاصيل الحرفة وبيانات التوثيق</li>
+          <li><code>POST /api/chat</code> — نقطة استقبال استفسارات الشات بوت</li>
+        </ul>
+      </li>
+    </ul>
+    <p><strong>كيف يربط فريق قاعدة البيانات شغلهم بالفرونت إند؟</strong></p>
+    <p>بمجرد جهوزية الـ API، يفتح الفريق ملف <code>frontend/js/services/heritageService.js</code> ويغيرون فقط:</p>
+    <div class="code-block">
+<span class="keyword">const</span> <span class="property">DATABASE_CONFIG</span> = {
+  <span class="property">USE_REMOTE_API</span>: <span class="keyword">true</span>, <span class="comment">// تفعيل جلب البيانات الحية من قاعدة البيانات</span>
+  <span class="property">API_BASE_URL</span>: <span class="string">'http://localhost:5000/api'</span> <span class="comment">// رابط سيرفر قاعدة البيانات</span>
+};
+    </div>
+  </div>
+
+  <!-- Section 3: Git Workflow -->
+  <h2>3. خطة العمل الجماعي عبر Git (Conflict-Free Workflow)</h2>
+  <p>لضمان عدم حدوث أي تضارب عند دمج الأكواد، يوصى باتباع نظام الفروع الآتي:</p>
+  <ul>
+    <li><code>main</code>: الفرع الرئيسي المستقر، لا يتم الرفع المباشر عليه إلا بعد الفحص.</li>
+    <li><code>feature/frontend-ui</code>: يعمل عليه مطورو الفرونت إند بحرية.</li>
+    <li><code>feature/chatbot-ai</code>: يعمل عليه مطورو الشات بوت داخل مجلد <code>components/chatbot/</code>.</li>
+    <li><code>feature/database-backend</code>: يعمل عليه مطورو الباك إند داخل مجلد <code>backend/</code>.</li>
+  </ul>
+
+  <!-- Section 4: Testing & Verification -->
+  <h2>4. أدوات الفحص المرفقة</h2>
+  <p>تم تزويد المشروع بأداتين مدمجتين لتسهيل العمل:</p>
+  <ul>
+    <li><strong><code>open-frontend.bat</code>:</strong> يفتح الفرونت إند بنقرة واحدة في المتصفح للاختبار السريع بدون سيرفر.</li>
+    <li><strong><code>test-integration.html</code>:</strong> لوحة فحص تفاعلية تبين بنقاط خضراء وحمراء حالة عمل كل من الفرونت، الشات بوت، وسيرفر قاعدة البيانات.</li>
+  </ul>
+
+  <div class="footer-note">
+    تم إعداد هذا الدليل لمشروع «احكي يا مصر — مصر في ذاكرة المستقبل» • الإصدار 2.0 المعماري المطور
+  </div>
+
+</body>
+</html>
+
