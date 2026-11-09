@@ -1462,15 +1462,29 @@ function setupThemeSwitcher() {
 // APPLICATION INITIALIZATION
 // -----------------------------------------------------------------------------
 async function initApp() {
-  provincesData = await window.HeritageService.getProvinces();
-  categoriesData = await window.HeritageService.getCategories();
-  
-  setupLanguageSwitcher();
-  setupUserRole();
-  setupThemeSwitcher();
+  try {
+    if (window.HeritageService) {
+      provincesData = await window.HeritageService.getProvinces();
+      categoriesData = await window.HeritageService.getCategories();
+    }
+  } catch (err) {
+    console.warn('[initApp] Failed to load data from HeritageService, using fallback:', err);
+  }
 
-  window.addEventListener('hashchange', route);
-  route();
+  try { setupLanguageSwitcher(); } catch (e) { console.warn(e); }
+  try { setupUserRole(); } catch (e) { console.warn(e); }
+  try { setupThemeSwitcher(); } catch (e) { console.warn(e); }
+
+  window.addEventListener('hashchange', () => {
+    try { route(); } catch (e) { console.error('Route error:', e); }
+  });
+
+  try {
+    await route();
+  } catch (err) {
+    console.error('[initApp] Route rendering failed, forcing home view:', err);
+    if (app) app.innerHTML = home();
+  }
 }
 
 if (document.readyState === 'loading') {
