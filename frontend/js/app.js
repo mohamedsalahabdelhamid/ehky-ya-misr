@@ -790,8 +790,8 @@ function renderArtisanCard(a, fullView = false) {
     <div class="artisan-card" style="background:var(--paper);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 8px 24px rgba(0,0,0,0.06);border-top:4px solid var(--gold)">
       <div style="padding:20px;border-bottom:1px solid var(--line)">
         <div style="display:flex;gap:14px;align-items:center">
-          <div style="width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#0f2147,#123d42);display:flex;align-items:center;justify-content:center;border:2px solid var(--gold);flex-shrink:0">
-            <img src="assets/horus-avatar.svg" alt="${a.name}" style="width:75%;height:75%;object-fit:contain">
+          <div style="width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#0f2147,#123d42);display:flex;align-items:center;justify-content:center;border:2px solid var(--gold);flex-shrink:0;color:#ffe89a;font-size:28px">
+            ⚒️
           </div>
           <div>
             <div style="display:flex;align-items:center;gap:6px">
@@ -861,8 +861,8 @@ function openArtisanChatModal(artisanId) {
       <div class="ehky-modal-card">
         <div class="ehky-modal-header">
           <div style="display:flex;gap:12px;align-items:center">
-            <div style="width:48px;height:48px;border-radius:50%;background:#0f2147;display:flex;align-items:center;justify-content:center;border:2px solid var(--gold)">
-              <img src="assets/horus-avatar.svg" style="width:70%;height:70%" alt="${artisan.name}">
+            <div style="width:48px;height:48px;border-radius:50%;background:#0f2147;display:flex;align-items:center;justify-content:center;border:2px solid var(--gold);color:#ffe89a;font-size:24px">
+              ⚒️
             </div>
             <div>
               <strong style="display:block;font-size:16px">${artisan.name} <span style="color:#00c853;font-size:11px">● متصل الآن</span></strong>

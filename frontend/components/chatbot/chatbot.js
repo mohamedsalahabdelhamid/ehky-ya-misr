@@ -18,7 +18,7 @@
     apiUrl: 'http://localhost:5000/api/chat',
     
     // Character Settings (Horus the Royal Guide)
-    avatarUrl: 'assets/horus-avatar.svg',
+    avatarUrl: 'assets/horus-character-3d.webp',
     botName: 'حورس الحكيم',
     botTitle: 'المرشد التراثي الذكي لمصر',
     welcomeMessage: 'أهلاً بك في محراب الحضارة المصرية العريقة! أنا حورس، مرشدك التراثي الذكي. اسألني عن الحرف التقليدية الـ 16، أشهر الأكلات التراثية، سوق الحرفيين وكيفية الطلب بالعمولة، أو تاريخ أي محافظة من محافظات مصر الـ 27.',

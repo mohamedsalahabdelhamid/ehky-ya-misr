@@ -954,7 +954,7 @@
       }
       const found = LOCAL_CRAFTS.find(c => c.id === id);
       return found ? { ...found } : null;
-    }
+    },
 
     // 6. Get Traditional Foods by Province or Search
     async getFoods({ province = 'all', search = '' } = {}) {

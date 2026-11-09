@@ -64,14 +64,19 @@
   <!-- Dynamic Content Container -->
   <main id="app"></main>
 
-  <!-- Animated Horus Floating Companion Dock -->
+  <!-- Animated 3D Horus Royal Companion (Sculpted Full-Body Cutout) -->
   <aside class="horus-dock" id="horusDock" aria-label="المرشد الفرعوني حورس">
     <div class="horus-speech-bubble" id="horusBubble" title="اضغط للتحدث مع حورس">
       <span id="horusSpeechText">أهلاً بك في مصر! أنا حورس مرشدك التراثي، اسألني في أي وقت 𓅃</span>
+      <div class="horus-bubble-arrow"></div>
     </div>
-    <button class="horus-avatar-btn" id="horusGuideBtn" aria-label="التحدث مع حورس الحكيم" title="حورس الحكيم — مرشد التراث الذكي">
-      <img src="assets/horus-avatar.svg" alt="حورس الحكيم">
-    </button>
+    
+    <!-- 3D Sculpted Character (Not a circular button!) -->
+    <div class="horus-3d-character" id="horusGuideBtn" role="button" tabindex="0" aria-label="التحدث مع حورس الحكيم" title="حورس الحكيم — مرشد التراث الذكي">
+      <img src="assets/horus-character-3d.webp" alt="مجسم حورس الحكيم ثلاثي الأبعاد" class="horus-figure-img">
+      <div class="horus-ground-shadow"></div>
+      <span class="horus-status-badge">حورس الحكيم ✧</span>
+    </div>
   </aside>
 
   <!-- Footer -->
