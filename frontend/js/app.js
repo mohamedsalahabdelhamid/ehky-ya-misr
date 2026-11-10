@@ -58,7 +58,11 @@ let locality = 'all';
 let searchTerm = '';
 let era = 'all';
 let mapZoom = 1;
-let activeVideoSource = 'hybrid';
+const isOnlineEnv = typeof window !== 'undefined' && window.location && window.location.protocol && window.location.protocol.startsWith('http') && 
+  window.location.hostname !== 'localhost' && 
+  window.location.hostname !== '127.0.0.1';
+if (typeof window !== 'undefined') window.isOnlineEnv = isOnlineEnv;
+let activeVideoSource = isOnlineEnv ? 'youtube' : 'hybrid';
 let provincesData = [];
 let categoriesData = [];
 
@@ -421,6 +425,90 @@ function advanceOrderStatus(orderId) {
     alert(t('statusUpdatedSuccess') + ' (' + ord.statusLabel + ')');
   } catch(e) {}
 }
+
+// VIDEO LIGHTBOX MODAL & AUTOMATIC FALLBACK
+window.handleVideoFallback = async function(craftId) {
+  try {
+    const craft = await window.HeritageService.getCraftDetails(craftId);
+    const wrap = document.getElementById('videoEmbedWrapper');
+    const btnY = document.getElementById('btnSourceYt');
+    const btnH = document.getElementById('btnSourceHybrid');
+    if (craft && craft.youtubeId && wrap) {
+      wrap.innerHTML = renderVideoElement(craft, 'youtube');
+      if (btnY) btnY.classList.add('active');
+      if (btnH) btnH.classList.remove('active');
+      activeVideoSource = 'youtube';
+    }
+  } catch(e) {}
+};
+
+window.openVideoModal = async function(craftId) {
+  try {
+    const craft = await window.HeritageService.getCraftDetails(craftId);
+    if (!craft || !craft.youtubeId) return;
+
+    let existing = document.getElementById('ehkyVideoLightbox');
+    if (existing) existing.remove();
+
+    const modal = document.createElement('div');
+    modal.id = 'ehkyVideoLightbox';
+    modal.className = 'modal-backdrop';
+    modal.style.cssText = 'position:fixed;inset:0;background:rgba(8,18,37,0.85);backdrop-filter:blur(10px);z-index:99999;display:flex;align-items:center;justify-content:center;padding:16px;animation:fadeIn 0.25s ease';
+
+    const langCode = currentLang || 'ar';
+
+    modal.innerHTML = `
+      <div class="video-modal-card" style="background:#0f1c30;border:2px solid var(--gold);border-radius:20px;width:100%;max-width:880px;overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,0.65);animation:scaleUp 0.25s ease">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 22px;background:linear-gradient(135deg,rgba(212,175,55,0.18),transparent);border-bottom:1px solid rgba(212,175,55,0.3)">
+          <div style="display:flex;align-items:center;gap:12px">
+            <span style="font-size:24px">🎬</span>
+            <div>
+              <h3 style="margin:0;font-size:17px;color:#fff">${craft.title}</h3>
+              <small style="color:var(--gold);font-weight:600">📍 ${craft.provinceName} • ${craft.regions}</small>
+            </div>
+          </div>
+          <button id="btnCloseVideoModal" style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);color:#fff;width:36px;height:36px;border-radius:50%;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:0.2s">✕</button>
+        </div>
+        <div style="position:relative;padding-bottom:56.25%;height:0;background:#000">
+          <iframe src="https://www.youtube-nocookie.com/embed/${craft.youtubeId}?autoplay=1&rel=0&enablejsapi=1&cc_load_policy=1&cc_lang_pref=${langCode}&hl=${langCode}" 
+            title="${craft.title}" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen 
+            style="position:absolute;top:0;left:0;width:100%;height:100%;border:0"></iframe>
+        </div>
+        <div style="padding:14px 22px;display:flex;justify-content:space-between;align-items:center;background:#0b1424;flex-wrap:wrap;gap:10px">
+          <span style="color:#d4af37;font-size:13px;display:flex;align-items:center;gap:6px">
+            <span>🛡️</span> ${t('escrowSecured')} • ${t('verifiedBadge')}
+          </span>
+          <div style="display:flex;gap:10px">
+            <a href="#craft/${craft.id}" onclick="document.getElementById('ehkyVideoLightbox').remove()" class="primary" style="padding:8px 18px;font-size:13px">
+              🏺 ${t('exploreStory')}
+            </a>
+            <button id="btnDismissVideoModal" class="pill" style="padding:8px 16px;font-size:13px;background:rgba(255,255,255,0.08);color:#fff">
+              ${t('close') || 'إغلاق'}
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(modal);
+    modal.querySelector('#btnCloseVideoModal').onclick = () => modal.remove();
+    modal.querySelector('#btnDismissVideoModal').onclick = () => modal.remove();
+    modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
+
+    const onEsc = (e) => {
+      if (e.key === 'Escape') {
+        modal.remove();
+        window.removeEventListener('keydown', onEsc);
+      }
+    };
+    window.addEventListener('keydown', onEsc);
+  } catch(e) {
+    console.error('Error opening video modal:', e);
+  }
+};
 
 // ORDER TRACKING MODAL (Interactive 4-step Timeline)
 function openOrderTrackingModal(orderId) {
@@ -861,7 +949,13 @@ async function renderResults() {
     container.innerHTML = items.map(item=>`
       <a href="#craft/${item.id}" class="item-card">
         <div class="card-art" style="${item.youtubeId?`background:url('https://img.youtube.com/vi/${item.youtubeId}/hqdefault.jpg') center/cover;position:relative;`:''}">
-          ${item.youtubeId?`<span style="position:absolute;inset:0;background:rgba(15,33,71,0.4);display:flex;align-items:center;justify-content:center"><svg width="44" height="44" viewBox="0 0 24 24" fill="#d4af37"><path d="M8 5v14l11-7z"/></svg></span>`:boatSvg}
+          ${item.youtubeId?`
+            <button type="button" class="video-play-overlay-btn" onclick="event.preventDefault();event.stopPropagation();window.openVideoModal('${item.id}');" title="${t('watchVideo')}" aria-label="${t('watchVideo')}">
+              <span class="video-play-circle">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+              <span class="video-play-tag">🌐 ${t('onlineVideoBadge')}</span>
+            </button>`:boatSvg}
         </div>
         <div class="card-copy">
           <small>${item.category==='craft'?t('catCraft'):item.category==='food'?t('catFood'):t('catMusic')} • ${item.provinceName}</small>
@@ -889,18 +983,19 @@ async function craftPage(id='boats') {
 
   let videoPlayerHtml = '';
   if (craft.localVideo || craft.youtubeId) {
+    const effectiveSource = isOnlineEnv ? 'youtube' : activeVideoSource;
     videoPlayerHtml = `
       <section class="video-container-card" style="margin:25px 0;background:var(--paper);border:2px solid var(--gold);border-radius:18px;padding:20px;box-shadow:0 12px 36px rgba(0,0,0,0.12)">
         <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px">
           <div><h3 style="margin:0;font-size:18px;color:var(--ink)">🎬 ${t('watchVideo')}</h3>
-            <small style="color:var(--muted)">${t('videoOfflineNote')}</small></div>
+            <small style="color:var(--muted)">${isOnlineEnv ? ('🌐 ' + t('youtubeLabel') + ' — ' + t('onlineVideoBadge')) : ('💻 ' + t('videoOfflineNote'))}</small></div>
           <div class="video-toggle-pills" style="display:flex;gap:6px;background:rgba(212,175,55,0.15);padding:4px;border-radius:30px">
-            <button class="pill ${activeVideoSource==='hybrid'?'active':''}" id="btnSourceHybrid" style="font-size:12px;padding:4px 12px">💻 ${t('localVideoLabel')}</button>
-            <button class="pill ${activeVideoSource==='youtube'?'active':''}" id="btnSourceYt" style="font-size:12px;padding:4px 12px">🌐 ${t('youtubeLabel')}</button>
+            <button class="pill ${effectiveSource==='youtube'?'active':''}" id="btnSourceYt" style="font-size:12px;padding:4px 12px">🌐 ${t('youtubeLabel')}</button>
+            <button class="pill ${effectiveSource==='hybrid'?'active':''}" id="btnSourceHybrid" style="font-size:12px;padding:4px 12px">💻 ${t('localVideoLabel')}</button>
           </div>
         </div>
-        <div id="videoEmbedWrapper" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#000">
-          ${renderVideoElement(craft,activeVideoSource)}
+        <div id="videoEmbedWrapper" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#000;box-shadow:inset 0 0 20px rgba(0,0,0,0.6)">
+          ${renderVideoElement(craft,effectiveSource)}
         </div>
       </section>`;
   }
@@ -929,7 +1024,13 @@ async function craftPage(id='boats') {
         </div>
       </div>
       <div class="card-art" style="${craft.youtubeId?`background:url('https://img.youtube.com/vi/${craft.youtubeId}/hqdefault.jpg') center/cover;position:relative;`:''}">
-        ${craft.youtubeId?`<span style="position:absolute;inset:0;background:rgba(15,33,71,0.35);display:flex;align-items:center;justify-content:center"><svg width="56" height="56" viewBox="0 0 24 24" fill="#d4af37"><path d="M8 5v14l11-7z"/></svg></span>`:boatSvg}
+        ${craft.youtubeId?`
+          <button type="button" class="video-play-overlay-btn" onclick="event.preventDefault();event.stopPropagation();window.openVideoModal('${craft.id}');" title="${t('watchVideo')}" aria-label="${t('watchVideo')}">
+            <span class="video-play-circle" style="width:68px;height:68px">
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg>
+            </span>
+            <span class="video-play-tag" style="font-size:12px;padding:5px 14px">🎬 ${t('watchVideo')}</span>
+          </button>`:boatSvg}
       </div></div>
       ${videoPlayerHtml}
       <div class="detail-grid">
@@ -955,14 +1056,31 @@ async function craftPage(id='boats') {
 }
 
 function renderVideoElement(craft, mode) {
-  if (mode === 'hybrid' && craft.localVideo) {
-    return `<video id="playerLocal" controls playsinline preload="metadata" style="position:absolute;top:0;left:0;width:100%;height:100%;background:#000;border:0">
-      <source src="${craft.localVideo}" type="video/mp4">
+  const langCode = currentLang || 'ar';
+  if ((mode === 'youtube' || isOnlineEnv || !craft.localVideo) && craft.youtubeId) {
+    return `<iframe src="https://www.youtube-nocookie.com/embed/${craft.youtubeId}?rel=0&enablejsapi=1&cc_load_policy=1&cc_lang_pref=${langCode}&hl=${langCode}&autoplay=0" 
+      title="${craft.title}" 
+      loading="lazy" 
+      frameborder="0" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+      allowfullscreen 
+      referrerpolicy="strict-origin-when-cross-origin" 
+      style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"></iframe>`;
+  } else if (mode === 'hybrid' && craft.localVideo) {
+    return `<video id="playerLocal" controls playsinline preload="metadata" style="position:absolute;top:0;left:0;width:100%;height:100%;background:#000;border:0" 
+      onerror="window.handleVideoFallback && window.handleVideoFallback('${craft.id}')">
+      <source src="${craft.localVideo}" type="video/mp4" onerror="window.handleVideoFallback && window.handleVideoFallback('${craft.id}')">
       <p style="color:#fff;padding:20px;text-align:center">${t('localVideoNotFound')}</p>
     </video>`;
   } else if (craft.youtubeId) {
-    const langCode = currentLang;
-    return `<iframe src="https://www.youtube-nocookie.com/embed/${craft.youtubeId}?rel=0&enablejsapi=1&cc_load_policy=1&cc_lang_pref=${langCode}&hl=${langCode}" title="${craft.title}" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"></iframe>`;
+    return `<iframe src="https://www.youtube-nocookie.com/embed/${craft.youtubeId}?rel=0&enablejsapi=1&cc_load_policy=1&cc_lang_pref=${langCode}&hl=${langCode}&autoplay=0" 
+      title="${craft.title}" 
+      loading="lazy" 
+      frameborder="0" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+      allowfullscreen 
+      referrerpolicy="strict-origin-when-cross-origin" 
+      style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"></iframe>`;
   }
   return `<div style="color:#fff;display:flex;align-items:center;justify-content:center;height:100%">${t('noVideoAvailable')}</div>`;
 }
