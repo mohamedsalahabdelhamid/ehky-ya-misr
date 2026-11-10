@@ -12,6 +12,8 @@ const cors = require('cors');
 const provincesRoutes = require('./routes/provinces');
 const heritageRoutes = require('./routes/heritage');
 const chatRoutes = require('./routes/chat');
+const foodsRoutes = require('./routes/foods');
+const artisansRoutes = require('./routes/artisans');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -28,24 +30,8 @@ app.use('/api/crafts', (req, res, next) => {
   heritageRoutes(req, res, next);
 });
 app.use('/api/chat', chatRoutes);
-
-app.get('/api/foods', (req, res) => {
-  try {
-    const foods = require('./data/foods.json');
-    res.json(foods);
-  } catch (e) {
-    res.json([]);
-  }
-});
-
-app.get('/api/artisans', (req, res) => {
-  try {
-    const artisans = require('./data/artisans.json');
-    res.json(artisans);
-  } catch (e) {
-    res.json([]);
-  }
-});
+app.use('/api/foods', foodsRoutes);
+app.use('/api/artisans', artisansRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {

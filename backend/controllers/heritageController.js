@@ -9,7 +9,7 @@ exports.getHeritageItems = (req, res) => {
   const filtered = crafts.filter(item => {
     const matchCat = category === 'all' || item.category === category;
     const matchProv = province === 'all' || item.provinceId === province;
-    const matchEra = era === 'all';
+    const matchEra = era === 'all' || item.era === era;
     const matchSearch = !nSearch || normalize(`${item.title} ${item.description} ${item.provinceName} ${item.regions}`).includes(nSearch);
     return matchCat && matchProv && matchEra && matchSearch;
   });
