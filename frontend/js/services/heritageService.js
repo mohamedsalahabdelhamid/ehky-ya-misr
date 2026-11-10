@@ -14,17 +14,58 @@
 (function () {
   'use strict';
 
-  // Integration Configuration
+  // =====================================================================
+  // INTEGRATION CONFIGURATION — Smart Offline/Online Mode
+  // ---------------------------------------------------------------------
+  // DATABASE_MODE controls where data comes from:
+  //   'auto' (default) → file:// protocol (double-click index.html) uses
+  //                       embedded LOCAL_* data; http/https (hosted) tries
+  //                       the remote API first and falls back to LOCAL_*.
+  //   true              → always try the remote API (DB team testing).
+  //   false             → always use embedded local data (fully offline).
+  // The frontend works 100% offline; the API is only an enhancement.
+  // =====================================================================
+  const DATABASE_MODE = 'auto';
+  const IS_HTTP_ENV = typeof window !== 'undefined' && window.location && window.location.protocol && window.location.protocol.startsWith('http');
+
   const DATABASE_CONFIG = {
     // Switch to true when Database & Backend Team is ready!
-    USE_REMOTE_API: false,
-    
+    USE_REMOTE_API: DATABASE_MODE === 'auto' ? IS_HTTP_ENV : DATABASE_MODE === true,
+
     // Database API Base URL
+    // Local dev:  http://localhost:5000/api
+    // Production: replace with your Render backend URL, e.g.
+    //             'https://ehky-ya-misr-api.onrender.com/api'
     API_BASE_URL: 'http://localhost:5000/api',
-    
-    // Request timeout in milliseconds
-    TIMEOUT_MS: 5000
+
+    // Request timeout in milliseconds (kept short so a sleeping/free-tier
+    // backend never blocks page rendering — we fall back to local data)
+    TIMEOUT_MS: 2500
   };
+
+  // ---------------------------------------------------------------------
+  // Remote API availability — checked ONCE per session and cached.
+  // If the backend is offline/asleep (e.g. free hosting cold start), every
+  // getter silently falls back to the embedded LOCAL_* data instead of
+  // hanging on repeated timeouts.
+  // ---------------------------------------------------------------------
+  let remoteApiAvailable = null; // null = unknown, true/false = cached result
+
+  async function checkRemoteApi() {
+    if (!DATABASE_CONFIG.USE_REMOTE_API) return false;
+    if (remoteApiAvailable !== null) return remoteApiAvailable;
+    try {
+      const res = await fetchWithTimeout(`${DATABASE_CONFIG.API_BASE_URL}/health`);
+      remoteApiAvailable = !!(res && res.ok);
+      if (!remoteApiAvailable) {
+        console.warn('[HeritageService] Backend reported unhealthy — using embedded local data.');
+      }
+    } catch (e) {
+      console.warn('[HeritageService] Backend unreachable (' + (e && e.message ? e.message : 'network error') + ') — using embedded local data.');
+      remoteApiAvailable = false;
+    }
+    return remoteApiAvailable;
+  }
 
   // 1. EMBEDDED LOCAL DATA (Default Offline Fallback)
   const LOCAL_PROVINCES = [
@@ -88,7 +129,7 @@
       "سد الفواصل الدقيقة بين الألواح بخيوط الكتان والقار لمنع تسرب المياه نهائياً.",
       "التشطيب النهائي والدهانات البحرية الواقية وتركيب تجهيزات الإبحار والمحركات."
     ],
-    "localVideo": "local_videos/local_videos/boats-alex.mp4"
+    "localVideo": null
   },
   {
     "id": "palm-weaving",
@@ -1133,7 +1174,7 @@
     // 1. Get All Provinces
     async getProvinces() {
       const lang = getActiveLang();
-      if (DATABASE_CONFIG.USE_REMOTE_API) {
+      if (await checkRemoteApi()) {
         try {
           const res = await fetchWithTimeout(`${DATABASE_CONFIG.API_BASE_URL}/provinces`);
           if (res.ok) {
@@ -1150,7 +1191,7 @@
     // 2. Get Single Province
     async getProvinceById(id) {
       const lang = getActiveLang();
-      if (DATABASE_CONFIG.USE_REMOTE_API) {
+      if (await checkRemoteApi()) {
         try {
           const res = await fetchWithTimeout(`${DATABASE_CONFIG.API_BASE_URL}/provinces/${id}`);
           if (res.ok) {
@@ -1173,7 +1214,7 @@
     // 4. Get Heritage Items by Filter
     async getHeritageItems({ category = 'all', province = 'all', era = 'all', search = '' } = {}) {
       const lang = getActiveLang();
-      if (DATABASE_CONFIG.USE_REMOTE_API) {
+      if (await checkRemoteApi()) {
         try {
           const params = new URLSearchParams({ category, province, era, search });
           const res = await fetchWithTimeout(`${DATABASE_CONFIG.API_BASE_URL}/heritage?${params.toString()}`);
@@ -1205,7 +1246,7 @@
     // 5. Get Craft Detail by ID
     async getCraftDetails(id = 'boats') {
       const lang = getActiveLang();
-      if (DATABASE_CONFIG.USE_REMOTE_API) {
+      if (await checkRemoteApi()) {
         try {
           const res = await fetchWithTimeout(`${DATABASE_CONFIG.API_BASE_URL}/crafts/${id}`);
           if (res.ok) {
@@ -1223,7 +1264,7 @@
     // 6. Get Traditional Foods by Province or Search
     async getFoods({ province = 'all', search = '' } = {}) {
       const lang = getActiveLang();
-      if (DATABASE_CONFIG.USE_REMOTE_API) {
+      if (await checkRemoteApi()) {
         try {
           const params = new URLSearchParams({ province, search });
           const res = await fetchWithTimeout(`${DATABASE_CONFIG.API_BASE_URL}/foods?${params.toString()}`);
@@ -1231,7 +1272,7 @@
             const data = await res.json();
             return data.map(f => localizeFood(f, lang));
           }
-        } catch (e) {}
+        } catch (e) { console.warn('[HeritageService] getFoods remote fetch failed, falling back to local:', e && e.message); }
       }
       const normalize = s => (s || '').replace(/[إأآ]/g, 'ا').replace(/ى/g, 'ي').replace(/ة/g, 'ه').toLowerCase().trim();
       const nSearch = normalize(search);
@@ -1247,14 +1288,14 @@
     // 7. Get Food by ID
     async getFoodById(id) {
       const lang = getActiveLang();
-      if (DATABASE_CONFIG.USE_REMOTE_API) {
+      if (await checkRemoteApi()) {
         try {
           const res = await fetchWithTimeout(`${DATABASE_CONFIG.API_BASE_URL}/foods/${id}`);
           if (res.ok) {
             const data = await res.json();
             return localizeFood(data, lang);
           }
-        } catch (e) {}
+        } catch (e) { console.warn('[HeritageService] getFoodById remote fetch failed, falling back to local:', e && e.message); }
       }
       const found = LOCAL_FOODS.find(f => f.id === id);
       return found ? localizeFood(found, lang) : null;
@@ -1263,7 +1304,7 @@
     // 8. Get Artisans by Craft or Province
     async getArtisans({ craftId = 'all', provinceId = 'all' } = {}) {
       const lang = getActiveLang();
-      if (DATABASE_CONFIG.USE_REMOTE_API) {
+      if (await checkRemoteApi()) {
         try {
           const params = new URLSearchParams({ craftId, provinceId });
           const res = await fetchWithTimeout(`${DATABASE_CONFIG.API_BASE_URL}/artisans?${params.toString()}`);
@@ -1271,7 +1312,7 @@
             const data = await res.json();
             return data.map(a => localizeArtisan(a, lang));
           }
-        } catch (e) {}
+        } catch (e) { console.warn('[HeritageService] getArtisans remote fetch failed, falling back to local:', e && e.message); }
       }
       const filtered = LOCAL_ARTISANS.filter(a => {
         const matchCraft = craftId === 'all' || a.craftId === craftId;
@@ -1284,14 +1325,14 @@
     // 9. Get Single Artisan by ID
     async getArtisanById(id) {
       const lang = getActiveLang();
-      if (DATABASE_CONFIG.USE_REMOTE_API) {
+      if (await checkRemoteApi()) {
         try {
           const res = await fetchWithTimeout(`${DATABASE_CONFIG.API_BASE_URL}/artisans/${id}`);
           if (res.ok) {
             const data = await res.json();
             return localizeArtisan(data, lang);
           }
-        } catch (e) {}
+        } catch (e) { console.warn('[HeritageService] getArtisanById remote fetch failed, falling back to local:', e && e.message); }
       }
       const found = LOCAL_ARTISANS.find(a => a.id === id);
       return found ? localizeArtisan(found, lang) : null;
@@ -1332,7 +1373,7 @@
             });
           }
         }
-      } catch (e) {}
+      } catch (e) { console.warn('[HeritageService] Could not parse saved merchant products (ignored):', e && e.message); }
 
       artisans.forEach(artisan => {
         if (!artisan.readyItems || !artisan.readyItems.length) return;
