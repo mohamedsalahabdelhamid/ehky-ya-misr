@@ -844,6 +844,7 @@ body.night .lang-selector select option {
 /* Exhibition Tabs */
 .exhibition-tabs-wrap {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   border-bottom: 2px solid var(--line);
   margin-bottom: 24px;
@@ -1084,6 +1085,40 @@ body.night .lang-selector select option {
   font-size: 12.5px;
   text-align: center;
   white-space: nowrap;
+}
+
+/* ---- Souq Misr responsive (tablets & phones) ---- */
+@media (max-width: 700px) {
+  .exhibition-tab {
+    flex: 1 1 auto;
+    text-align: center;
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+  .currency-switcher-bar {
+    padding: 10px 12px;
+    gap: 10px;
+  }
+  .currency-rate-hint {
+    display: none;
+  }
+  .prod-filter-pill {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+  .products-search-box input {
+    padding: 12px 14px;
+    font-size: 16px; /* 16px stops iOS Safari from auto-zooming on focus */
+  }
+}
+@media (max-width: 480px) {
+  .products-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .product-actions {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Night theme adjustments */

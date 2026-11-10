@@ -483,3 +483,27 @@ body.lang-ltr .horus-dock { right: auto; left: 20px; }
 
 /* Legacy hidden launcher */
 .pharaoh-chat-launcher { display: none !important; }
+
+/* ---- MOBILE RESPONSIVE (phones & small tablets) ---- */
+@media (max-width: 560px) {
+  /* Inline two-column field grids inside modals collapse to a single column
+     (checkout card fields, Vodafone fields, add-product form) */
+  .ehky-modal-card [style*="grid-template-columns:1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* Hard inline modal widths must respect small viewports */
+  .ehky-modal-card[style*="width:440px"],
+  .ehky-modal-card[style*="width:480px"],
+  .ehky-modal-card[style*="width:520px"],
+  .ehky-modal-card[style*="width:540px"],
+  .ehky-modal-card[style*="width:620px"] {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .ehky-modal-backdrop { padding: 10px; }
+  .ehky-modal-card { max-height: 92vh; }
+  /* 16px inputs stop iOS Safari from auto-zooming on focus */
+  .form-row input, .form-row select { font-size: 16px; }
+  .payment-tab-btn, .auth-tab { font-size: 12px; padding: 8px 10px; }
+  .ehky-protection-tag { font-size: 11px; }
+}
