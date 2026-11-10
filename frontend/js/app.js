@@ -23,6 +23,7 @@ let currentCurrency = localStorage.getItem('ehky-currency') || 'dual';
 let activeExhibitionTab = 'products'; // 'products' or 'artisans'
 let activeProductCategory = 'all';
 let productSearchTerm = '';
+let activeProductSort = 'recommended';
 
 function setCurrency(cur) {
   currentCurrency = cur;
@@ -1181,6 +1182,24 @@ async function foodDetailPage(id) {
 // -----------------------------------------------------------------------------
 // 6. SOUQ MISR — INTEGRATED LIVING HERITAGE E-STORE & WORKSHOPS
 // -----------------------------------------------------------------------------
+
+// Sort a ready-products list according to the active souq sort mode.
+function sortReadyProducts(list) {
+  const arr = [...list];
+  if (activeProductSort === 'price-asc') arr.sort((a, b) => a.priceEgp - b.priceEgp);
+  else if (activeProductSort === 'price-desc') arr.sort((a, b) => b.priceEgp - a.priceEgp);
+  else if (activeProductSort === 'rating') arr.sort((a, b) => (b.artisanRating || 0) - (a.artisanRating || 0));
+  return arr; // 'recommended' keeps the source order (merchant picks first)
+}
+
+// Empty-state block for the products grid (with a clear-filters action).
+function souqEmptyState() {
+  return `<div class="empty-state-card" style="grid-column:1/-1;text-align:center;padding:40px;background:var(--paper);border:1px dashed var(--line);border-radius:14px;color:var(--muted)">
+    <p style="margin:0 0 14px">${t('noProductsFound')}</p>
+    <button type="button" class="pill btn-clear-souq-filters" style="border-color:var(--gold);color:var(--gold)">✕ ${t('clearFilters')}</button>
+  </div>`;
+}
+
 async function artisansPage() {
   const isAr = (!window.I18N || window.I18N.current === 'ar');
   const isMerchant = isLoggedIn && currentUser && currentUser.role === 'artisan';
@@ -1200,6 +1219,8 @@ async function artisansPage() {
     { id: 'textiles', label: t('filterTextiles') },
     { id: 'lanterns-boats', label: t('filterLanternsBoats') }
   ];
+
+  const sortedProducts = sortReadyProducts(readyProducts);
 
   return `
     <div class="page artisans-page">
@@ -1265,6 +1286,18 @@ async function artisansPage() {
           <div class="products-search-box">
             <input type="text" id="productSearchInput" placeholder="${t('searchProductsPlaceholder')}" value="${productSearchTerm}">
           </div>
+          <div class="products-sort-row">
+            <span class="souq-results-count" id="souqResultsCount">${t('resultsCountLabel')}: ${sortedProducts.length}</span>
+            <label class="souq-sort-label">
+              <span>${t('sortBy')}</span>
+              <select id="productSortSelect" class="souq-sort-select">
+                <option value="recommended" ${activeProductSort==='recommended'?'selected':''}>${t('sortRecommended')}</option>
+                <option value="price-asc" ${activeProductSort==='price-asc'?'selected':''}>${t('sortPriceAsc')}</option>
+                <option value="price-desc" ${activeProductSort==='price-desc'?'selected':''}>${t('sortPriceDesc')}</option>
+                <option value="rating" ${activeProductSort==='rating'?'selected':''}>${t('sortRating')}</option>
+              </select>
+            </label>
+          </div>
           <div class="products-filter-pills">
             ${craftCats.map(c => `
               <button type="button" class="prod-filter-pill ${activeProductCategory===c.id?'active':''}" data-prod-cat="${c.id}">
@@ -1275,7 +1308,7 @@ async function artisansPage() {
         </div>
 
         <div class="products-grid" id="productsGridWrap">
-          ${readyProducts.length ? readyProducts.map(renderProductCard).join('') : `<div class="empty-state-card" style="grid-column:1/-1;text-align:center;padding:40px;background:var(--paper);border:1px dashed var(--line);border-radius:14px;color:var(--muted)">${t('noProductsFound')}</div>`}
+          ${sortedProducts.length ? sortedProducts.map(renderProductCard).join('') : souqEmptyState()}
         </div>
       </div>
 
@@ -1288,20 +1321,41 @@ async function artisansPage() {
     </div>`;
 }
 
-// Re-fetch and repaint ONLY the products grid (search/filter live update,
+// Re-fetch and repaint ONLY the products grid (search/filter/sort live update,
 // without re-rendering the whole page so the search input keeps focus).
 async function refreshSouqProductsGrid() {
   const gridWrap = document.getElementById('productsGridWrap');
   if (!gridWrap) return;
-  const readyProducts = await window.HeritageService.getReadyProducts({
-    category: activeProductCategory,
-    search: productSearchTerm
-  });
-  gridWrap.innerHTML = readyProducts.length
-    ? readyProducts.map(renderProductCard).join('')
-    : `<div class="empty-state-card" style="grid-column:1/-1;text-align:center;padding:40px;background:var(--paper);border:1px dashed var(--line);border-radius:14px;color:var(--muted)">${t('noProductsFound')}</div>`;
-  const tabBtn = document.querySelector('.exhibition-tab[data-ex-tab="products"]');
-  if (tabBtn) tabBtn.innerHTML = `${t('tabReadyProducts')} (${readyProducts.length})`;
+  // Skeleton cards appear only when the fetch is actually slow (>120ms),
+  // so instant local data never flashes a loading state.
+  let settled = false;
+  const skeletonTimer = setTimeout(() => {
+    if (!settled) gridWrap.innerHTML = Array.from({ length: 6 }, () => `
+      <div class="product-skeleton" aria-hidden="true">
+        <div class="sk-img"></div>
+        <div class="sk-line"></div>
+        <div class="sk-line sk-short"></div>
+        <div class="sk-actions"></div>
+      </div>`).join('');
+  }, 120);
+  try {
+    const readyProducts = await window.HeritageService.getReadyProducts({
+      category: activeProductCategory,
+      search: productSearchTerm
+    });
+    settled = true;
+    const sortedProducts = sortReadyProducts(readyProducts);
+    gridWrap.innerHTML = sortedProducts.length
+      ? sortedProducts.map(renderProductCard).join('')
+      : souqEmptyState();
+    const tabBtn = document.querySelector('.exhibition-tab[data-ex-tab="products"]');
+    if (tabBtn) tabBtn.innerHTML = `${t('tabReadyProducts')} (${readyProducts.length})`;
+    const counter = document.getElementById('souqResultsCount');
+    if (counter) counter.textContent = `${t('resultsCountLabel')}: ${readyProducts.length}`;
+  } finally {
+    settled = true;
+    clearTimeout(skeletonTimer);
+  }
 }
 
 // Wire all interactive controls of Souq Misr (exhibition tabs, currency,
@@ -1351,6 +1405,15 @@ function setupArtisansPageEvents() {
       refreshSouqProductsGrid();
     });
   });
+
+  // Sort dropdown (recommended / price / rating)
+  const sortSelect = document.getElementById('productSortSelect');
+  if (sortSelect) {
+    sortSelect.addEventListener('change', () => {
+      activeProductSort = sortSelect.value;
+      refreshSouqProductsGrid();
+    });
+  }
 
   // Merchant "publish new product" button
   const addBtn = document.querySelector('.btn-open-add-product');
@@ -1978,6 +2041,18 @@ app.addEventListener('click', e => {
   if (ep) { era=ep.dataset.era; category='all'; location.hash='heritage'; return; }
 
   if (e.target.closest('#resetFilters')) { category='all'; locality='all'; era='all'; searchTerm=''; const s=document.getElementById('heritageSearch'); if(s)s.value=''; renderResults(); return; }
+
+  // Souq empty-state: reset search + category filters
+  const clearSouqBtn = e.target.closest('.btn-clear-souq-filters');
+  if (clearSouqBtn) {
+    productSearchTerm = '';
+    activeProductCategory = 'all';
+    const si = document.getElementById('productSearchInput');
+    if (si) si.value = '';
+    document.querySelectorAll('.prod-filter-pill[data-prod-cat]').forEach(p => p.classList.toggle('active', p.dataset.prodCat === 'all'));
+    refreshSouqProductsGrid();
+    return;
+  }
 
   // Instant buy button (souq grid + artisan profile ready items)
   const buyBtn = e.target.closest('.btn-buy-instant');
