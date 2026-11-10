@@ -172,6 +172,11 @@ function openAuthModal(onSuccessCallback = null) {
         <button class="ehky-modal-close" id="closeAuth">×</button>
       </div>
 
+      <!-- Demo Mode Notice -->
+      <div style="background:rgba(179,38,30,0.10);border:1px solid #b3261e;padding:8px 14px;border-radius:10px;margin:14px 16px 0;text-align:center;font-size:12px;color:#b3261e;font-weight:bold">
+        ${t('demoModeNotice')}
+      </div>
+
       <!-- Quick Test Accounts Bar -->
       <div style="background:rgba(212,175,55,0.08);border:1px dashed var(--gold);padding:10px 14px;border-radius:10px;margin:14px 16px 0;text-align:center">
         <small style="display:block;color:var(--muted);margin-bottom:6px;font-weight:bold">⚡ تجربة سريعة بضغطة زر:</small>
@@ -192,7 +197,7 @@ function openAuthModal(onSuccessCallback = null) {
 
       <form id="loginForm" class="payment-pane active">
         <div class="form-row"><label>${t('emailField')}</label><input type="email" id="loginEmail" required placeholder="client@example.com"></div>
-        <div class="form-row"><label>${t('passwordField')}</label><input type="password" id="loginPass" required value="123456"></div>
+        <div class="form-row"><label>${t('passwordField')}</label><input type="password" id="loginPass" required placeholder="••••••••"></div>
         <div class="form-row"><label>${t('roleSelect')}</label>
           <select id="loginRole" style="width:100%;padding:10px;border-radius:8px;border:1px solid var(--line);background:var(--paper);color:var(--ink)">
             <option value="tourist">${t('roleTourist')} (مشتري)</option>
@@ -205,7 +210,7 @@ function openAuthModal(onSuccessCallback = null) {
       <form id="registerForm" class="payment-pane" style="display:none">
         <div class="form-row"><label>${t('nameField')}</label><input type="text" id="regName" required placeholder="الاسم الكامل"></div>
         <div class="form-row"><label>${t('emailField')}</label><input type="email" id="regEmail" required placeholder="your@email.com"></div>
-        <div class="form-row"><label>${t('passwordField')}</label><input type="password" id="regPass" required value="123456"></div>
+        <div class="form-row"><label>${t('passwordField')}</label><input type="password" id="regPass" required placeholder="••••••••"></div>
         <div class="form-row"><label>${t('roleSelect')}</label>
           <select id="regRole" style="width:100%;padding:10px;border-radius:8px;border:1px solid var(--line);background:var(--paper);color:var(--ink)">
             <option value="tourist">${t('roleTourist')} (مشتري / زائر)</option>
@@ -225,7 +230,7 @@ function openAuthModal(onSuccessCallback = null) {
   const formR = document.getElementById('registerForm');
 
   tabL.onclick = () => { tabL.classList.add('active'); tabR.classList.remove('active'); formL.style.display='block'; formR.style.display='none'; };
-  tabR.onclick = () => { tabR.classList.add('active'); tabL.classList.remove('active'); formR.style.display='block'; formR.style.display='none'; };
+  tabR.onclick = () => { tabR.classList.add('active'); tabL.classList.remove('active'); formR.style.display='block'; formL.style.display='none'; };
 
   // Quick 1-click test accounts
   document.getElementById('btnQuickBuyer').onclick = () => {
@@ -984,15 +989,19 @@ async function craftPage(id='boats') {
   let videoPlayerHtml = '';
   if (craft.localVideo || craft.youtubeId) {
     const effectiveSource = isOnlineEnv ? 'youtube' : activeVideoSource;
+    // Online mode: local video files are not deployed — YouTube only, hide the toggle.
+    const togglePillsHtml = (!isOnlineEnv && craft.localVideo)
+      ? `<div class="video-toggle-pills" style="display:flex;gap:6px;background:rgba(212,175,55,0.15);padding:4px;border-radius:30px">
+            <button class="pill ${effectiveSource==='youtube'?'active':''}" id="btnSourceYt" style="font-size:12px;padding:4px 12px">🌐 ${t('youtubeLabel')}</button>
+            <button class="pill ${effectiveSource==='hybrid'?'active':''}" id="btnSourceHybrid" style="font-size:12px;padding:4px 12px">💻 ${t('localVideoLabel')}</button>
+          </div>`
+      : '';
     videoPlayerHtml = `
       <section class="video-container-card" style="margin:25px 0;background:var(--paper);border:2px solid var(--gold);border-radius:18px;padding:20px;box-shadow:0 12px 36px rgba(0,0,0,0.12)">
         <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px">
           <div><h3 style="margin:0;font-size:18px;color:var(--ink)">🎬 ${t('watchVideo')}</h3>
             <small style="color:var(--muted)">${isOnlineEnv ? ('🌐 ' + t('youtubeLabel') + ' — ' + t('onlineVideoBadge')) : ('💻 ' + t('videoOfflineNote'))}</small></div>
-          <div class="video-toggle-pills" style="display:flex;gap:6px;background:rgba(212,175,55,0.15);padding:4px;border-radius:30px">
-            <button class="pill ${effectiveSource==='youtube'?'active':''}" id="btnSourceYt" style="font-size:12px;padding:4px 12px">🌐 ${t('youtubeLabel')}</button>
-            <button class="pill ${effectiveSource==='hybrid'?'active':''}" id="btnSourceHybrid" style="font-size:12px;padding:4px 12px">💻 ${t('localVideoLabel')}</button>
-          </div>
+          ${togglePillsHtml}
         </div>
         <div id="videoEmbedWrapper" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#000;box-shadow:inset 0 0 20px rgba(0,0,0,0.6)">
           ${renderVideoElement(craft,effectiveSource)}
@@ -1598,6 +1607,10 @@ function openCheckoutModal(artisan, itemTitle=null, itemPrice=null) {
 
       <div class="ehky-protection-tag" style="background:#e8f5e9;border-color:#4caf50;color:#2e7d32">
         ✓ <strong>${t('guaranteeNotice')}</strong> · ${t('worldwideShipping')}
+      </div>
+
+      <div style="background:rgba(179,38,30,0.08);border:1px solid #b3261e;padding:8px 14px;border-radius:10px;margin:10px 16px 0;text-align:center;font-size:12px;color:#b3261e;font-weight:bold">
+        ${t('demoModeNotice')}
       </div>
 
       <div class="payment-tabs" style="display:flex;gap:8px;margin:18px 16px 0;border-bottom:2px solid var(--line);padding-bottom:8px;flex-wrap:wrap">
