@@ -10,24 +10,37 @@
     "experienceYears": 42,
     "rating": 4.9,
     "avatar": "assets/pharaoh-avatar.svg",
-    "bio": "من شيوخ صنعة النقش على النحاس في القاهرة؛ تتلمذ على يد والده منذ عام 1982. متحصص في حفر الزخارف الفاطمية والمملوكية وآيات القرآن الكريم على الصواني والمشكاوات النحاسية.",
+    "bio": "من شيوخ صنعة النقش على النحاس في القاهرة؛ تتلمذ على يد والده منذ عام 1982. متخصص في حفر الزخارف الفاطمية والمملوكية وآيات القرآن الكريم على الصواني والمشكاوات النحاسية.",
     "verified": true,
     "phone": "+20 100 123 4567",
     "readyItems": [
       {
+        "id": "prod-ragab-1",
         "title": "صينية نحاس فاطمية منقوشة يدوياً مقاس 40 سم",
         "price": 850,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
       },
       {
+        "id": "prod-ragab-2",
         "title": "مبخرة نحاس أرابيسك مفرغة ومطعمة فضة",
         "price": 480,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
       },
       {
+        "id": "prod-ragab-3",
         "title": "لوحة نحاس محفورة آية الكرسي 60×40 سم",
         "price": 1400,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
+      },
+      {
+        "id": "prod-ragab-4",
+        "title": "مصباح نحاسي فاطمي عتيق مفرغ للإضاءة الساحرة",
+        "price": 1950,
+        "currency": "EGP",
+        "badge": "readyToShip"
       }
     ],
     "acceptsCustomOrders": true,
@@ -43,26 +56,39 @@
     "regions": "قرية الإعلام — محافظة الفيوم",
     "workshop": "مركز الإعلام للحرف النخيلية بالفيوم",
     "experienceYears": 35,
-    "rating": 5.0,
+    "rating": 5,
     "avatar": "assets/pharaoh-avatar.svg",
     "bio": "علمت أكثر من 7000 سيدة وفتاة في قرى الفيوم فنون حياكة الخوص والجريد. تصدر منتجاتها إلى معارض الحرف التراثية في أوروبا ودول الخليج وأمريكا.",
     "verified": true,
     "phone": "+20 102 345 6789",
     "readyItems": [
       {
+        "id": "prod-kamla-1",
         "title": "طقم أطباق خوص نوبية ملونة لحفظ الخبز (3 قطع)",
         "price": 380,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
       },
       {
-        "title": "سلة خوص يدوية للشاطئ والرحلات بتطريز ريفي",
+        "id": "prod-kamla-2",
+        "title": "سلة خوص يدوية للشاطئ والرحلات بتطريز ريفي ومقابض جلد",
         "price": 290,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
       },
       {
+        "id": "prod-kamla-3",
         "title": "مفرش خوص دائري للطاولات والمجالس 50 سم",
         "price": 220,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
+      },
+      {
+        "id": "prod-kamla-4",
+        "title": "أباجورة خوص طبيعي بتصميم نوبي مستدير",
+        "price": 550,
+        "currency": "EGP",
+        "badge": "readyToShip"
       }
     ],
     "acceptsCustomOrders": true,
@@ -85,14 +111,25 @@
     "phone": "+20 122 456 7890",
     "readyItems": [
       {
+        "id": "prod-hamed-1",
         "title": "مجسم فلوكة إسكندراني خشبي تراثي مكتمل الشراع 50 سم",
         "price": 650,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
       },
       {
+        "id": "prod-hamed-2",
         "title": "سفينة خشبية نموذج متحفي بتفاصيل الحبال والأضلاع 80 سم",
         "price": 1200,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
+      },
+      {
+        "id": "prod-hamed-3",
+        "title": "نموذج قارب صيد تراثي مصغر مع شباك ومجاديف خشبية",
+        "price": 490,
+        "currency": "EGP",
+        "badge": "readyToShip"
       }
     ],
     "acceptsCustomOrders": true,
@@ -114,19 +151,32 @@
     "phone": "+20 111 234 5678",
     "readyItems": [
       {
+        "id": "prod-fawzy-1",
         "title": "صندوق مجوهرات خشب زان مطعم بالصدف الطبيعي الفاخر",
         "price": 750,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
       },
       {
+        "id": "prod-fawzy-2",
         "title": "طاولة شطرنج وطاولة زهر أرابيسك بالصدف والزان 40×40 سم",
         "price": 1100,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
       },
       {
+        "id": "prod-fawzy-3",
         "title": "إطار مرآة مشربية إسلامية مخروطة يدوياً 50×70 سم",
         "price": 1650,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
+      },
+      {
+        "id": "prod-fawzy-4",
+        "title": "علبة مناديل خشبية مطعمة بعرق اللؤلؤ وصدف البحر",
+        "price": 420,
+        "currency": "EGP",
+        "badge": "readyToShip"
       }
     ],
     "acceptsCustomOrders": true,
@@ -141,26 +191,39 @@
     "provinceName": "قنا",
     "workshop": "قرية الفواخير بمصر القديمة ومصانع قنا التراثية",
     "experienceYears": 45,
-    "rating": 5.0,
+    "rating": 5,
     "avatar": "assets/pharaoh-avatar.svg",
     "bio": "ورث دولاب الفخار عن أجداده في قنا؛ يشكل الطمي النيلي والصلصال الأسواني بدقة انسيابية نادرة ليصنع القلل والزبادي وأواني الطهي الفخارية الصحية.",
     "verified": true,
     "phone": "+20 106 789 0123",
     "readyItems": [
       {
+        "id": "prod-qasim-1",
         "title": "طقم قلل قناوي طبيعية لتبريد المياه مع قواعدها الفخارية (قطعتين)",
         "price": 180,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
       },
       {
+        "id": "prod-qasim-2",
         "title": "طاجن فخار أسواني معالج لحرارة الفرن مع غطاء 30 سم",
         "price": 240,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
       },
       {
+        "id": "prod-qasim-3",
         "title": "فازة فخار مفرغة بزخارف نيلية ملونة 45 سم",
         "price": 320,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
+      },
+      {
+        "id": "prod-qasim-4",
+        "title": "إبريق فخار فرعوني للمياه والزهور بتشطيب يدوي أصيل",
+        "price": 390,
+        "currency": "EGP",
+        "badge": "readyToShip"
       }
     ],
     "acceptsCustomOrders": true,
@@ -182,14 +245,25 @@
     "phone": "+20 120 345 6789",
     "readyItems": [
       {
+        "id": "prod-ramadan-1",
         "title": "فانوس صفيح وزجاج ملون تقليدي طراز فاروق ارتفاع 60 سم",
         "price": 420,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
       },
       {
+        "id": "prod-ramadan-2",
         "title": "فانوس معدني مزخرف بالنجوم والأهلة طراز البرلمان 85 سم",
         "price": 780,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
+      },
+      {
+        "id": "prod-ramadan-3",
+        "title": "فانوس نحاسي شرقي مخرّم بنقوش إسلامية للإضاءة الهادئة",
+        "price": 680,
+        "currency": "EGP",
+        "badge": "readyToShip"
       }
     ],
     "acceptsCustomOrders": true,
@@ -211,24 +285,32 @@
     "phone": "+20 109 876 5432",
     "readyItems": [
       {
+        "id": "prod-tarek-1",
         "title": "أباجورة وحامل شموع من الألباستر العسلي الشفاف 20 سم",
         "price": 520,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
       },
       {
+        "id": "prod-tarek-2",
         "title": "تمثال حورس الملكي نحت يدوي مصقول من حجر البازلت 30 سم",
         "price": 1850,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
       },
       {
+        "id": "prod-tarek-3",
         "title": "جعران فرعوني تراثي من حجر الاستيتيت الأخضر منقوش بالهيروغليفية",
         "price": 350,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
       },
       {
+        "id": "prod-tarek-4",
         "title": "فازة ألباستر نقي محفورة يدوياً طراز طيبة القديمة 35 سم",
         "price": 980,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
       }
     ],
     "acceptsCustomOrders": true,
@@ -243,31 +325,39 @@
     "provinceName": "سوهاج",
     "workshop": "دار النول الأخميمي التراثي — مدينة أخميم، سوهاج",
     "experienceYears": 30,
-    "rating": 5.0,
+    "rating": 5,
     "avatar": "assets/pharaoh-avatar.svg",
     "bio": "حارسة تقاليد النول اليدوي الصعيدي في أخميم؛ تغزل المفارش والأكلمة الصوفية والحريرية بالألوان الطبيعية والزخارف النوبية والقبطية الأصيلة.",
     "verified": true,
     "phone": "+20 115 678 9012",
     "readyItems": [
       {
+        "id": "prod-mariam-1",
         "title": "مفرش سرير كروشيه ونسيج يدوي قطن مصري 100% (220×240 سم)",
         "price": 880,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
       },
       {
+        "id": "prod-mariam-2",
         "title": "كليم صوف صعيدي منسوج يدوياً بنقوش هندسية أصيلة (150×200 سم)",
         "price": 1250,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
       },
       {
+        "id": "prod-mariam-3",
         "title": "شال حرير طبيعي أخميمي مغزول على النول اليدوي",
         "price": 450,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
       },
       {
+        "id": "prod-mariam-4",
         "title": "لوحة جدارية منسوجة يدوياً تمثل الحياة اليومية في صعيد مصر",
         "price": 750,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
       }
     ],
     "acceptsCustomOrders": true,
@@ -289,19 +379,25 @@
     "phone": "+20 111 234 5678",
     "readyItems": [
       {
+        "id": "prod-fatima-1",
         "title": "طقم 3 سلال خوص هندسية تقليدية للخبز",
         "price": 320,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
       },
       {
+        "id": "prod-fatima-2",
         "title": "شنطة سوق وشاطئ من الجريد الطبيعي بمقابض جلدية",
         "price": 260,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
       },
       {
+        "id": "prod-fatima-3",
         "title": "صندوق تخزين منسوج من سعف النخيل 70 سم",
         "price": 650,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
       }
     ],
     "acceptsCustomOrders": true,
@@ -314,7 +410,7 @@
     "craftName": "الأرابيسك الخشبي والتعشيق بالصدف",
     "provinceId": "cairo",
     "provinceName": "القاهرة",
-    "workshop": "استوديو باب الوزر للخشب — الدرب الأحمر، القاهرة",
+    "workshop": "استوديو باب الوزير للخشب — الدرب الأحمر، القاهرة",
     "experienceYears": 36,
     "rating": 4.9,
     "avatar": "assets/pharaoh-avatar.svg",
@@ -323,14 +419,18 @@
     "phone": "+20 112 345 6789",
     "readyItems": [
       {
+        "id": "prod-hassan-1",
         "title": "صندوق حلي مثمن الأضلاع معشق بالصدف البحري",
         "price": 580,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
       },
       {
+        "id": "prod-hassan-2",
         "title": "مرآة حائط بإطار مشربية مخرطة يدوياً 50×70 سم",
         "price": 950,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
       }
     ],
     "acceptsCustomOrders": true,
@@ -345,21 +445,25 @@
     "provinceName": "الإسكندرية",
     "workshop": "حوض أنفوشي لصناعة المراكب — الميناء الشرقي، الإسكندرية",
     "experienceYears": 38,
-    "rating": 5.0,
+    "rating": 5,
     "avatar": "assets/pharaoh-avatar.svg",
     "bio": "معلم مراكب من الجيل الرابع في حوض أنفوشي؛ يبني مراكب الصيد الخشبية والفلوكة الشراعية حسب الطلب منذ 38 عاماً.",
     "verified": true,
     "phone": "+20 113 456 7890",
     "readyItems": [
       {
+        "id": "prod-ibrahim-1",
         "title": "مجسم فلوكة إسكندرانية شراعية مصغر يدوي الصنع 45 سم",
         "price": 420,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
       },
       {
+        "id": "prod-ibrahim-2",
         "title": "طلب مركب خشبي مخصص حسب المقاسات",
         "price": 15000,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "customOrder"
       }
     ],
     "acceptsCustomOrders": true,

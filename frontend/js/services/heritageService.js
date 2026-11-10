@@ -1256,6 +1256,13 @@
     const provName = (pTrans && lang !== 'ar' && (pTrans[lang] || pTrans.en)) || a.provinceName;
     if (!aTrans || lang === 'ar') return { ...a, provinceName: provName };
     const l = aTrans[lang] || aTrans.en || {};
+    // Translate product TITLES by id on top of the source items. The source list
+    // (ids / prices / currencies / badges / order / count) is always kept, so a
+    // missing or stale translation can never add, drop or reorder products.
+    const titleById = l.readyItems || {};
+    const readyItems = Array.isArray(a.readyItems)
+      ? a.readyItems.map(it => (typeof titleById[it.id] === 'string' ? { ...it, title: titleById[it.id] } : it))
+      : a.readyItems;
     return {
       ...a,
       name: l.name || a.name,
@@ -1263,7 +1270,7 @@
       workshop: l.workshop || a.workshop,
       bio: l.bio || a.bio,
       provinceName: provName,
-      readyItems: l.readyItems || a.readyItems
+      readyItems
     };
   }
 
