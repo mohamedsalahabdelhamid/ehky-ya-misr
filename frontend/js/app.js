@@ -1288,6 +1288,75 @@ async function artisansPage() {
     </div>`;
 }
 
+// Re-fetch and repaint ONLY the products grid (search/filter live update,
+// without re-rendering the whole page so the search input keeps focus).
+async function refreshSouqProductsGrid() {
+  const gridWrap = document.getElementById('productsGridWrap');
+  if (!gridWrap) return;
+  const readyProducts = await window.HeritageService.getReadyProducts({
+    category: activeProductCategory,
+    search: productSearchTerm
+  });
+  gridWrap.innerHTML = readyProducts.length
+    ? readyProducts.map(renderProductCard).join('')
+    : `<div class="empty-state-card" style="grid-column:1/-1;text-align:center;padding:40px;background:var(--paper);border:1px dashed var(--line);border-radius:14px;color:var(--muted)">${t('noProductsFound')}</div>`;
+  const tabBtn = document.querySelector('.exhibition-tab[data-ex-tab="products"]');
+  if (tabBtn) tabBtn.innerHTML = `${t('tabReadyProducts')} (${readyProducts.length})`;
+}
+
+// Wire all interactive controls of Souq Misr (exhibition tabs, currency,
+// live search, category filters, merchant publish button).
+// Every binding is individually guarded, so it is also safe to call on the
+// artisan profile page (it only binds the currency pills there).
+function setupArtisansPageEvents() {
+  // Exhibition tabs: Ready Products / Master Artisans
+  const tabs = document.querySelectorAll('.exhibition-tab[data-ex-tab]');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const which = tab.dataset.exTab;
+      if (!which || which === activeExhibitionTab) return;
+      activeExhibitionTab = which;
+      tabs.forEach(tb => tb.classList.toggle('active', tb === tab));
+      const paneProducts = document.getElementById('paneReadyProducts');
+      const paneArtisans = document.getElementById('paneMasterArtisans');
+      if (paneProducts) paneProducts.style.display = which === 'products' ? 'block' : 'none';
+      if (paneArtisans) paneArtisans.style.display = which === 'artisans' ? 'block' : 'none';
+      horusExcited();
+    });
+  });
+
+  // Currency pills (EGP / USD / dual)
+  document.querySelectorAll('.currency-pill[data-currency]').forEach(btn => {
+    btn.addEventListener('click', () => setCurrency(btn.dataset.currency));
+  });
+
+  // Live product search (debounced; input is outside the repainted grid,
+  // so focus and caret position are preserved while typing)
+  const searchInput = document.getElementById('productSearchInput');
+  if (searchInput) {
+    let debounceTimer = null;
+    searchInput.addEventListener('input', () => {
+      productSearchTerm = searchInput.value;
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(refreshSouqProductsGrid, 250);
+    });
+  }
+
+  // Category filter pills
+  const pills = document.querySelectorAll('.prod-filter-pill[data-prod-cat]');
+  pills.forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeProductCategory = btn.dataset.prodCat || 'all';
+      pills.forEach(p => p.classList.toggle('active', p === btn));
+      refreshSouqProductsGrid();
+    });
+  });
+
+  // Merchant "publish new product" button
+  const addBtn = document.querySelector('.btn-open-add-product');
+  if (addBtn) addBtn.addEventListener('click', openAddProductModal);
+}
+
 function renderProductCard(p) {
   const iconMap = {
     'copper': '🏺',
@@ -1874,6 +1943,7 @@ async function route() {
     setupArtisansPageEvents();
   } else if (hash.startsWith('artisan/')) {
     app.innerHTML = await artisanProfilePage(hash.split('/')[1]);
+    setupArtisansPageEvents(); // binds currency pills on the artisan profile too
   } else if (hash === 'about') {
     app.innerHTML = about();
   } else {
@@ -1908,6 +1978,17 @@ app.addEventListener('click', e => {
   if (ep) { era=ep.dataset.era; category='all'; location.hash='heritage'; return; }
 
   if (e.target.closest('#resetFilters')) { category='all'; locality='all'; era='all'; searchTerm=''; const s=document.getElementById('heritageSearch'); if(s)s.value=''; renderResults(); return; }
+
+  // Instant buy button (souq grid + artisan profile ready items)
+  const buyBtn = e.target.closest('.btn-buy-instant');
+  if (buyBtn) {
+    handleBuyProduct({
+      artisanId: buyBtn.dataset.artisanId,
+      title: buyBtn.dataset.itemTitle,
+      priceEgp: Number(buyBtn.dataset.itemPrice)
+    });
+    return;
+  }
 
   const chatBtn = e.target.closest('.btn-open-chat');
   if (chatBtn) {
