@@ -194,5 +194,175 @@
     ],
     "acceptsCustomOrders": true,
     "customOrderLeadDays": "5 - 10 أيام"
+  },
+  {
+    "id": "artisan-tarek",
+    "name": "عم طارق النوبي",
+    "craftId": "stone-carving",
+    "craftName": "نحت الألباستر وحجر البازلت",
+    "provinceId": "luxor",
+    "provinceName": "الأقصر",
+    "workshop": "مرسم واستوديو القرنة الحجري — البر الغربي، الأقصر",
+    "experienceYears": 32,
+    "rating": 4.9,
+    "avatar": "assets/pharaoh-avatar.svg",
+    "bio": "نحات حجري من الجيل الثالث في البر الغربي بالأقصر؛ ينحت حجر الألباستر الشفاف المنفذ للضوء وحجر البازلت الأسود ليصنع تحفاً متحفية مستوحاة من عظمة الحضارة المصرية.",
+    "verified": true,
+    "phone": "+20 109 876 5432",
+    "readyItems": [
+      {
+        "title": "أباجورة وحامل شموع من الألباستر العسلي الشفاف 20 سم",
+        "price": 520,
+        "currency": "EGP"
+      },
+      {
+        "title": "تمثال حورس الملكي نحت يدوي مصقول من حجر البازلت 30 سم",
+        "price": 1850,
+        "currency": "EGP"
+      },
+      {
+        "title": "جعران فرعوني تراثي من حجر الاستيتيت الأخضر منقوش بالهيروغليفية",
+        "price": 350,
+        "currency": "EGP"
+      },
+      {
+        "title": "فازة ألباستر نقي محفورة يدوياً طراز طيبة القديمة 35 سم",
+        "price": 980,
+        "currency": "EGP"
+      }
+    ],
+    "acceptsCustomOrders": true,
+    "customOrderLeadDays": "7 - 14 يوم"
+  },
+  {
+    "id": "artisan-mariam",
+    "name": "مريم الأخميمية",
+    "craftId": "weaving-kilim",
+    "craftName": "النسيج اليدوي والكليم الأخميمي",
+    "provinceId": "sohag",
+    "provinceName": "سوهاج",
+    "workshop": "دار النول الأخميمي التراثي — مدينة أخميم، سوهاج",
+    "experienceYears": 30,
+    "rating": 5.0,
+    "avatar": "assets/pharaoh-avatar.svg",
+    "bio": "حارسة تقاليد النول اليدوي الصعيدي في أخميم؛ تغزل المفارش والأكلمة الصوفية والحريرية بالألوان الطبيعية والزخارف النوبية والقبطية الأصيلة.",
+    "verified": true,
+    "phone": "+20 115 678 9012",
+    "readyItems": [
+      {
+        "title": "مفرش سرير كروشيه ونسيج يدوي قطن مصري 100% (220×240 سم)",
+        "price": 880,
+        "currency": "EGP"
+      },
+      {
+        "title": "كليم صوف صعيدي منسوج يدوياً بنقوش هندسية أصيلة (150×200 سم)",
+        "price": 1250,
+        "currency": "EGP"
+      },
+      {
+        "title": "شال حرير طبيعي أخميمي مغزول على النول اليدوي",
+        "price": 450,
+        "currency": "EGP"
+      },
+      {
+        "title": "لوحة جدارية منسوجة يدوياً تمثل الحياة اليومية في صعيد مصر",
+        "price": 750,
+        "currency": "EGP"
+      }
+    ],
+    "acceptsCustomOrders": true,
+    "customOrderLeadDays": "10 - 20 يوم"
+  },
+  {
+    "id": "artisan-fatima",
+    "name": "الحاجة فاطمة الفيومية",
+    "craftId": "palm-weaving",
+    "craftName": "صناعة الخوص والأعمال الليفية الطبيعية",
+    "provinceId": "fayoum",
+    "provinceName": "الفيوم",
+    "workshop": "تعاونية الإعلام النسائية — واحة الفيوم",
+    "experienceYears": 28,
+    "rating": 4.8,
+    "avatar": "assets/pharaoh-avatar.svg",
+    "bio": "رائدة تعاونية نساء الخوص في ريف الفيوم؛ تقود فريقاً من الحرفيات يصنع أطقماً منزلية صديقة للبيئة من سعف النخيل بجودة عالمية.",
+    "verified": true,
+    "phone": "+20 111 234 5678",
+    "readyItems": [
+      {
+        "title": "طقم 3 سلال خوص هندسية تقليدية للخبز",
+        "price": 320,
+        "currency": "EGP"
+      },
+      {
+        "title": "شنطة سوق وشاطئ من الجريد الطبيعي بمقابض جلدية",
+        "price": 260,
+        "currency": "EGP"
+      },
+      {
+        "title": "صندوق تخزين منسوج من سعف النخيل 70 سم",
+        "price": 650,
+        "currency": "EGP"
+      }
+    ],
+    "acceptsCustomOrders": true,
+    "customOrderLeadDays": "5 - 10 أيام"
+  },
+  {
+    "id": "artisan-hassan",
+    "name": "الشيخ حسن الخرّاز",
+    "craftId": "arabesque-inlay",
+    "craftName": "الأرابيسك الخشبي والتعشيق بالصدف",
+    "provinceId": "cairo",
+    "provinceName": "القاهرة",
+    "workshop": "استوديو باب الوزر للخشب — الدرب الأحمر، القاهرة",
+    "experienceYears": 36,
+    "rating": 4.9,
+    "avatar": "assets/pharaoh-avatar.svg",
+    "bio": "شيخ نجارين الدرب الأحمر؛ متخصص في صناديق الحلي المعشقة بالصدف البحري ومرايا المشربية المخرطة يدوياً على المخرط التقليدي.",
+    "verified": true,
+    "phone": "+20 112 345 6789",
+    "readyItems": [
+      {
+        "title": "صندوق حلي مثمن الأضلاع معشق بالصدف البحري",
+        "price": 580,
+        "currency": "EGP"
+      },
+      {
+        "title": "مرآة حائط بإطار مشربية مخرطة يدوياً 50×70 سم",
+        "price": 950,
+        "currency": "EGP"
+      }
+    ],
+    "acceptsCustomOrders": true,
+    "customOrderLeadDays": "10 - 20 يوم"
+  },
+  {
+    "id": "artisan-ibrahim",
+    "name": "المعلم إبراهيم الريّس",
+    "craftId": "boats",
+    "craftName": "صناعة المراكب والفلوكة الشراعية",
+    "provinceId": "alex",
+    "provinceName": "الإسكندرية",
+    "workshop": "حوض أنفوشي لصناعة المراكب — الميناء الشرقي، الإسكندرية",
+    "experienceYears": 38,
+    "rating": 5.0,
+    "avatar": "assets/pharaoh-avatar.svg",
+    "bio": "معلم مراكب من الجيل الرابع في حوض أنفوشي؛ يبني مراكب الصيد الخشبية والفلوكة الشراعية حسب الطلب منذ 38 عاماً.",
+    "verified": true,
+    "phone": "+20 113 456 7890",
+    "readyItems": [
+      {
+        "title": "مجسم فلوكة إسكندرانية شراعية مصغر يدوي الصنع 45 سم",
+        "price": 420,
+        "currency": "EGP"
+      },
+      {
+        "title": "طلب مركب خشبي مخصص حسب المقاسات",
+        "price": 15000,
+        "currency": "EGP"
+      }
+    ],
+    "acceptsCustomOrders": true,
+    "customOrderLeadDays": "30 - 60 يوم"
   }
 ]

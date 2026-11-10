@@ -1069,6 +1069,112 @@
     ],
     "acceptsCustomOrders": true,
     "customOrderLeadDays": "10 - 20 يوم"
+  },
+  {
+    "id": "artisan-fatima",
+    "name": "الحاجة فاطمة الفيومية",
+    "craftId": "palm-weaving",
+    "craftName": "صناعة الخوص والأعمال الليفية الطبيعية",
+    "provinceId": "fayoum",
+    "provinceName": "الفيوم",
+    "workshop": "تعاونية الإعلام النسائية — واحة الفيوم",
+    "experienceYears": 28,
+    "rating": 4.8,
+    "avatar": "assets/pharaoh-avatar.svg",
+    "bio": "رائدة تعاونية نساء الخوص في ريف الفيوم؛ تقود فريقاً من الحرفيات يصنع أطقماً منزلية صديقة للبيئة من سعف النخيل بجودة عالمية.",
+    "verified": true,
+    "phone": "+20 111 234 5678",
+    "readyItems": [
+      {
+        "id": "prod-fatima-1",
+        "title": "طقم 3 سلال خوص هندسية تقليدية للخبز",
+        "price": 320,
+        "currency": "EGP",
+        "badge": "readyToShip"
+      },
+      {
+        "id": "prod-fatima-2",
+        "title": "شنطة سوق وشاطئ من الجريد الطبيعي بمقابض جلدية",
+        "price": 260,
+        "currency": "EGP",
+        "badge": "readyToShip"
+      },
+      {
+        "id": "prod-fatima-3",
+        "title": "صندوق تخزين منسوج من سعف النخيل 70 سم",
+        "price": 650,
+        "currency": "EGP",
+        "badge": "readyToShip"
+      }
+    ],
+    "acceptsCustomOrders": true,
+    "customOrderLeadDays": "5 - 10 أيام"
+  },
+  {
+    "id": "artisan-hassan",
+    "name": "الشيخ حسن الخرّاز",
+    "craftId": "arabesque-inlay",
+    "craftName": "الأرابيسك الخشبي والتعشيق بالصدف",
+    "provinceId": "cairo",
+    "provinceName": "القاهرة",
+    "workshop": "استوديو باب الوزير للخشب — الدرب الأحمر، القاهرة",
+    "experienceYears": 36,
+    "rating": 4.9,
+    "avatar": "assets/pharaoh-avatar.svg",
+    "bio": "شيخ نجارين الدرب الأحمر؛ متخصص في صناديق الحلي المعشقة بالصدف البحري ومرايا المشربية المخرطة يدوياً على المخرط التقليدي.",
+    "verified": true,
+    "phone": "+20 112 345 6789",
+    "readyItems": [
+      {
+        "id": "prod-hassan-1",
+        "title": "صندوق حلي مثمن الأضلاع معشق بالصدف البحري",
+        "price": 580,
+        "currency": "EGP",
+        "badge": "readyToShip"
+      },
+      {
+        "id": "prod-hassan-2",
+        "title": "مرآة حائط بإطار مشربية مخرطة يدوياً 50×70 سم",
+        "price": 950,
+        "currency": "EGP",
+        "badge": "readyToShip"
+      }
+    ],
+    "acceptsCustomOrders": true,
+    "customOrderLeadDays": "10 - 20 يوم"
+  },
+  {
+    "id": "artisan-ibrahim",
+    "name": "المعلم إبراهيم الريّس",
+    "craftId": "boats",
+    "craftName": "صناعة المراكب والفلوكة الشراعية",
+    "provinceId": "alex",
+    "provinceName": "الإسكندرية",
+    "workshop": "حوض أنفوشي لصناعة المراكب — الميناء الشرقي، الإسكندرية",
+    "experienceYears": 38,
+    "rating": 5.0,
+    "avatar": "assets/pharaoh-avatar.svg",
+    "bio": "معلم مراكب من الجيل الرابع في حوض أنفوشي؛ يبني مراكب الصيد الخشبية والفلوكة الشراعية حسب الطلب منذ 38 عاماً.",
+    "verified": true,
+    "phone": "+20 113 456 7890",
+    "readyItems": [
+      {
+        "id": "prod-ibrahim-1",
+        "title": "مجسم فلوكة إسكندرانية شراعية مصغر يدوي الصنع 45 سم",
+        "price": 420,
+        "currency": "EGP",
+        "badge": "readyToShip"
+      },
+      {
+        "id": "prod-ibrahim-2",
+        "title": "طلب مركب خشبي مخصص حسب المقاسات",
+        "price": 15000,
+        "currency": "EGP",
+        "badge": "customOrder"
+      }
+    ],
+    "acceptsCustomOrders": true,
+    "customOrderLeadDays": "30 - 60 يوم"
   }
 ];
 // Helper fetch with timeout
