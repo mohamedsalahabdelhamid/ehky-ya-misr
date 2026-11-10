@@ -797,7 +797,7 @@ function home() {
   ];
   return `
     <section class="hero cinema">
-      <video class="scene-video" autoplay muted loop playsinline preload="metadata" poster="assets/giza-daylight.png" aria-hidden="true">
+      <video class="scene-video" autoplay muted loop playsinline preload="metadata" poster="assets/giza-daylight.jpg" aria-hidden="true">
         <source src="assets/giza-daylight.mp4" type="video/mp4">
       </video>
       <div class="scene-shade" aria-hidden="true"></div>

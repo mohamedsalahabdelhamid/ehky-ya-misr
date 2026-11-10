@@ -3,7 +3,5 @@ node_modules/
 *.log
 .DS_Store
 Thumbs.db
-build_dataset.py
-update_service.py
 frontend/local_videos/
 

@@ -1,0 +1,48 @@
+# ==============================================================================
+# EHKY YA MISR — Render.com Deployment Blueprint
+# ==============================================================================
+# Deploy everything with one click: "New +" -> "Blueprint" -> pick this repo.
+#   - frontend: free Static Site (never sleeps)
+#   - backend:  free Web Service (sleeps after inactivity; the frontend's
+#              cached /api/health check handles this gracefully)
+# After the first deploy, copy the backend URL Render gives you
+# (e.g. https://ehky-ya-misr-backend.onrender.com) and update API_BASE_URL
+# in frontend/js/services/heritageService.js, then redeploy the frontend.
+# Full guide: DEPLOYMENT.md
+# ==============================================================================
+
+services:
+  # ------------------------------------------------------------------ frontend
+  - type: web
+    name: ehky-ya-misr-frontend
+    runtime: static
+    buildCommand: echo "No build step — plain static site"
+    staticPublishPath: ./frontend
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    headers:
+      - path: /assets/*
+        name: Cache-Control
+        value: public, max-age=86400
+      - path: /js/*
+        name: Cache-Control
+        value: public, max-age=3600
+    # Optional: custom domain goes here later
+    # routes can also include a custom domain in the Render dashboard
+
+  # ------------------------------------------------------------------- backend
+  - type: web
+    name: ehky-ya-misr-backend
+    runtime: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    plan: free
+    envVars:
+      - key: NODE_ENV
+        value: production
+      # - key: GEMINI_API_KEY      # uncomment when the AI chatbot team is ready
+      #   sync: false
