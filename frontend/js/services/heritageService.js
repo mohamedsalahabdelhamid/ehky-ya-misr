@@ -675,24 +675,37 @@
     "experienceYears": 42,
     "rating": 4.9,
     "avatar": "assets/pharaoh-avatar.svg",
-    "bio": "من شيوخ صنعة النقش على النحاس في القاهرة؛ تتلمذ على يد والده منذ عام 1982. متحصص في حفر الزخارف الفاطمية والمملوكية وآيات القرآن الكريم على الصواني والمشكاوات النحاسية.",
+    "bio": "من شيوخ صنعة النقش على النحاس في القاهرة؛ تتلمذ على يد والده منذ عام 1982. متخصص في حفر الزخارف الفاطمية والمملوكية وآيات القرآن الكريم على الصواني والمشكاوات النحاسية.",
     "verified": true,
     "phone": "+20 100 123 4567",
     "readyItems": [
       {
+        "id": "prod-ragab-1",
         "title": "صينية نحاس فاطمية منقوشة يدوياً مقاس 40 سم",
         "price": 850,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
       },
       {
+        "id": "prod-ragab-2",
         "title": "مبخرة نحاس أرابيسك مفرغة ومطعمة فضة",
         "price": 480,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
       },
       {
+        "id": "prod-ragab-3",
         "title": "لوحة نحاس محفورة آية الكرسي 60×40 سم",
         "price": 1400,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
+      },
+      {
+        "id": "prod-ragab-4",
+        "title": "مصباح نحاسي فاطمي عتيق مفرغ للإضاءة الساحرة",
+        "price": 1950,
+        "currency": "EGP",
+        "badge": "readyToShip"
       }
     ],
     "acceptsCustomOrders": true,
@@ -715,19 +728,32 @@
     "phone": "+20 102 345 6789",
     "readyItems": [
       {
+        "id": "prod-kamla-1",
         "title": "طقم أطباق خوص نوبية ملونة لحفظ الخبز (3 قطع)",
         "price": 380,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
       },
       {
-        "title": "سلة خوص يدوية للشاطئ والرحلات بتطريز ريفي",
+        "id": "prod-kamla-2",
+        "title": "سلة خوص يدوية للشاطئ والرحلات بتطريز ريفي ومقابض جلد",
         "price": 290,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
       },
       {
+        "id": "prod-kamla-3",
         "title": "مفرش خوص دائري للطاولات والمجالس 50 سم",
         "price": 220,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
+      },
+      {
+        "id": "prod-kamla-4",
+        "title": "أباجورة خوص طبيعي بتصميم نوبي مستدير",
+        "price": 550,
+        "currency": "EGP",
+        "badge": "readyToShip"
       }
     ],
     "acceptsCustomOrders": true,
@@ -750,14 +776,25 @@
     "phone": "+20 122 456 7890",
     "readyItems": [
       {
+        "id": "prod-hamed-1",
         "title": "مجسم فلوكة إسكندراني خشبي تراثي مكتمل الشراع 50 سم",
         "price": 650,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
       },
       {
+        "id": "prod-hamed-2",
         "title": "سفينة خشبية نموذج متحفي بتفاصيل الحبال والأضلاع 80 سم",
         "price": 1200,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
+      },
+      {
+        "id": "prod-hamed-3",
+        "title": "نموذج قارب صيد تراثي مصغر مع شباك ومجاديف خشبية",
+        "price": 490,
+        "currency": "EGP",
+        "badge": "readyToShip"
       }
     ],
     "acceptsCustomOrders": true,
@@ -779,19 +816,32 @@
     "phone": "+20 111 234 5678",
     "readyItems": [
       {
+        "id": "prod-fawzy-1",
         "title": "صندوق مجوهرات خشب زان مطعم بالصدف الطبيعي الفاخر",
         "price": 750,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
       },
       {
+        "id": "prod-fawzy-2",
         "title": "طاولة شطرنج وطاولة زهر أرابيسك بالصدف والزان 40×40 سم",
         "price": 1100,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
       },
       {
+        "id": "prod-fawzy-3",
         "title": "إطار مرآة مشربية إسلامية مخروطة يدوياً 50×70 سم",
         "price": 1650,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
+      },
+      {
+        "id": "prod-fawzy-4",
+        "title": "علبة مناديل خشبية مطعمة بعرق اللؤلؤ وصدف البحر",
+        "price": 420,
+        "currency": "EGP",
+        "badge": "readyToShip"
       }
     ],
     "acceptsCustomOrders": true,
@@ -813,19 +863,32 @@
     "phone": "+20 106 789 0123",
     "readyItems": [
       {
+        "id": "prod-qasim-1",
         "title": "طقم قلل قناوي طبيعية لتبريد المياه مع قواعدها الفخارية (قطعتين)",
         "price": 180,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
       },
       {
+        "id": "prod-qasim-2",
         "title": "طاجن فخار أسواني معالج لحرارة الفرن مع غطاء 30 سم",
         "price": 240,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
       },
       {
+        "id": "prod-qasim-3",
         "title": "فازة فخار مفرغة بزخارف نيلية ملونة 45 سم",
         "price": 320,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
+      },
+      {
+        "id": "prod-qasim-4",
+        "title": "إبريق فخار فرعوني للمياه والزهور بتشطيب يدوي أصيل",
+        "price": 390,
+        "currency": "EGP",
+        "badge": "readyToShip"
       }
     ],
     "acceptsCustomOrders": true,
@@ -847,18 +910,123 @@
     "phone": "+20 120 345 6789",
     "readyItems": [
       {
+        "id": "prod-ramadan-1",
         "title": "فانوس صفيح وزجاج ملون تقليدي طراز فاروق ارتفاع 60 سم",
         "price": 420,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
       },
       {
+        "id": "prod-ramadan-2",
         "title": "فانوس معدني مزخرف بالنجوم والأهلة طراز البرلمان 85 سم",
         "price": 780,
-        "currency": "EGP"
+        "currency": "EGP",
+        "badge": "readyToShip"
+      },
+      {
+        "id": "prod-ramadan-3",
+        "title": "فانوس نحاسي شرقي مخرّم بنقوش إسلامية للإضاءة الهادئة",
+        "price": 680,
+        "currency": "EGP",
+        "badge": "readyToShip"
       }
     ],
     "acceptsCustomOrders": true,
     "customOrderLeadDays": "5 - 10 أيام"
+  },
+  {
+    "id": "artisan-tarek",
+    "name": "عم طارق النوبي",
+    "craftId": "stone-carving",
+    "craftName": "نحت الألباستر وحجر البازلت",
+    "provinceId": "luxor",
+    "provinceName": "الأقصر",
+    "workshop": "مرسم واستوديو القرنة الحجري — البر الغربي، الأقصر",
+    "experienceYears": 32,
+    "rating": 4.9,
+    "avatar": "assets/pharaoh-avatar.svg",
+    "bio": "نحات حجري من الجيل الثالث في البر الغربي بالأقصر؛ ينحت حجر الألباستر الشفاف المنفذ للضوء وحجر البازلت الأسود ليصنع تحفاً متحفية مستوحاة من عظمة الحضارة المصرية.",
+    "verified": true,
+    "phone": "+20 109 876 5432",
+    "readyItems": [
+      {
+        "id": "prod-tarek-1",
+        "title": "أباجورة وحامل شموع من الألباستر العسلي الشفاف 20 سم",
+        "price": 520,
+        "currency": "EGP",
+        "badge": "readyToShip"
+      },
+      {
+        "id": "prod-tarek-2",
+        "title": "تمثال حورس الملكي نحت يدوي مصقول من حجر البازلت 30 سم",
+        "price": 1850,
+        "currency": "EGP",
+        "badge": "readyToShip"
+      },
+      {
+        "id": "prod-tarek-3",
+        "title": "جعران فرعوني تراثي من حجر الاستيتيت الأخضر منقوش بالهيروغليفية",
+        "price": 350,
+        "currency": "EGP",
+        "badge": "readyToShip"
+      },
+      {
+        "id": "prod-tarek-4",
+        "title": "فازة ألباستر نقي محفورة يدوياً طراز طيبة القديمة 35 سم",
+        "price": 980,
+        "currency": "EGP",
+        "badge": "readyToShip"
+      }
+    ],
+    "acceptsCustomOrders": true,
+    "customOrderLeadDays": "7 - 14 يوم"
+  },
+  {
+    "id": "artisan-mariam",
+    "name": "مريم الأخميمية",
+    "craftId": "weaving-kilim",
+    "craftName": "النسيج اليدوي والكليم الأخميمي",
+    "provinceId": "sohag",
+    "provinceName": "سوهاج",
+    "workshop": "دار النول الأخميمي التراثي — مدينة أخميم، سوهاج",
+    "experienceYears": 30,
+    "rating": 5.0,
+    "avatar": "assets/pharaoh-avatar.svg",
+    "bio": "حارسة تقاليد النول اليدوي الصعيدي في أخميم؛ تغزل المفارش والأكلمة الصوفية والحريرية بالألوان الطبيعية والزخارف النوبية والقبطية الأصيلة.",
+    "verified": true,
+    "phone": "+20 115 678 9012",
+    "readyItems": [
+      {
+        "id": "prod-mariam-1",
+        "title": "مفرش سرير كروشيه ونسيج يدوي قطن مصري 100% (220×240 سم)",
+        "price": 880,
+        "currency": "EGP",
+        "badge": "readyToShip"
+      },
+      {
+        "id": "prod-mariam-2",
+        "title": "كليم صوف صعيدي منسوج يدوياً بنقوش هندسية أصيلة (150×200 سم)",
+        "price": 1250,
+        "currency": "EGP",
+        "badge": "readyToShip"
+      },
+      {
+        "id": "prod-mariam-3",
+        "title": "شال حرير طبيعي أخميمي مغزول على النول اليدوي",
+        "price": 450,
+        "currency": "EGP",
+        "badge": "readyToShip"
+      },
+      {
+        "id": "prod-mariam-4",
+        "title": "لوحة جدارية منسوجة يدوياً تمثل الحياة اليومية في صعيد مصر",
+        "price": 750,
+        "currency": "EGP",
+        "badge": "readyToShip"
+      }
+    ],
+    "acceptsCustomOrders": true,
+    "customOrderLeadDays": "10 - 20 يوم"
   }
 ];
 // Helper fetch with timeout
@@ -875,6 +1043,82 @@
     }
   }
 
+  // ---------------------------------------------------------------------------
+  // MULTILINGUAL LOCALIZATION RESOLVERS (Arabic, English, French, Italian, German)
+  // ---------------------------------------------------------------------------
+  const getActiveLang = () => (window.I18N && window.I18N.current) || 'ar';
+
+  function localizeProvince(p, lang) {
+    if (!p) return null;
+    const tRoot = window.EhkyHeritageTranslations && window.EhkyHeritageTranslations.provinces;
+    const trans = tRoot && tRoot[p.id];
+    if (!trans || lang === 'ar') return { ...p };
+    return {
+      ...p,
+      name: trans[lang] || trans.en || p.name
+    };
+  }
+
+  function localizeCraft(c, lang) {
+    if (!c) return null;
+    const tRoot = window.EhkyHeritageTranslations;
+    const cTrans = tRoot && tRoot.crafts && tRoot.crafts[c.id];
+    const pTrans = tRoot && tRoot.provinces && tRoot.provinces[c.provinceId];
+    const provName = (pTrans && lang !== 'ar' && (pTrans[lang] || pTrans.en)) || c.provinceName;
+    if (!cTrans || lang === 'ar') return { ...c, provinceName: provName };
+    const l = cTrans[lang] || cTrans.en || {};
+    return {
+      ...c,
+      title: l.title || c.title,
+      summary: l.summary || c.summary,
+      description: l.description || c.description,
+      materials: l.materials || c.materials,
+      tools: l.tools || c.tools,
+      steps: l.steps || c.steps,
+      regions: l.regions || c.regions,
+      provinceName: provName
+    };
+  }
+
+  function localizeFood(f, lang) {
+    if (!f) return null;
+    const tRoot = window.EhkyHeritageTranslations;
+    const fTrans = tRoot && tRoot.foods && tRoot.foods[f.id];
+    const pTrans = tRoot && tRoot.provinces && tRoot.provinces[f.provinceId];
+    const provName = (pTrans && lang !== 'ar' && (pTrans[lang] || pTrans.en)) || f.provinceName;
+    if (!fTrans || lang === 'ar') return { ...f, provinceName: provName };
+    const l = fTrans[lang] || fTrans.en || {};
+    return {
+      ...f,
+      title: l.title || f.title,
+      summary: l.summary || f.summary,
+      description: l.description || f.description,
+      ingredients: l.ingredients || f.ingredients,
+      steps: l.steps || f.steps,
+      topRestaurants: l.topRestaurants || f.topRestaurants,
+      provinceName: provName
+    };
+  }
+
+  function localizeArtisan(a, lang) {
+    if (!a) return null;
+    const tRoot = window.EhkyHeritageTranslations;
+    const aTrans = tRoot && tRoot.artisans && tRoot.artisans[a.id];
+    const pTrans = tRoot && tRoot.provinces && tRoot.provinces[a.provinceId];
+    const provName = (pTrans && lang !== 'ar' && (pTrans[lang] || pTrans.en)) || a.provinceName;
+    if (!aTrans || lang === 'ar') return { ...a, provinceName: provName };
+    const l = aTrans[lang] || aTrans.en || {};
+    return {
+      ...a,
+      name: l.name || a.name,
+      craftName: l.craftName || a.craftName,
+      workshop: l.workshop || a.workshop,
+      bio: l.bio || a.bio,
+      provinceName: provName,
+      readyItems: l.readyItems || a.readyItems
+    };
+  }
+
   // PUBLIC SERVICE METHODS
   const HeritageService = {
     // Config getter/setter
@@ -887,28 +1131,37 @@
 
     // 1. Get All Provinces
     async getProvinces() {
+      const lang = getActiveLang();
       if (DATABASE_CONFIG.USE_REMOTE_API) {
         try {
           const res = await fetchWithTimeout(`${DATABASE_CONFIG.API_BASE_URL}/provinces`);
-          if (res.ok) return await res.json();
+          if (res.ok) {
+            const data = await res.json();
+            return data.map(p => localizeProvince(p, lang));
+          }
         } catch (err) {
           console.warn('[HeritageService] API call failed, falling back to local provinces:', err);
         }
       }
-      return [...LOCAL_PROVINCES];
+      return LOCAL_PROVINCES.map(p => localizeProvince(p, lang));
     },
 
     // 2. Get Single Province
     async getProvinceById(id) {
+      const lang = getActiveLang();
       if (DATABASE_CONFIG.USE_REMOTE_API) {
         try {
           const res = await fetchWithTimeout(`${DATABASE_CONFIG.API_BASE_URL}/provinces/${id}`);
-          if (res.ok) return await res.json();
+          if (res.ok) {
+            const p = await res.json();
+            return localizeProvince(p, lang);
+          }
         } catch (err) {
           console.warn(`[HeritageService] API call failed for province ${id}, falling back:`, err);
         }
       }
-      return LOCAL_PROVINCES.find(p => p.id === id) || null;
+      const found = LOCAL_PROVINCES.find(p => p.id === id);
+      return found ? localizeProvince(found, lang) : null;
     },
 
     // 3. Get Categories
@@ -918,101 +1171,232 @@
 
     // 4. Get Heritage Items by Filter
     async getHeritageItems({ category = 'all', province = 'all', era = 'all', search = '' } = {}) {
+      const lang = getActiveLang();
       if (DATABASE_CONFIG.USE_REMOTE_API) {
         try {
           const params = new URLSearchParams({ category, province, era, search });
           const res = await fetchWithTimeout(`${DATABASE_CONFIG.API_BASE_URL}/heritage?${params.toString()}`);
-          if (res.ok) return await res.json();
+          if (res.ok) {
+            const data = await res.json();
+            return data.map(item => localizeCraft(item, lang));
+          }
         } catch (err) {
           console.warn('[HeritageService] API search failed, using local filter:', err);
         }
       }
 
       // Local Filter Logic
-      const normalize = s => (s || '').replace(/[إأآ]/g, 'ا').replace(/ى/g, 'ي').replace(/ة/g, 'ه').trim();
+      const normalize = s => (s || '').replace(/[إأآ]/g, 'ا').replace(/ى/g, 'ي').replace(/ة/g, 'ه').toLowerCase().trim();
       const nSearch = normalize(search);
 
       const items = LOCAL_CRAFTS;
-      return items.filter(item => {
+      const filtered = items.filter(item => {
         const matchCat = category === 'all' || item.category === category;
         const matchProv = province === 'all' || item.provinceId === province;
-        const matchEra = era === 'all'; // Local demo item has no fixed ancient era
-        const matchSearch = !nSearch || normalize(`${item.title} ${item.description} ${item.provinceName} ${item.regions}`).includes(nSearch);
+        const matchEra = era === 'all';
+        const localized = localizeCraft(item, lang);
+        const matchSearch = !nSearch || normalize(`${item.title} ${item.description} ${item.provinceName} ${item.regions} ${localized.title} ${localized.description} ${localized.provinceName}`).includes(nSearch);
         return matchCat && matchProv && matchEra && matchSearch;
       });
+      return filtered.map(item => localizeCraft(item, lang));
     },
 
     // 5. Get Craft Detail by ID
     async getCraftDetails(id = 'boats') {
+      const lang = getActiveLang();
       if (DATABASE_CONFIG.USE_REMOTE_API) {
         try {
           const res = await fetchWithTimeout(`${DATABASE_CONFIG.API_BASE_URL}/crafts/${id}`);
-          if (res.ok) return await res.json();
+          if (res.ok) {
+            const data = await res.json();
+            return localizeCraft(data, lang);
+          }
         } catch (err) {
           console.warn(`[HeritageService] API call failed for craft ${id}, falling back:`, err);
         }
       }
       const found = LOCAL_CRAFTS.find(c => c.id === id);
-      return found ? { ...found } : null;
+      return found ? localizeCraft(found, lang) : null;
     },
 
     // 6. Get Traditional Foods by Province or Search
     async getFoods({ province = 'all', search = '' } = {}) {
+      const lang = getActiveLang();
       if (DATABASE_CONFIG.USE_REMOTE_API) {
         try {
           const params = new URLSearchParams({ province, search });
           const res = await fetchWithTimeout(`${DATABASE_CONFIG.API_BASE_URL}/foods?${params.toString()}`);
-          if (res.ok) return await res.json();
+          if (res.ok) {
+            const data = await res.json();
+            return data.map(f => localizeFood(f, lang));
+          }
         } catch (e) {}
       }
-      const normalize = s => (s || '').replace(/[إأآ]/g, 'ا').replace(/ى/g, 'ي').replace(/ة/g, 'ه').trim();
+      const normalize = s => (s || '').replace(/[إأآ]/g, 'ا').replace(/ى/g, 'ي').replace(/ة/g, 'ه').toLowerCase().trim();
       const nSearch = normalize(search);
-      return LOCAL_FOODS.filter(item => {
+      const filtered = LOCAL_FOODS.filter(item => {
         const matchProv = province === 'all' || item.provinceId === province;
-        const matchSearch = !nSearch || normalize(`${item.title} ${item.summary} ${item.provinceName} ${item.ingredients}`).includes(nSearch);
+        const localized = localizeFood(item, lang);
+        const matchSearch = !nSearch || normalize(`${item.title} ${item.summary} ${item.provinceName} ${item.ingredients} ${localized.title} ${localized.summary} ${localized.provinceName}`).includes(nSearch);
         return matchProv && matchSearch;
       });
+      return filtered.map(f => localizeFood(f, lang));
     },
 
     // 7. Get Food by ID
     async getFoodById(id) {
+      const lang = getActiveLang();
       if (DATABASE_CONFIG.USE_REMOTE_API) {
         try {
           const res = await fetchWithTimeout(`${DATABASE_CONFIG.API_BASE_URL}/foods/${id}`);
-          if (res.ok) return await res.json();
+          if (res.ok) {
+            const data = await res.json();
+            return localizeFood(data, lang);
+          }
         } catch (e) {}
       }
       const found = LOCAL_FOODS.find(f => f.id === id);
-      return found ? { ...found } : null;
+      return found ? localizeFood(found, lang) : null;
     },
 
     // 8. Get Artisans by Craft or Province
     async getArtisans({ craftId = 'all', provinceId = 'all' } = {}) {
+      const lang = getActiveLang();
       if (DATABASE_CONFIG.USE_REMOTE_API) {
         try {
           const params = new URLSearchParams({ craftId, provinceId });
           const res = await fetchWithTimeout(`${DATABASE_CONFIG.API_BASE_URL}/artisans?${params.toString()}`);
-          if (res.ok) return await res.json();
+          if (res.ok) {
+            const data = await res.json();
+            return data.map(a => localizeArtisan(a, lang));
+          }
         } catch (e) {}
       }
-      return LOCAL_ARTISANS.filter(a => {
+      const filtered = LOCAL_ARTISANS.filter(a => {
         const matchCraft = craftId === 'all' || a.craftId === craftId;
         const matchProv = provinceId === 'all' || a.provinceId === provinceId;
         return matchCraft && matchProv;
       });
+      return filtered.map(a => localizeArtisan(a, lang));
     },
 
     // 9. Get Single Artisan by ID
     async getArtisanById(id) {
+      const lang = getActiveLang();
       if (DATABASE_CONFIG.USE_REMOTE_API) {
         try {
           const res = await fetchWithTimeout(`${DATABASE_CONFIG.API_BASE_URL}/artisans/${id}`);
-          if (res.ok) return await res.json();
+          if (res.ok) {
+            const data = await res.json();
+            return localizeArtisan(data, lang);
+          }
         } catch (e) {}
       }
       const found = LOCAL_ARTISANS.find(a => a.id === id);
-      return found ? { ...found } : null;
-    }
+      return found ? localizeArtisan(found, lang) : null;
+    },
+
+    // 10. Get Ready Products Compiled from Artisans & Published Merchant Items
+    async getReadyProducts({ category = 'all', search = '' } = {}) {
+      const lang = getActiveLang();
+      const artisans = await this.getArtisans({});
+      const products = [];
+
+      const imageMap = {
+        'copper': 'assets/category-craft.webp',
+        'palm': 'assets/scene-fayoum.webp',
+        'arabesque': 'assets/scene-cairo.webp',
+        'pottery': 'assets/scene-qena.webp',
+        'alabaster': 'assets/scene-luxor.webp',
+        'textiles': 'assets/scene-sohag.webp',
+        'lanterns-boats': 'assets/scene-alex.webp'
+      };
+
+      // Load dynamically published merchant products from localStorage
+      try {
+        const saved = localStorage.getItem('ehky-merchant-products');
+        if (saved) {
+          const custom = JSON.parse(saved);
+          if (Array.isArray(custom)) {
+            custom.forEach(cp => {
+              const matchCat = (category === 'all' || cp.category === category || cp.craftId === category);
+              const s = search.trim().toLowerCase();
+              const matchSearch = !s ||
+                cp.title.toLowerCase().includes(s) ||
+                cp.craftName.toLowerCase().includes(s) ||
+                cp.artisanName.toLowerCase().includes(s);
+              if (matchCat && matchSearch) {
+                products.push(cp);
+              }
+            });
+          }
+        }
+      } catch (e) {}
+
+      artisans.forEach(artisan => {
+        if (!artisan.readyItems || !artisan.readyItems.length) return;
+        artisan.readyItems.forEach((item, idx) => {
+          const egp = Number(item.price) || 0;
+          const usd = Math.round(egp / 50);
+
+          let prodCat = 'other';
+          const cid = (artisan.craftId || '').toLowerCase();
+          if (cid.includes('copper')) prodCat = 'copper';
+          else if (cid.includes('palm')) prodCat = 'palm';
+          else if (cid.includes('arabesque')) prodCat = 'arabesque';
+          else if (cid.includes('pottery')) prodCat = 'pottery';
+          else if (cid.includes('stone') || cid.includes('sculpture')) prodCat = 'alabaster';
+          else if (cid.includes('weaving') || cid.includes('kilim')) prodCat = 'textiles';
+          else if (cid.includes('boats') || cid.includes('lanterns')) prodCat = 'lanterns-boats';
+
+          const prod = {
+            id: item.id || `${artisan.id}-item-${idx+1}`,
+            title: item.title,
+            priceEgp: egp,
+            priceUsd: usd,
+            artisanId: artisan.id,
+            artisanName: artisan.name,
+            artisanRating: artisan.rating,
+            artisanWorkshop: artisan.workshop,
+            craftId: artisan.craftId,
+            craftName: artisan.craftName,
+            provinceId: artisan.provinceId,
+            provinceName: artisan.provinceName,
+            category: prodCat,
+            image: item.image || imageMap[prodCat] || 'assets/category-craft.webp',
+            leadDays: item.leadDays || (lang === 'ar' ? 'جاهز للشحن الفوري' : 'Ready to Ship'),
+            inStock: true
+          };
+
+          const matchCat = (category === 'all' || prodCat === category || artisan.craftId === category);
+          const s = search.trim().toLowerCase();
+          const matchSearch = !s ||
+            prod.title.toLowerCase().includes(s) ||
+            prod.craftName.toLowerCase().includes(s) ||
+            prod.provinceName.toLowerCase().includes(s) ||
+            prod.artisanName.toLowerCase().includes(s);
+
+          if (matchCat && matchSearch) {
+            products.push(prod);
+          }
+        });
+      });
+
+      return products;
+    },
+
+    // 11. Publish a New Merchant Product
+    async addMerchantProduct(prod) {
+      try {
+        const saved = localStorage.getItem('ehky-merchant-products') || '[]';
+        const list = JSON.parse(saved);
+        list.unshift(prod);
+        localStorage.setItem('ehky-merchant-products', JSON.stringify(list));
+        return true;
+      } catch (e) {
+        return false;
+      }
+    },
   };
 
   // Attach to window for global access without build step

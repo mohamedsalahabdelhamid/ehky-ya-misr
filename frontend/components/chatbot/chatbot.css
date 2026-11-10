@@ -117,18 +117,25 @@
 }
 
 .pharaoh-header-avatar {
-  width: 44px;
-  height: 44px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   border: 2px solid var(--pharaoh-gold);
   overflow: hidden;
-  background: #000;
+  background: radial-gradient(circle, #1a3b70 0%, #071329 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.45);
 }
 
 .pharaoh-header-avatar img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
 }
 
 .pharaoh-header-details strong {
@@ -219,33 +226,52 @@
 /* Quick Questions / Suggestions */
 .pharaoh-suggestions-row {
   display: flex;
-  gap: 8px;
-  padding: 8px 16px 12px;
-  overflow-x: auto;
-  scrollbar-width: none;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 10px 14px 12px;
+  overflow-y: auto;
+  max-height: 115px;
   background: var(--pharaoh-sand);
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  border-top: 1px dashed rgba(212, 175, 55, 0.4);
 }
 
 .pharaoh-suggestions-row::-webkit-scrollbar {
-  display: none;
+  width: 4px;
+}
+.pharaoh-suggestions-row::-webkit-scrollbar-thumb {
+  background: rgba(212, 175, 55, 0.4);
+  border-radius: 4px;
 }
 
 .pharaoh-suggest-chip {
   background: #ffffff;
   border: 1px solid var(--pharaoh-gold);
-  color: var(--pharaoh-gold-dark);
-  font-size: 11.5px;
-  padding: 6px 12px;
-  border-radius: 30px;
-  white-space: nowrap;
+  color: var(--pharaoh-blue);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 11px;
+  border-radius: 16px;
+  white-space: normal;
+  line-height: 1.35;
+  text-align: center;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
   font-family: inherit;
+  box-sizing: border-box;
+  flex: 0 1 auto;
+  max-width: 100%;
+  word-break: break-word;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
 .pharaoh-suggest-chip:hover {
   background: var(--pharaoh-gold);
   color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(212, 175, 55, 0.35);
 }
 
 /* Input Form */
@@ -313,3 +339,209 @@
   }
 }
 
+
+/* Dark Mode Overrides for Chatbot Window */
+body.night .pharaoh-chat-window {
+  background: #18353a;
+  border-color: #dfb673;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(223, 182, 115, 0.2);
+}
+body.night .pharaoh-messages-area {
+  background: #10282c;
+}
+body.night .pharaoh-msg-bot {
+  background: #18353a;
+  color: #ede6d6;
+  border-color: #375054;
+}
+body.night .pharaoh-team-notice {
+  background: #13272b;
+  color: #dfb673;
+  border-color: #375054;
+}
+body.night .pharaoh-suggestions-row {
+  background: #10282c;
+}
+body.night .pharaoh-suggest-chip {
+  background: #18353a;
+  color: #dfb673;
+  border-color: #dfb673;
+}
+body.night .pharaoh-suggest-chip:hover {
+  background: #dfb673;
+  color: #10282c;
+}
+body.night .pharaoh-chat-form {
+  background: #18353a;
+  border-color: #375054;
+}
+body.night .pharaoh-chat-input {
+  background: #10282c;
+  color: #ede6d6;
+  border-color: #375054;
+}
+body.night .pharaoh-chat-input:focus {
+  border-color: #dfb673;
+  background: #143035;
+}
+
+
+/* ==========================================================================
+   ENHANCED HORUS CHATBOT LUXURY DESIGN OVERRIDES
+   ========================================================================== */
+
+.pharaoh-chat-window {
+  border: 1.5px solid var(--gold);
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(10, 20, 40, 0.35), 0 0 25px rgba(212, 175, 55, 0.2);
+  background: var(--paper);
+  backdrop-filter: blur(12px);
+}
+
+.pharaoh-chat-header {
+  background: linear-gradient(135deg, #0a1931 0%, #102d38 100%);
+  padding: 14px 18px;
+  border-bottom: 2px solid var(--gold);
+}
+
+.pharaoh-header-avatar {
+  width: 52px;
+  height: 52px;
+  border: 2px solid var(--gold);
+  background: radial-gradient(circle, #1a3e68 0%, #08152a 100%);
+  box-shadow: 0 0 16px rgba(212, 175, 55, 0.4);
+}
+
+.pharaoh-status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00e676;
+  box-shadow: 0 0 8px #00e676;
+  margin-inline-end: 4px;
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+.pharaoh-header-details strong {
+  font-size: 16px;
+  color: #ffe89a;
+  letter-spacing: 0.3px;
+}
+
+.pharaoh-header-details small {
+  font-size: 11.5px;
+  color: #cad6e2;
+  display: flex;
+  align-items: center;
+}
+
+.pharaoh-msg-bot {
+  background: #ffffff;
+  color: #1a202c;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: 16px 16px 16px 2px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+}
+
+.pharaoh-msg-user {
+  background: linear-gradient(135deg, #0f2147 0%, #15424a 100%);
+  color: #ffffff;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 16px 16px 2px 16px;
+  box-shadow: 0 4px 12px rgba(15, 33, 71, 0.25);
+}
+
+.pharaoh-suggest-chip {
+  background: #ffffff;
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  color: #0f2147;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+}
+
+.pharaoh-suggest-chip:hover {
+  background: var(--gold);
+  color: #0f2147;
+  border-color: var(--gold);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(212, 175, 55, 0.25);
+}
+
+.pharaoh-chat-input-bar {
+  background: var(--paper);
+  border-top: 1px solid rgba(212, 175, 55, 0.3);
+  padding: 12px 14px;
+}
+
+.pharaoh-chat-input-bar input {
+  background: rgba(0,0,0,0.02);
+  border: 1.5px solid rgba(212, 175, 55, 0.3);
+  border-radius: 12px;
+  color: var(--ink);
+  transition: border-color 0.2s ease;
+}
+
+.pharaoh-chat-input-bar input:focus {
+  border-color: var(--gold);
+  outline: none;
+  background: #ffffff;
+}
+
+.pharaoh-chat-input-bar button {
+  background: linear-gradient(135deg, var(--gold) 0%, #b8860b 100%);
+  color: #0f2147;
+  border: none;
+  font-weight: bold;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.pharaoh-chat-input-bar button:hover {
+  transform: scale(1.04);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.45);
+}
+
+/* Night Mode for Chatbot */
+body.night .pharaoh-chat-window {
+  background: #112028;
+  border-color: #dfb673;
+}
+body.night .pharaoh-messages-area {
+  background: #0d1a21;
+}
+body.night .pharaoh-msg-bot {
+  background: #192c36;
+  color: #ede6d6;
+  border-color: rgba(223, 182, 115, 0.2);
+}
+body.night .pharaoh-suggestions-row {
+  background: #112028;
+}
+body.night .pharaoh-suggest-chip {
+  background: #182e38;
+  color: #dfb673;
+  border-color: rgba(223, 182, 115, 0.4);
+}
+body.night .pharaoh-suggest-chip:hover {
+  background: #dfb673;
+  color: #0d1a21;
+}
+body.night .pharaoh-chat-input-bar {
+  background: #112028;
+}
+body.night .pharaoh-chat-input-bar input {
+  background: #182e38;
+  color: #ede6d6;
+  border-color: rgba(223, 182, 115, 0.3);
+}
+body.night .pharaoh-chat-input-bar input:focus {
+  background: #1d3642;
+  border-color: #dfb673;
+}

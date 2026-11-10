@@ -2,45 +2,47 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
   <meta name="theme-color" content="#f5efe3">
-  <title>مشروع احكي يا مصر — ذاكرة مكان وحكاية إنسان</title>
-  <meta name="description" content="منصة تفاعلية لاستكشاف وتوثيق التراث المصري والهوية الوطنية حسب المحافظات والتصنيفات وسوق الحرفيين والأكلات الشعبية.">
+  <title>Ehky Ya Misr — Living Heritage of Egypt</title>
+  <meta name="description" content="Interactive platform exploring and documenting Egyptian heritage, identity, crafts, foods, and artisan marketplace across 27 governorates.">
   <link rel="icon" type="image/png" href="assets/logo-brand.png">
   
   <!-- Main Styles -->
-  <link rel="stylesheet" href="css/style.css?v=3.0">
+  <link rel="stylesheet" href="css/style.css?v=4.0">
   
-  <!-- Pharaonic Chatbot & Horus Styles -->
-  <link rel="stylesheet" href="components/chatbot/chatbot.css?v=3.0">
-  <link rel="stylesheet" href="components/chatbot/horus.css?v=3.0">
+  <!-- Chatbot & Horus Styles -->
+  <link rel="stylesheet" href="components/chatbot/chatbot.css?v=4.0">
+  <link rel="stylesheet" href="components/chatbot/horus.css?v=4.0">
 </head>
 <body>
 
   <!-- Top Navigation Header -->
   <header class="header">
-    <a class="brand" href="#home" aria-label="احكي يا مصر — الرئيسية" style="display:flex;align-items:center;gap:10px">
-      <img src="assets/logo-brand.png" alt="شعار احكي يا مصر" style="width:40px;height:40px;object-fit:contain;border-radius:50%;filter:drop-shadow(0 2px 6px rgba(0,0,0,0.2))">
-      <div>
-        <strong data-i18n="siteTitle" style="display:block;line-height:1.2">احكي يا مصر</strong>
+    <a class="brand" href="#home" aria-label="Ehky Ya Misr — Home">
+      <img src="assets/logo-brand.png" alt="Ehky Ya Misr Logo" class="brand-logo-img">
+      <div class="brand-text">
+        <strong data-i18n="siteTitle">احكي يا مصر</strong>
         <small data-i18n="siteSubtitle">حكاية من المصريين… ذاكرة للأجيال</small>
       </div>
     </a>
 
-    <nav aria-label="التنقل الرئيسي">
+    <button class="nav-toggle" id="navToggle" aria-label="فتح القائمة">☰</button>
+
+    <nav id="mainNav" aria-label="Main Navigation">
       <a href="#home" data-i18n="navHome">الرئيسية</a>
       <a href="#map" data-i18n="navMap">الخريطة</a>
       <a href="#heritage" data-i18n="navHeritage">التراث</a>
       <a href="#foods" data-i18n="navFoods">الأكلات المصرية</a>
-      <a href="#artisans" data-i18n="navArtisans">سوق الحرفيين</a>
+      <a href="#artisans" data-i18n="navArtisans">سوق مصر</a>
       <a href="#about" data-i18n="navAbout">عن المشروع</a>
     </nav>
 
     <div class="tools">
-      <!-- 5-Language Selector -->
+      <!-- Language Selector -->
       <div class="lang-selector">
         <span aria-hidden="true">🌐</span>
-        <select id="langSelect" aria-label="اختر اللغة / Select Language">
+        <select id="langSelect" aria-label="Select Language">
           <option value="ar" selected>العربية</option>
           <option value="en">English</option>
           <option value="fr">Français</option>
@@ -49,14 +51,14 @@
         </select>
       </div>
 
-      <!-- User Role Toggle (Tourist / Artisan) -->
-      <button class="role-badge" id="roleToggleBtn" title="تبديل صفة المستخدم (سائح / حرفي)">
-        <span class="role-icon" id="roleIcon">👤</span>
-        <span id="roleLabel">سائح / زائر</span>
+      <!-- Account Button -->
+      <button class="account-btn" id="accountBtn" title="Register / Sign In">
+        <span class="account-icon" id="accountIcon">👤</span>
+        <span id="accountLabel" data-i18n="register">Register</span>
       </button>
 
       <!-- Day / Night Theme Switcher -->
-      <button id="theme" aria-label="تفعيل الوضع الليلي" title="نهار / ليل">
+      <button id="theme" aria-label="Toggle theme" title="Day / Night">
         ☀ <span class="switch"></span> ☾
       </button>
     </div>
@@ -65,46 +67,44 @@
   <!-- Dynamic Content Container -->
   <main id="app"></main>
 
-  <!-- Animated 3D Horus Royal Companion (Sculpted Full-Body Cutout) -->
-  <aside class="horus-dock" id="horusDock" aria-label="المرشد الفرعوني حورس">
-    <div class="horus-speech-bubble" id="horusBubble" title="اضغط للتحدث مع حورس">
-      <span id="horusSpeechText">أهلاً بك في مصر! أنا حورس مرشدك التراثي، اسألني في أي وقت 𓅃</span>
-      <div class="horus-bubble-arrow"></div>
-    </div>
-    
-    <!-- 3D Sculpted Character (Not a circular button!) -->
-    <div class="horus-3d-character" id="horusGuideBtn" role="button" tabindex="0" aria-label="التحدث مع حورس الحكيم" title="حورس الحكيم — مرشد التراث الذكي">
-      <img src="assets/horus-character-3d.webp" alt="مجسم حورس الحكيم ثلاثي الأبعاد" class="horus-figure-img">
+  <!-- Animated 3D Horus Royal Companion -->
+  <aside class="horus-dock" id="horusDock" aria-label="Horus Heritage Guide">
+    <!-- 3D Sculpted Character -->
+    <div class="horus-3d-character" id="horusGuideBtn" role="button" tabindex="0" aria-label="Talk to Horus" title="حورس — مرشدك التراثي">
+      <img src="assets/horus-character-3d.webp" alt="Horus 3D Character" class="horus-figure-img">
       <div class="horus-ground-shadow"></div>
-      <span class="horus-status-badge">حورس الحكيم ✧</span>
+      <span class="horus-status-badge">حورس ✧</span>
     </div>
   </aside>
 
   <!-- Footer -->
   <footer>
-    <span data-i18n="siteTitle">مشروع احكي يا مصر</span>
-    <p>تراث نرويه بأصوات أصحابه، ومعرفة نحفظ مصادرها للأجيال القادمة ودعم مباشر للحرفيين ضد الاستغلال.</p>
-    <small>دليل التراث المصري الحي ومرشد السائح والزائر في الـ 27 محافظة</small>
-    <a href="#about" data-i18n="navAbout">عن المشروع ↗</a>
+    <span data-i18n="siteTitle">Ehky Ya Misr</span>
+    <p data-i18n="footerDesc">Heritage told by its people, knowledge preserved for future generations, and direct support for artisans against exploitation.</p>
+    <small data-i18n="footerSmall">Living Egyptian Heritage Guide across 27 governorates</small>
+    <a href="#about" data-i18n="navAbout">About ↗</a>
   </footer>
 
-  <!-- 1. Internationalization Engine (ar, en, fr, it, de) -->
-  <script src="js/i18n.js?v=3.0"></script>
+  <!-- 1. Internationalization Engine -->
+  <script src="js/i18n.js?v=4.0"></script>
 
-  <!-- 2. Data Service Layer (Crafts, Foods, Artisans, Provinces) -->
-  <script src="js/services/heritageService.js?v=3.0"></script>
+  <!-- 2. Heritage Multilingual Content Data -->
+  <script src="js/services/heritageTranslations.js?v=4.0"></script>
+
+  <!-- 3. Data Service Layer -->
+  <script src="js/services/heritageService.js?v=4.0"></script>
 
   <!-- 3. Visual Effects & Motion -->
-  <script src="js/motion.js?v=3.0"></script>
+  <script src="js/motion.js?v=4.0"></script>
 
   <!-- 4. Scenic Views & 27 Governorates Carousel -->
-  <script src="js/scenes.js?v=3.0"></script>
+  <script src="js/scenes.js?v=4.0"></script>
 
-  <!-- 5. Independent Pharaonic Chatbot Component (حورس الحكيم) -->
-  <script src="components/chatbot/chatbot.js?v=3.0"></script>
+  <!-- 5. Horus Chatbot Component -->
+  <script src="components/chatbot/chatbot.js?v=4.0"></script>
 
-  <!-- 6. Main Application Controller (Routing, Modals, Marketplace & Video) -->
-  <script src="js/app.js?v=3.0"></script>
+  <!-- 6. Main Application Controller -->
+  <script src="js/app.js?v=4.0"></script>
 
 </body>
 </html>
