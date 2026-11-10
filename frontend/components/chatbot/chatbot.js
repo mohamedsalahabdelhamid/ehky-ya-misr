@@ -255,7 +255,12 @@
     function addMessage(text, isUser = false) {
       const msg = document.createElement('div');
       msg.className = `pharaoh-msg ${isUser ? 'pharaoh-msg-user' : 'pharaoh-msg-bot'}`;
-      msg.innerHTML = text.replace(/\n/g, '<br>');
+      // SECURITY: render as text nodes (never innerHTML) so user input / remote API
+      // replies can't inject HTML or scripts (XSS).
+      text.split('\n').forEach((line, i) => {
+        if (i) msg.appendChild(document.createElement('br'));
+        msg.appendChild(document.createTextNode(line));
+      });
       messages.appendChild(msg);
       messages.scrollTop = messages.scrollHeight;
     }
