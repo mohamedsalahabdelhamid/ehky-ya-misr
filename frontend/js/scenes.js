@@ -120,7 +120,8 @@
     const existing = hero.querySelector('.scene-caption');
     existing.classList.add('scene-place');
     existing.removeAttribute('aria-hidden');
-    existing.innerHTML = '<span class="scene-place-name"></span><small data-i18n="scenicSubTitle">تصوّر فني متحرك · ٢٧ محافظة</small>';
+    const scenicSub = (window.I18N && typeof window.I18N.t === 'function') ? window.I18N.t('scenicSubTitle') : 'تصوّر فني متحرك · ٢٧ محافظة';
+    existing.innerHTML = `<span class="scene-place-name"></span><small data-i18n="scenicSubTitle">${scenicSub}</small>`;
     caption = existing.querySelector('.scene-place-name');
     caption.textContent = formatCaption(scenes[0]);
     const controls = document.createElement('div');

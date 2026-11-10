@@ -941,7 +941,7 @@ function heritagePage(provFilter = null) {
         ${[['all',t('catAll')],['craft',t('catCraft')],['food',t('catFood')],['music',t('catMusic')],['custom',t('catCustom')]].map(([id,label])=>`<button class="filter-pill ${category===id?'active':''}" data-filter="${id}">${label}</button>`).join('')}
       </div>
       <div class="results-grid" id="heritageResults">
-        <div class="loading-spinner">${t('noResults')}</div>
+        <div class="loading-spinner">${t('loadingResults')}</div>
       </div>
     </div>`;
 }
@@ -1543,7 +1543,7 @@ function openArtisanChatModal(artisanId, product = null) {
       setTimeout(() => {
         const reply = document.createElement('div');
         reply.className = 'artisan-msg from-artisan';
-        reply.innerHTML = `<p>${t('artisanAutoReply')} ${artisan.name}! بخصوص طلبك، نحن في خدمتك دائماً.</p><span class="time">${t('now')}</span>`;
+        reply.innerHTML = `<p>${t('artisanAutoReply')} ${artisan.name}! ${t('artisanAutoReplyTail')}</p><span class="time">${t('now')}</span>`;
         msgBox.appendChild(reply);
         msgBox.scrollTop = msgBox.scrollHeight;
       }, 900);
