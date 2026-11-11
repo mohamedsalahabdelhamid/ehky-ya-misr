@@ -1886,7 +1886,12 @@ async function artisanProfilePage(id) {
           <span class="badge">${t('verifiedBadge')}</span>
         </div>
       </div>
+      ${a.image ? `
+      <div style="width:230px;max-width:40%;flex-shrink:0;border:3px solid var(--gold);border-radius:18px;overflow:hidden;box-shadow:var(--shadow);align-self:center">
+        <img src="${a.image}" alt="${esc((a.craftName||'') + ' — ' + (a.name||''))}" loading="lazy" decoding="async" style="display:block;width:100%;aspect-ratio:4/3;object-fit:cover">
+      </div>` : `
       <div style="width:120px;height:120px;border-radius:50%;background:linear-gradient(135deg,#0f2147,#123d42);display:flex;align-items:center;justify-content:center;border:3px solid var(--gold);color:#ffe89a;font-size:52px;flex-shrink:0">⚒️</div>
+      `}
       </div>
 
       <div class="currency-switcher-bar" style="margin:20px 0">
@@ -1908,10 +1913,13 @@ async function artisanProfilePage(id) {
             <section><h2>🏺 ${t('readyItems')}</h2>
               <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin-top:16px">
                 ${a.readyItems.map(item=>`
-                  <div style="background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:8px">
-                    <h3 style="margin:0;font-size:16px">${item.title}</h3>
-                    <div style="font-size:18px;font-weight:bold;color:var(--gold)">${formatDualPrice(item.price)}</div>
-                    <button class="primary btn-buy-instant" data-artisan-id="${a.id}" data-item-title="${(item.title||'').replace(/"/g, '&quot;')}" data-item-price="${item.price}" style="margin-top:8px">${t('instantBuy')}</button>
+                  <div style="background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:0;display:flex;flex-direction:column;overflow:hidden">
+                    <img src="${item.image || a.image || 'assets/category-craft.webp'}" alt="${esc(item.title||'')}" loading="lazy" decoding="async" style="display:block;width:100%;aspect-ratio:16/10;object-fit:cover;background:var(--bg)">
+                    <div style="padding:16px;display:flex;flex-direction:column;gap:8px;flex:1">
+                      <h3 style="margin:0;font-size:16px">${item.title}</h3>
+                      <div style="font-size:18px;font-weight:bold;color:var(--gold)">${formatDualPrice(item.price)}</div>
+                      <button class="primary btn-buy-instant" data-artisan-id="${a.id}" data-item-title="${(item.title||'').replace(/"/g, '&quot;')}" data-item-price="${item.price}" style="margin-top:auto">${t('instantBuy')}</button>
+                    </div>
                   </div>`).join('')}
               </div>
             </section>`:''}
