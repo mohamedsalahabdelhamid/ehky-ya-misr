@@ -135,6 +135,18 @@
       fairTradeDesc: 'من ورشة الصانع إلى بيتك مباشرة: اشترِ بأسعار عادلة بدون وسطاء — كل قطعة تحمل حكاية وتدعم أسرة مصرية.',
       startJourney: 'ابدأ رحلتك الآن ←',
 
+      // ---- Journey intro & audio ----
+      heroMemoryLine: 'تراث نرويه بأصوات أصحابه، ومعرفة نحفظ مصادرها.',
+      journeyStartNow: 'ابدأ الآن',
+      journeySkip: 'تخطّي المقدمة',
+      journeyReplayWelcome: 'ابدأ الآن · اسمع الترحيب',
+      journeyAudioControls: 'التحكم في الصوت',
+      journeyAudioBegin: 'ابدأ الرحلة بالصوت',
+      journeyAudioStop: 'إيقاف الصوت',
+      journeyAudioStartMusic: 'تشغيل الموسيقى',
+      journeyAudioStart: 'تشغيل الصوت',
+      journeyVolumeLabel: 'مستوى الصوت',
+
       // ---- Map ----
       mapTitle: 'خريطة مصر التراثية',
       mapDesc: 'انقر على أي محافظة على الخريطة لاستكشاف تراثها وحرفها وأكلاتها.',
@@ -384,6 +396,18 @@
       fairTradeTitle: 'Fair Trade, Straight from the Source',
       fairTradeDesc: 'From the maker’s workshop straight to your home: fair prices with no middlemen — every piece carries a story and supports an Egyptian family.',
       startJourney: 'Start Your Journey →',
+
+      // ---- Journey intro & audio ----
+      heroMemoryLine: 'Heritage told in the voices of its people, and knowledge that keeps its sources.',
+      journeyStartNow: 'Start now',
+      journeySkip: 'Skip the intro',
+      journeyReplayWelcome: 'Start now · hear the welcome',
+      journeyAudioControls: 'Sound controls',
+      journeyAudioBegin: 'Start the journey with sound',
+      journeyAudioStop: 'Stop the sound',
+      journeyAudioStartMusic: 'Play the music',
+      journeyAudioStart: 'Play the sound',
+      journeyVolumeLabel: 'Sound volume',
 
       // ---- Map ----
       mapTitle: 'Heritage Map of Egypt',
@@ -635,6 +659,18 @@
       fairTradeDesc: 'De l’atelier de l’artisan à votre maison : achetez à prix juste, sans intermédiaires — chaque pièce porte une histoire et soutient une famille égyptienne.',
       startJourney: 'Commencez votre voyage →',
 
+      // ---- Journey intro & audio ----
+      heroMemoryLine: 'Un patrimoine raconté par les voix de son peuple, et un savoir dont nous gardons les sources.',
+      journeyStartNow: 'Commencer maintenant',
+      journeySkip: 'Passer l’introduction',
+      journeyReplayWelcome: 'Commencer · écouter l’accueil',
+      journeyAudioControls: 'Contrôles du son',
+      journeyAudioBegin: 'Commencer le voyage avec le son',
+      journeyAudioStop: 'Arrêter le son',
+      journeyAudioStartMusic: 'Lire la musique',
+      journeyAudioStart: 'Lire le son',
+      journeyVolumeLabel: 'Volume du son',
+
       // ---- Map ----
       mapTitle: 'Carte du patrimoine d’Égypte',
       mapDesc: 'Cliquez sur un gouvernorat pour explorer son artisanat, sa cuisine et ses histoires.',
@@ -885,6 +921,18 @@
       fairTradeDesc: 'Dalla bottega dell’artigiano a casa tua: acquista a prezzi equi, senza intermediari — ogni pezzo racconta una storia e sostiene una famiglia egiziana.',
       startJourney: 'Inizia il tuo viaggio →',
 
+      // ---- Journey intro & audio ----
+      heroMemoryLine: 'Un patrimonio raccontato dalle voci del suo popolo, e una conoscenza di cui custodiamo le fonti.',
+      journeyStartNow: 'Inizia ora',
+      journeySkip: 'Salta l’introduzione',
+      journeyReplayWelcome: 'Inizia ora · ascolta il benvenuto',
+      journeyAudioControls: 'Controlli audio',
+      journeyAudioBegin: 'Inizia il viaggio con l’audio',
+      journeyAudioStop: 'Ferma l’audio',
+      journeyAudioStartMusic: 'Riproduci la musica',
+      journeyAudioStart: 'Riproduci l’audio',
+      journeyVolumeLabel: 'Volume dell’audio',
+
       // ---- Map ----
       mapTitle: 'Mappa del patrimonio d’Egitto',
       mapDesc: 'Clicca su un governatorato per esplorarne arti, cucina e storie.',
@@ -1134,6 +1182,18 @@
       fairTradeTitle: 'Faire Handelsweise, direkt aus der Quelle',
       fairTradeDesc: 'Von der Werkstatt des Meisters direkt zu dir nach Hause: kaufe zu fairen Preisen ohne Zwischenhändler — jedes Stück erzählt eine Geschichte und unterstützt eine ägyptische Familie.',
       startJourney: 'Beginne deine Reise →',
+
+      // ---- Journey intro & audio ----
+      heroMemoryLine: 'Erbe, erzählt von den Stimmen seiner Menschen, und Wissen, dessen Quellen wir bewahren.',
+      journeyStartNow: 'Jetzt beginnen',
+      journeySkip: 'Intro überspringen',
+      journeyReplayWelcome: 'Jetzt beginnen · Begrüßung anhören',
+      journeyAudioControls: 'Tonsteuerung',
+      journeyAudioBegin: 'Die Reise mit Ton beginnen',
+      journeyAudioStop: 'Ton stoppen',
+      journeyAudioStartMusic: 'Musik abspielen',
+      journeyAudioStart: 'Ton abspielen',
+      journeyVolumeLabel: 'Lautstärke',
 
       // ---- Map ----
       mapTitle: 'Kulturerbe-Karte Ägyptens',

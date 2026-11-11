@@ -806,7 +806,9 @@ function home() {
         <span class="eyebrow">${t('heroEyebrow')}</span>
         <h1>${t('heroTitle')}<em>${t('heroTitleEm')}</em></h1>
         <p>${t('heroDesc')}</p>
+        <p class="hero-memory-line">${t('heroMemoryLine')}</p>
         <span class="quiet">${t('heroSubNotice')}</span>
+        <button type="button" class="pill" data-replay-welcome>${t('journeyReplayWelcome')}</button>
       </div>
       <div class="hero-routes">${routes()}</div>
       <span class="scene-caption">${t('scenicCaption')}</span>

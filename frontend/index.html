@@ -14,8 +14,23 @@
   <!-- Chatbot & Horus Styles -->
   <link rel="stylesheet" href="components/chatbot/chatbot.css?v=7.0">
   <link rel="stylesheet" href="components/chatbot/horus.css?v=7.0">
+
+  <!-- Journey intro: mark the opening state before first paint -->
+  <script>
+    if (!location.hash || location.hash === '#home') {
+      document.documentElement.classList.add('journey-opening');
+    }
+  </script>
 </head>
 <body>
+
+  <!-- Journey Intro Overlay (welcome message + sparks) -->
+  <div id="journeyIntro" hidden>
+    <div id="journeySparks" aria-hidden="true"></div>
+    <div class="journey-title" lang="en" dir="ltr">Welcome</div>
+    <button id="startJourneyIntro" type="button" data-i18n="journeyStartNow">ابدأ الآن</button>
+    <button id="skipJourneyIntro" type="button" data-i18n="journeySkip">تخطّي المقدمة</button>
+  </div>
 
   <!-- Top Navigation Header -->
   <header class="header">
@@ -61,6 +76,17 @@
       <button id="theme" aria-label="Toggle theme" title="Day / Night">
         ☀ <span class="switch"></span> ☾
       </button>
+
+      <!-- Journey Audio Controls -->
+      <div class="journey-audio" role="group" aria-label="التحكم في الصوت">
+        <button id="journeyAudio" type="button" data-i18n="journeyAudioBegin">ابدأ الرحلة بالصوت</button>
+        <details class="journey-volume">
+          <summary aria-label="مستوى الصوت" title="مستوى الصوت">
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 9v6h4l5 4V5L7 9H3zm12-1a6 6 0 0 1 0 8m2-11a10 10 0 0 1 0 14"/></svg>
+          </summary>
+          <label><span data-i18n="journeyVolumeLabel">مستوى الصوت</span> <input id="journeyVolume" type="range" min="0" max="100" value="75" dir="ltr"></label>
+        </details>
+      </div>
     </div>
   </header>
 
@@ -105,6 +131,9 @@
 
   <!-- 6. Main Application Controller -->
   <script src="js/app.js?v=7.0"></script>
+
+  <!-- 7. Journey Intro & Ambient Audio -->
+  <script src="js/journey-audio.js?v=7.0"></script>
 
 </body>
 </html>
