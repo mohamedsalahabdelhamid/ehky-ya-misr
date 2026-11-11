@@ -2280,25 +2280,22 @@ function about() {
       ${crumb(t('navAbout'))}
       <span class="eyebrow">${t('siteSubtitle')}</span>
       <h1>${t('aboutTitle')}</h1>
-      <p>${t('heroDesc')}</p>
-      <h2>${t('aboutMission')}</h2>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin:25px 0">
-        <div style="background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:22px;border-top:4px solid var(--gold)">
-          <h3 style="margin:0 0 10px;font-size:17px">${t('aboutGoal1Title')}</h3>
-          <p style="font-size:13px;line-height:1.8;color:var(--muted);margin:0">${t('aboutGoal1Desc')}</p>
-        </div>
-        <div style="background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:22px;border-top:4px solid var(--teal)">
-          <h3 style="margin:0 0 10px;font-size:17px">${t('aboutGoal2Title')}</h3>
-          <p style="font-size:13px;line-height:1.8;color:var(--muted);margin:0">${t('aboutGoal2Desc')}</p>
-        </div>
-        <div style="background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:22px;border-top:4px solid var(--gold)">
-          <h3 style="margin:0 0 10px;font-size:17px">${t('aboutGoal3Title')}</h3>
-          <p style="font-size:13px;line-height:1.8;color:var(--muted);margin:0">${t('aboutGoal3Desc')}</p>
-        </div>
+      <p>${t('aboutIntro')}</p>
+      <h2>${t('aboutPlatformTitle')}</h2>
+      <ul>
+        <li>${t('aboutPoint1')}</li>
+        <li>${t('aboutPoint2')}</li>
+        <li>${t('aboutPoint3')}</li>
+        <li>${t('aboutPoint4')}</li>
+        <li>${t('aboutPoint5')}</li>
+      </ul>
+      <h2>${t('aboutMapRefsTitle')}</h2>
+      <div class="reference-links">
+        <a href="assets/boundaries-reference.jpg" target="_blank" rel="noopener noreferrer">${t('aboutMapRefBoundaries')} ↗</a>
+        <a href="assets/terrain-reference.jpg" target="_blank" rel="noopener noreferrer">${t('aboutMapRefTerrain')} ↗</a>
       </div>
-      <h2>${t('aboutVision')}</h2>
-      <p>${t('aboutVisionDesc')}</p>
-      <a href="#home" class="primary" style="margin-top:20px">${t('startJourney')}</a>
+      <p>${t('aboutMapRefsNote')}</p>
+      <a href="#home" class="primary">${t('aboutBackHome')}</a>
     </div>`;
 }
 
