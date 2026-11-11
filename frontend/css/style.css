@@ -1531,3 +1531,65 @@ body.night .chat-product-preview-bar {
   .journey-audio { flex-shrink: 1; min-width: 0; max-width: 150px; }
   .journey-volume summary { width: 26px; }
 }
+
+/* ===================== HERITAGE RECORDS (record pages) ===================== */
+.record-description { white-space: pre-line; }
+.record-references { color: var(--muted); margin-block: .55rem 1rem; overflow-wrap: anywhere; }
+.demo-detail-top { align-items: center; gap: 28px; margin-block-end: 26px; }
+.demo-figure { margin: 0; max-width: 490px; }
+.demo-figure img { display: block; width: 100%; max-height: 380px; object-fit: cover; border-radius: 16px; }
+.proverb-figure img { height: auto; max-width: 380px; }
+.demo-figure figcaption { font-size: .85rem; margin-block-start: 8px; }
+.demo-panel { padding: clamp(16px, 3vw, 28px); border: 1px solid var(--line); border-radius: 16px; }
+.demo-panel h2 { margin: 0 0 12px; }
+.demo-panel p { white-space: pre-line; line-height: 1.75; }
+body:not(.night) .demo-panel { background-color: var(--paper); }
+.demo-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.demo-link { text-decoration: underline; text-underline-offset: .22em; overflow-wrap: anywhere; }
+.demo-sources { padding-inline-start: 22px; }
+.demo-sources li + li { margin-block-start: 9px; }
+.demo-disclosure > summary { display: inline-flex; cursor: pointer; }
+.demo-form { max-width: 620px; display: grid; gap: 12px; margin-block-start: 16px; }
+.demo-form label { display: grid; gap: 5px; }
+.demo-form :is(input, textarea) { width: 100%; box-sizing: border-box; font: inherit; color: inherit; background: transparent; border: 1px solid var(--line); border-radius: 8px; padding: 10px; }
+.demo-form button { justify-self: start; }
+.demo-feedback { padding: 10px 14px; border-inline-start: 3px solid var(--gold); }
+.heritage-video-preview, .heritage-video-player { display: block; width: 100%; min-height: 200px; aspect-ratio: 16 / 9; border: 0; border-radius: 12px; background: #131313 center / cover no-repeat; }
+.heritage-video-preview { position: relative; overflow: hidden; padding: 0; cursor: pointer; }
+.heritage-video-preview img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.heritage-video-play { position: absolute; inset: 50% auto auto 50%; transform: translate(-50%, -50%); display: grid; place-items: center; width: 58px; height: 44px; border-radius: 12px; background: #111e; color: #fff; font-size: 20px; box-shadow: 0 3px 12px #0005; }
+.heritage-video-preview:hover .heritage-video-play { background: #a32225; }
+.heritage-video-label { position: absolute; inset-inline-start: .65rem; bottom: .65rem; border-radius: 999px; padding: .2rem .6rem; background: #111e; color: #fff; }
+.detail-top.detail-with-video { grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: clamp(18px, 3vw, 36px); }
+.heritage-video-feature { min-width: 0; }
+.heritage-video-feature h2 { font-size: clamp(1rem, 2vw, 1.25rem); margin: 0 0 .45rem; }
+.heritage-video-feature .heritage-video-preview, .heritage-video-feature .heritage-video-player { min-height: 0; }
+.heritage-video-feature .heritage-video-play { width: 68px; height: 50px; font-size: 24px; }
+.heritage-visual-list { grid-column: 1 / -1; }
+.heritage-visual-items { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 105px), 1fr)); gap: 10px; list-style: none; margin: 16px 0; padding: 0; }
+.heritage-visual-items li { display: grid; grid-template-rows: auto 1fr; justify-items: center; gap: 8px; padding: 7px; border: 1px solid var(--line); border-radius: 12px; text-align: center; }
+body:not(.night) .heritage-visual-items li { background-color: #fff1da; }
+.heritage-visual-items img { display: block; width: 100%; max-width: 104px; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 8px; background: #f2e9d9; }
+.heritage-visual-items span { align-self: center; font-size: .86rem; font-weight: 700; line-height: 1.5; }
+.heritage-visual-list .heritage-visual-description { max-width: 88ch; margin-block-end: 8px; }
+.heritage-visual-list .small-notice { margin: 0; }
+.craft-market-card img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 10px; }
+.heritage-product-list .heritage-visual-items { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.heritage-record-page .demo-record-body { display: flex; flex-wrap: wrap; align-items: stretch; gap: 16px; margin-block-start: 16px; }
+.heritage-record-page .demo-record-body > * { flex: 1 1 30%; min-width: 0; overflow-wrap: anywhere; }
+.heritage-record-page .demo-record-body > .record-long-panel,
+.heritage-record-page .demo-record-body > .heritage-visual-list:not(.heritage-product-list) { flex-basis: 100%; }
+.heritage-record-page .demo-panel p:last-child { margin-block-end: 0; }
+.heritage-record-page .detail-without-media { grid-template-columns: minmax(0, 1fr); }
+.heritage-record-page .proverb-figure { justify-self: center; width: min(100%, 420px); }
+.heritage-record-page .proverb-figure img { max-width: none; max-height: none; }
+/* Craft pages: documentation record enrichment */
+.craft-record-panels { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 16px; margin-block-start: 16px; }
+.craft-record-panels > .heritage-visual-list { grid-column: 1 / -1; }
+@media (max-width: 1000px) { .heritage-record-page .demo-record-body > * { flex-basis: 45%; } }
+@media (max-width: 760px) {
+  .detail-top.detail-with-video, .heritage-record-page .detail-top { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 650px) { .heritage-record-page .demo-record-body > * { flex-basis: 100%; } }
+@media (max-width: 480px) { .heritage-visual-items { grid-template-columns: repeat(auto-fit, minmax(min(100%, 86px), 1fr)); } }
+

@@ -1024,6 +1024,28 @@ async function craftPage(id='boats') {
       </div>
     </section>`;
 
+  // Heritage record documentation enrichment (boats + copper-engraving pages)
+  let recordEnrichmentHtml = '';
+  const recordId = CRAFT_RECORD_IDS[craft.id];
+  const rawRec = recordId && window.HeritageRecords ? window.HeritageRecords.findRecord('craft', recordId) : null;
+  if (rawRec) {
+    const rec = window.HeritageRecords.localizedRecord(rawRec);
+    const toolIndex = rawRec.details.findIndex(([key]) => key === 'الأدوات');
+    const toolsDetail = toolIndex > -1 && rec.details[toolIndex] ? rec.details[toolIndex] : null;
+    const productsIndex = rawRec.details.findIndex(([key]) => key === 'أمثلة للمنتجات');
+    const original = rec.sources.find(s => s.url);
+    recordEnrichmentHtml = `
+      ${heritageVisualList(toolsDetail ? toolsDetail[0] : 'الأدوات', craftToolPictures[rawRec.id], toolsDetail ? toolsDetail[1] : '')}
+      <div class="craft-record-panels">
+        ${productsIndex > -1 && rec.details[productsIndex] ? heritageVisualList(rec.details[productsIndex][0], copperProductPictures, '', 'heritage-product-list') : ''}
+        ${rawRec.id === 'R000016' ? exhibitionSection() : ''}
+        <section class="demo-panel record-docs-panel">
+          ${heritageReferenceLine(rec.sources)}
+          ${original ? recordExternalLink(original.url, t('recordViewSource'), 'primary') : ''}
+        </section>
+      </div>`;
+  }
+
   return `
     <div class="page">
       ${crumb(`<a href="#heritage">${t('navHeritage')}</a> / <a href="#province/${craft.provinceId}">${craft.provinceName}</a> / ${craft.title}`)}
@@ -1063,6 +1085,7 @@ async function craftPage(id='boats') {
           <button class="primary" id="askHorusBtn" style="margin-top:20px;width:100%">${t('askHorusCraft')}</button>
         </aside>
       </div>
+      ${recordEnrichmentHtml}
       ${artisansSectionHtml}
     </div>`;
 }
@@ -1095,6 +1118,324 @@ function renderVideoElement(craft, mode) {
       style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"></iframe>`;
   }
   return `<div style="color:#fff;display:flex;align-items:center;justify-content:center;height:100%">${t('noVideoAvailable')}</div>`;
+}
+
+// -----------------------------------------------------------------------------
+// 4.5 HERITAGE RECORDS — documented record pages (87 records)
+// -----------------------------------------------------------------------------
+const RECORD_EXHIBITION_URL = 'https://www.cdf.gov.eg/?q=calendar-node-field-event-day/day/2026-11-11';
+const RECORD_AGENDA_URL = 'https://www.cdf.gov.eg/?q=calendar-node-field-event-day/month1';
+
+/** Craft pages enriched with their documentation record. */
+const CRAFT_RECORD_IDS = { boats: 'R000006', 'copper-engraving': 'R000016' };
+
+const esc = (value = '') => String(value).replace(/[&<>"']/g, c => ({
+  '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+})[c]);
+
+const recordExternalLink = (url, title, className = '') =>
+  `<a class="${className}" href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(title)} ↗</a>`;
+
+const recordCategoryLabel = record => ({
+  craft: t('catCraft'), food: t('catFood'), music: t('catMusic'), story: t('catStory')
+}[record.kind]) || t('navHeritage');
+
+/** English labels for the visual lists, shown for every non-Arabic language. */
+const VISUAL_LABEL_EN = {
+  'الأدوات': 'Tools',
+  'المكونات الأساسية': 'Key ingredients',
+  'أمثلة للمنتجات': 'Examples of products',
+  'شاكوش': 'Hammer',
+  'سندان': 'Anvil',
+  'قلم نقش': 'Engraving punch',
+  'مسطرة': 'Ruler',
+  'برجل نقش': 'Dividers',
+  'الفأرة': 'Hand plane',
+  'الربوة': 'Rabbet plane',
+  'منشار كهربائي': 'Power saw',
+  'مطرقة': 'Hammer',
+  'كور الحدادة': 'Forge',
+  'معدات اللحام': 'Welding equipment',
+  'عدس أبو جبة': 'Whole brown lentils',
+  'أرز': 'Rice',
+  'مكرونة': 'Pasta',
+  'طماطم': 'Tomatoes',
+  'بصل': 'Onion',
+  'ثوم': 'Garlic',
+  'زيت': 'Oil',
+  'ملح': 'Salt',
+  'كمون': 'Cumin',
+  'حمص الشام': 'Chickpeas',
+  'طماطم مبشورة': 'Grated tomatoes',
+  'طحينة حمراء': 'Red tahini',
+  'زيت بذرة الكتان': 'Flaxseed oil',
+  'بقدونس': 'Parsley',
+  'كزبرة خضراء': 'Fresh coriander',
+  'شبت': 'Dill',
+  'خل': 'Vinegar',
+  'عصير ليمون': 'Lemon juice',
+  'توابل الحباش': 'Habbash seasoning',
+  'شواش الذرة': 'Corn silk',
+  'حمص الشام · يُطحن كبديل لشواش الذرة': 'Ground chickpeas, an alternative to corn silk',
+  'كرات الكشك المجففة': 'Dried kishk balls',
+  'مرقة بط أو دجاج أو لحم': 'Duck, chicken or meat stock',
+  'سمن بلدي': 'Local ghee',
+  'فلفل أسود': 'Black pepper',
+  'دقيق أبيض': 'White flour',
+  'سكر': 'Sugar',
+  'ماء': 'Water',
+  'صينية نحاسية منقوشة': 'Engraved copper tray',
+  'قطعة نحاسية زخرفية': 'Decorative copper piece'
+};
+
+const recordVisualLabel = value => currentLang === 'ar' ? value : (VISUAL_LABEL_EN[value] || value);
+
+/** Visual tool lists for the two documented crafts (image name, Arabic label). */
+const craftToolPictures = {
+  R000016: [
+    ['hammer', 'شاكوش'], ['anvil', 'سندان'], ['punch', 'قلم نقش'],
+    ['ruler', 'مسطرة'], ['divider', 'برجل نقش']
+  ],
+  R000006: [
+    ['plane', 'الفأرة'], ['rabbet-plane', 'الربوة'], ['bandsaw', 'منشار كهربائي'],
+    ['hammer', 'مطرقة'], ['anvil', 'سندان'], ['forge', 'كور الحدادة'], ['welder', 'معدات اللحام']
+  ]
+};
+
+/** Visual ingredient lists per food code (image name, Arabic label). */
+const ingredientPictures = {
+  F000001: [
+    ['lentils', 'عدس أبو جبة'], ['rice', 'أرز'], ['pasta', 'مكرونة'],
+    ['tomato', 'طماطم'], ['onion', 'بصل'], ['garlic', 'ثوم'], ['oil', 'زيت'],
+    ['salt', 'ملح'], ['cumin', 'كمون'], ['chickpeas', 'حمص الشام']
+  ],
+  F000002: [
+    ['tomato', 'طماطم مبشورة'], ['tahini', 'طحينة حمراء'], ['flax-oil', 'زيت بذرة الكتان'],
+    ['parsley', 'بقدونس'], ['cilantro', 'كزبرة خضراء'], ['dill', 'شبت'], ['garlic', 'ثوم'],
+    ['vinegar', 'خل'], ['lemon', 'عصير ليمون'], ['habash-spices', 'توابل الحباش'],
+    ['corn-silk', 'شواش الذرة'], ['chickpeas', 'حمص الشام · يُطحن كبديل لشواش الذرة']
+  ],
+  F000003: [
+    ['keshk', 'كرات الكشك المجففة'], ['broth', 'مرقة بط أو دجاج أو لحم'],
+    ['ghee', 'سمن بلدي'], ['onion', 'بصل'], ['garlic', 'ثوم'], ['salt', 'ملح'], ['pepper', 'فلفل أسود']
+  ],
+  F000004: [
+    ['flour', 'دقيق أبيض'], ['salt', 'ملح'], ['sugar', 'سكر'], ['water', 'ماء'], ['ghee', 'سمن بلدي']
+  ]
+};
+
+/** Copper product examples (image name, Arabic label). */
+const copperProductPictures = [
+  ['copper-tray', 'صينية نحاسية منقوشة'],
+  ['copper-decoration', 'قطعة نحاسية زخرفية']
+];
+
+/** Grid of small labelled images (tools, ingredients, products). */
+function heritageVisualList(title, items, description = '', className = '') {
+  if (!items) return '';
+  const isAr = currentLang === 'ar';
+  return `<section class="demo-panel heritage-visual-list ${className}">
+    <h2>${esc(recordVisualLabel(title))}</h2>
+    <ul class="heritage-visual-items" role="list">${items.map(([image, label]) => `
+      <li><img src="assets/visual-index/${image}.webp" width="224" height="224" loading="lazy" decoding="async" alt="">
+        <span>${esc(isAr ? label : recordVisualLabel(label))}</span></li>`).join('')}</ul>
+    ${description ? `<p class="heritage-visual-description">${esc(description)}</p>` : ''}
+    <p class="small-notice">${esc(t('recordAIVisualsNote'))}</p>
+  </section>`;
+}
+
+/** Record image with its AI-generation note. */
+function heritageFigure(record) {
+  const H = window.HeritageRecords;
+  const proverbAlt = record && record.kind === 'story' && Object.hasOwn(H.proverbIllustrations, record.code)
+    ? (currentLang === 'ar' ? H.proverbIllustrations[record.code] : t('recordIllustrationAlt') + record.title)
+    : '';
+  if (!record || (!proverbAlt && !['craft', 'music', 'food'].includes(record.kind))) return '';
+  const src = H.recordIllustration(record);
+  return `<figure class="demo-figure${proverbAlt ? ' proverb-figure' : ''}">
+    <img src="${esc(src)}" alt="${esc(proverbAlt || t('recordIllustrationAlt') + record.title)}" decoding="async"${proverbAlt ? ' width="319" height="319"' : ''}>
+    <figcaption>${esc(proverbAlt ? t('recordAIDrawing') : t('recordAIImage'))}</figcaption>
+  </figure>`;
+}
+
+/** Inline documentation video for craft, food and music records. */
+function heritageVideoSection(record) {
+  if (!record || !['food', 'craft', 'music'].includes(record.kind)) return '';
+  const H = window.HeritageRecords;
+  const video = [record.video, ...record.sources].find(source => source && H.videoEmbedUrl(source.url));
+  if (!video) return '';
+  const heading = { food: t('recordWatchFood'), craft: t('recordWatchCraft'), music: t('recordWatchMusic') }[record.kind];
+  const title = esc(video.title);
+  const embed = H.videoEmbedUrl(video.url);
+  const thumbnail = embed.startsWith('https://www.youtube-nocookie.com/')
+    ? `<img src="https://i.ytimg.com/vi/${embed.split('/').pop()}/hqdefault.jpg" alt="" loading="lazy">`
+    : '';
+  return `<section class="heritage-video heritage-video-feature">
+    <h2>${esc(heading)}</h2>
+    <button class="heritage-video-preview" type="button" aria-label="${esc(t('recordPlayVideoAria'))} ${title}"
+      data-heritage-video="${esc(embed)}" data-video-title="${title}"
+      style="background-image:url('${esc(H.recordIllustration(record))}')">
+      ${thumbnail}
+      <span class="heritage-video-play" aria-hidden="true">▶︎</span>
+      <span class="heritage-video-label" aria-hidden="true">${esc(t('recordPlayVideo'))}</span>
+    </button>
+    <p>${title}</p>
+    ${video.credit ? `<p class="small-notice">${esc(video.credit)}</p>` : ''}
+    <p class="small-notice" data-video-fallback hidden>${esc(t('recordVideoFallbackPrefix'))} ${recordExternalLink(video.url, t('recordOpenAtPublisher'), 'demo-link')}.</p>
+  </section>`;
+}
+
+/** Replace the video preview button with the embedded player. */
+function playHeritageVideo(button) {
+  const url = new URL(button.dataset.heritageVideo);
+  url.searchParams.set('autoplay', '1');
+  url.searchParams.set('playsinline', '1');
+  url.searchParams.set('mute', '1');
+  const player = document.createElement('iframe');
+  player.className = 'heritage-video-player';
+  player.title = button.dataset.videoTitle;
+  player.referrerPolicy = 'strict-origin-when-cross-origin';
+  player.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+  player.allowFullscreen = true;
+  player.src = url.href;
+  const fallback = button.closest('.heritage-video') && button.closest('.heritage-video').querySelector('[data-video-fallback]');
+  if (fallback) fallback.hidden = false;
+  button.replaceWith(player);
+  player.focus();
+}
+
+/** Where to try the koshari of the F000001 record in person. */
+function kosharyVisitSection() {
+  const official = 'https://www.koshary-aboutarek.com/ar/contact-us';
+  const directions = 'https://www.google.com/maps/search/?api=1&query='
+    + encodeURIComponent('Koshary Abou Tarek, 16 Marouf Street, Downtown Cairo');
+  const travelGuide = 'https://www.thecairoguide.com/city/cairo/articles/cairo-s-street-food-trail-from-koshary-to-mango-juice';
+  const coverage = 'https://www.almasryalyoum.com/news/details/3487694';
+  return `<section class="demo-panel" aria-labelledby="koshary-visit-title">
+    <span class="eyebrow">${esc(t('recordVisitEyebrow'))}</span>
+    <h2 id="koshary-visit-title">${esc(t('recordTryFoodLive'))}</h2>
+    <h3>${esc(t('recordKosharyPlace'))}</h3>
+    <p>${esc(t('recordKosharyDesc'))}</p>
+    <p><strong>${esc(t('recordKosharyAddressLabel'))}</strong> · ${esc(t('recordKosharyAddress'))}</p>
+    <div class="demo-actions">
+      ${recordExternalLink(directions, t('recordOpenDirections'), 'primary')}
+      ${recordExternalLink(official, t('recordOfficialBranch'), 'demo-link')}
+    </div>
+    <p class="small-notice">${recordExternalLink(travelGuide, t('recordFoodTourGuide'), 'demo-link')} ·
+      ${recordExternalLink(coverage, t('recordDiplomatCoverage'), 'demo-link')}</p>
+  </section>`;
+}
+
+/** Traditional Crafts Center exhibition for the copper record. */
+function exhibitionSection() {
+  return `<section class="demo-panel">
+    <span class="eyebrow">${esc(t('recordVisitEyebrow'))}</span>
+    <h2>${esc(t('recordSeeCraftLive'))}</h2>
+    <span class="badge">${esc(t('recordExhibitionBadge'))}</span>
+    <h3>${esc(t('recordExhibitionTitle'))}</h3>
+    <p>${esc(t('recordExhibitionDesc'))}</p>
+    <p>${esc(t('recordExhibitionMeta'))}</p>
+    <div class="demo-actions">${recordExternalLink(RECORD_EXHIBITION_URL, t('recordViewAnnouncement'), 'primary')}
+      ${recordExternalLink(RECORD_AGENDA_URL, t('recordBrowseEvents'), 'demo-link')}</div>
+  </section>`;
+}
+
+/** Craft records bridge to our real artisans souq. */
+function craftMarketCard() {
+  return `<section class="demo-panel craft-market-card">
+    <h2>${esc(t('craftsExhibitionTitle'))}</h2>
+    <img src="assets/craft-market-al-muizz.webp" alt="${esc(t('recordMarketImageAlt'))}" width="960" height="540" loading="lazy">
+    <p>${esc(t('recordMarketDesc'))}</p>
+    <a class="primary" href="#artisans">${esc(t('recordShopNow'))}</a>
+  </section>`;
+}
+
+/** Performing-arts records: no confirmed shows, link to the public agenda. */
+function folkShowsSection() {
+  return `<section class="demo-panel">
+    <h2>${esc(t('recordSeeOnStage'))}</h2>
+    <p>${esc(t('recordNoShowsPartial'))}</p>
+    <p>${esc(t('recordOtherShows'))}</p>
+    ${recordExternalLink(RECORD_AGENDA_URL, t('recordBrowseShows'), 'demo-link')}
+  </section>`;
+}
+
+/** Invite visitors to share their version of the P0004 proverb. */
+function storyContribution(record) {
+  return `<section class="demo-panel">
+    <span class="eyebrow">${esc(t('recordTellEgypt'))}</span><h2>${esc(t('recordShareHow'))}</h2>
+    <p>${esc(t('recordShareDesc'))}</p>
+    <details class="demo-disclosure"><summary class="primary">${esc(t('recordShareButton'))}</summary>
+      <form class="demo-form" data-story-form>
+        <label>${esc(t('recordFormVersion'))}<input name="version" required maxlength="200" value="${esc(record.title)}"></label>
+        <label>${esc(t('recordFormPlace'))}<input name="place" required maxlength="80"></label>
+        <label>${esc(t('recordFormContext'))}<textarea name="context" required maxlength="500" rows="3"></textarea></label>
+        <button class="primary" type="submit">${esc(t('recordFormSubmit'))}</button>
+        <p class="demo-feedback" role="status" hidden></p>
+      </form>
+    </details>
+  </section>`;
+}
+
+/** Documentation references line (links to the original sources). */
+function heritageReferenceLine(sources) {
+  if (!sources.length) return '';
+  const separator = currentLang === 'ar' ? ' ؛ ' : '; ';
+  return `<p class="record-references small-notice"><strong>${esc(t('recordReferences'))}</strong> ·
+    ${sources.map(source => {
+      const title = source.url ? recordExternalLink(source.url, source.title, 'demo-link') : esc(source.title);
+      return title + (source.reference ? ` (${esc(source.reference)})` : '');
+    }).join(separator)}</p>`;
+}
+
+/** Full page for one documented heritage record. */
+function recordPage(rawRecord) {
+  const H = window.HeritageRecords;
+  const provinceEntry = Object.entries(H.provinceNames)
+    .find(([, name]) => rawRecord.places.some(place => H.normalizeAr(place) === H.normalizeAr(name)));
+  const provinceId = provinceEntry ? provinceEntry[0] : null;
+  const localizedProvince = provinceId ? provincesData.find(p => p.id === provinceId) : null;
+  const provinceLabel = (localizedProvince && localizedProvince.name) || (provinceEntry ? provinceEntry[1] : '');
+  const record = H.localizedRecord(rawRecord);
+  const video = heritageVideoSection(record);
+  const media = video || heritageFigure(record);
+  const copper = record.id === 'R000016';
+  const proverb = record.code === 'P0004';
+  const koshary = record.kind === 'food' && record.code === 'F000001';
+  const location = [...new Set([...record.places, record.area].filter(Boolean))].join(' · ');
+  const original = record.sources.find(s => s.url);
+  const visualTitleAr = record.kind === 'food' ? 'المكونات الأساسية' : 'الأدوات';
+  const visualItems = record.kind === 'food' ? ingredientPictures[record.code]
+    : record.kind === 'craft' ? craftToolPictures[record.id] : null;
+  const visualIndex = visualItems ? rawRecord.details.findIndex(([key]) => key === visualTitleAr) : -1;
+  const productsIndex = copper ? rawRecord.details.findIndex(([key]) => key === 'أمثلة للمنتجات') : -1;
+  const detailPanels = rawRecord.details.map((rawDetail, index) => {
+    const detail = record.details && record.details[index] ? record.details[index] : rawDetail;
+    if (index === visualIndex) return heritageVisualList(detail[0], visualItems, detail[1]);
+    if (index === productsIndex) return heritageVisualList(detail[0], copperProductPictures, '', 'heritage-product-list');
+    return `<section class="demo-panel${String(detail[1]).length > 420 ? ' record-long-panel' : ''}"><h2>${esc(detail[0])}</h2><p>${esc(detail[1])}</p></section>`;
+  }).join('');
+  return `<div class="page heritage-record-page">
+    ${crumb(`<a href="#heritage">${t('navHeritage')}</a>` + (provinceId ? ` / <a href="#province/${provinceId}">${esc(provinceLabel)}</a>` : '') + ` / ${esc(record.title)}`)}
+    <div class="detail-top demo-detail-top${video ? ' detail-with-video' : media ? '' : ' detail-without-media'}">
+      <div><span class="eyebrow">${esc(recordCategoryLabel(record))}</span>
+        <h1>${esc(record.title)}</h1><p class="sub">${esc(location)}</p>
+        <span class="badge">${esc(t('recordDraftBadge'))}</span>
+        <p class="sub record-description">${esc(record.description || t('recordNoDescription'))}</p>
+        ${heritageReferenceLine(record.sources)}
+        ${original ? recordExternalLink(original.url, t('recordViewSource'), 'primary') : ''}
+      </div>
+      ${media}
+    </div>
+    <div class="demo-record-body">
+      ${detailPanels}
+      ${koshary ? kosharyVisitSection() : ''}
+      ${copper ? exhibitionSection() : ''}
+      ${record.kind === 'craft' ? craftMarketCard() : ''}
+      ${record.kind === 'music' ? folkShowsSection() : ''}
+      ${proverb ? storyContribution(record) : ''}
+    </div>
+  </div>`;
 }
 
 // -----------------------------------------------------------------------------
@@ -1953,7 +2294,7 @@ async function route() {
 
   let routeGroup = 'home';
   if (hash === 'map') routeGroup = 'map';
-  else if (hash === 'heritage' || hash.startsWith('province/')) routeGroup = 'heritage';
+  else if (hash === 'heritage' || hash.startsWith('province/') || hash.startsWith('record/')) routeGroup = 'heritage';
   else if (hash === 'foods') routeGroup = 'foods';
   else if (hash.startsWith('food/')) routeGroup = 'food';
   else if (hash === 'artisans' || hash.startsWith('artisan/')) routeGroup = 'artisans';
@@ -1989,6 +2330,15 @@ async function route() {
       btnH.onclick = () => { activeVideoSource='hybrid'; btnH.classList.add('active'); btnY.classList.remove('active'); wrap.innerHTML=renderVideoElement(craft,'hybrid'); };
       btnY.onclick = () => { activeVideoSource='youtube'; btnY.classList.add('active'); btnH.classList.remove('active'); wrap.innerHTML=renderVideoElement(craft,'youtube'); };
     }
+  } else if (hash.startsWith('record/')) {
+    const [, recKind, recId] = hash.split('/');
+    // The two fully-documented crafts have their own dedicated pages.
+    if (recId === 'R000006') { location.hash = 'craft/boats'; return; }
+    if (recId === 'R000016') { location.hash = 'craft/copper-engraving'; return; }
+    const record = window.HeritageRecords ? window.HeritageRecords.findRecord(recKind, recId) : null;
+    app.innerHTML = record
+      ? recordPage(record)
+      : `<div class="page"><h1>${t('recordNotFound')}</h1><a href="#heritage" class="primary">${t('backToHeritage')}</a></div>`;
   } else if (hash === 'foods') {
     searchTerm = '';
     app.innerHTML = await foodsPage();
@@ -2015,7 +2365,8 @@ async function route() {
     app.innerHTML = home();
   }
 
-  document.querySelectorAll('nav a').forEach(a => a.classList.toggle('active', a.getAttribute('href') === `#${hash.split('/')[0]}`));
+  const navBase = hash.startsWith('record/') ? 'heritage' : hash.split('/')[0];
+  document.querySelectorAll('nav a').forEach(a => a.classList.toggle('active', a.getAttribute('href') === `#${navBase}`));
   document.title = t('tabTitle');
   window.scrollTo({ top: 0, behavior: 'instant' });
 }
@@ -2029,6 +2380,10 @@ app.addEventListener('click', e => {
 
   const zoom = e.target.closest('[data-map-zoom]');
   if (zoom) { mapZoom = zoom.dataset.mapZoom==='reset'?1:Math.max(1,Math.min(2.5,mapZoom+(zoom.dataset.mapZoom==='in'?0.5:-0.5))); const w=document.getElementById('mapWorld'); if(w){if(mapZoom===1)w.style.removeProperty('width');else w.style.width=(mapZoom*100)+'%';} return; }
+
+  // Heritage record video: swap the preview button for the embedded player
+  const heritageVideoBtn = e.target.closest('[data-heritage-video]');
+  if (heritageVideoBtn) { playHeritageVideo(heritageVideoBtn); return; }
 
   const r = e.target.closest('[data-route]');
   if (r) { location.hash=r.dataset.route; horusExcited(); return; }
@@ -2083,6 +2438,15 @@ app.addEventListener('click', e => {
 
   const orderBtn = e.target.closest('.btn-order-commission');
   if (orderBtn) { window.HeritageService.getArtisanById(orderBtn.dataset.artisanId).then(a=>{if(a)openCheckoutModal(a);}); return; }
+});
+
+// Heritage record story contribution form (demo feedback, no backend yet)
+app.addEventListener('submit', e => {
+  const form = e.target.closest('form[data-story-form]');
+  if (!form) return;
+  e.preventDefault();
+  const feedback = form.querySelector('.demo-feedback');
+  if (feedback) { feedback.textContent = t('recordFormFeedback'); feedback.hidden = false; }
 });
 
 // Horus pointing on hover

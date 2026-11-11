@@ -4197,10 +4197,11 @@
   const isFeaturedRecord = record => Boolean(record) && (
     ['R000016', 'FR000001', 'P0004'].includes(record.id) || record.code === 'P0004');
 
-  /** Return the record with translated fields for the active language. */
+  /** Return the record with translated fields for the active language (non-Arabic falls back to English). */
   const localizedRecord = (record, lang) => {
     const active = lang || (window.I18N && window.I18N.current) || 'ar';
-    const dict = RECORD_TRANSLATIONS[active];
+    if (active === 'ar') return record;
+    const dict = RECORD_TRANSLATIONS[active] || RECORD_TRANSLATIONS.en;
     if (!dict) return record;
     const entry = dict[record.kind + '/' + record.id];
     return entry ? Object.assign({}, record, entry) : record;
