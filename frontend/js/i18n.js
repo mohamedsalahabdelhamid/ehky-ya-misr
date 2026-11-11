@@ -197,6 +197,8 @@
       recordFormContext: 'الموقف اللي بيتقال فيه',
       recordFormSubmit: 'جرّب إرسال الرواية',
       recordFormFeedback: 'تمت محاكاة إرسال الرواية. في الخدمة المقترحة، تُراجع المساهمة قبل نشرها.',
+      recordCardBadge: 'سجل للعرض والمراجعة',
+      recordsEraNote: 'السجلات الحالية غير مصنفة حسب العصر.',
 
       // ---- Map ----
       mapTitle: 'خريطة مصر التراثية',
@@ -510,6 +512,8 @@
       recordFormContext: 'When it is used',
       recordFormSubmit: 'Try submitting your version',
       recordFormFeedback: 'Demo submission complete. The proposed service would review your version before publication.',
+      recordCardBadge: 'Preview record for review',
+      recordsEraNote: 'Current records are not classified by period.',
 
       // ---- Map ----
       mapTitle: 'Heritage Map of Egypt',
@@ -823,6 +827,8 @@
       recordFormContext: 'Quand on le dit',
       recordFormSubmit: 'Essayer d’envoyer la version',
       recordFormFeedback: 'Envoi simulé terminé. Dans le service proposé, la contribution serait révisée avant publication.',
+      recordCardBadge: 'Fiche présentée pour révision',
+      recordsEraNote: 'Les fiches actuelles ne sont pas classées par période.',
 
       // ---- Map ----
       mapTitle: 'Carte du patrimoine d’Égypte',
@@ -1136,6 +1142,8 @@
       recordFormContext: 'Quando si usa',
       recordFormSubmit: 'Prova a inviare la versione',
       recordFormFeedback: 'Invio simulato completato. Nel servizio proposto, il contributo verrebbe revisionato prima della pubblicazione.',
+      recordCardBadge: 'Scheda presentata per revisione',
+      recordsEraNote: 'Le schede attuali non sono classificate per periodo.',
 
       // ---- Map ----
       mapTitle: 'Mappa del patrimonio d’Egitto',
@@ -1449,6 +1457,8 @@
       recordFormContext: 'Wann man es sagt',
       recordFormSubmit: 'Version senden (Test)',
       recordFormFeedback: 'Simulierte Übermittlung abgeschlossen. Im vorgeschlagenen Dienst würde der Beitrag vor der Veröffentlichung geprüft.',
+      recordCardBadge: 'Vorschau-Eintrag zur Durchsicht',
+      recordsEraNote: 'Die aktuellen Einträge sind nicht nach Epochen geordnet.',
 
       // ---- Map ----
       mapTitle: 'Kulturerbe-Karte Ägyptens',

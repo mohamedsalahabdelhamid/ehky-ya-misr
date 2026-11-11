@@ -936,12 +936,13 @@ function heritagePage(provFilter = null) {
         <select id="era" class="filter-select">
           <option value="all" ${era==='all'?'selected':''}>${t('allEras')}</option>
           <option value="ancient" ${era==='ancient'?'selected':''}>${t('ancientEgypt')}</option>
+          <option value="coptic" ${era==='coptic'?'selected':''}>${t('copticEra')}</option>
           <option value="islamic" ${era==='islamic'?'selected':''}>${t('islamicEra')}</option>
           <option value="modern" ${era==='modern'?'selected':''}>${t('modernEra')}</option>
         </select>
       </div>
       <div class="category-tabs" style="display:flex;gap:8px;margin-bottom:24px;overflow-x:auto;padding-bottom:6px">
-        ${[['all',t('catAll')],['craft',t('catCraft')],['food',t('catFood')],['music',t('catMusic')],['custom',t('catCustom')]].map(([id,label])=>`<button class="filter-pill ${category===id?'active':''}" data-filter="${id}">${label}</button>`).join('')}
+        ${[['all',t('catAll')],['craft',t('catCraft')],['food',t('catFood')],['music',t('catMusic')],['story',t('catStory')],['custom',t('catCustom')]].map(([id,label])=>`<button class="filter-pill ${category===id?'active':''}" data-filter="${id}">${label}</button>`).join('')}
       </div>
       <div class="results-grid" id="heritageResults">
         <div class="loading-spinner">${t('loadingResults')}</div>
@@ -949,36 +950,46 @@ function heritagePage(provFilter = null) {
     </div>`;
 }
 
-async function renderResults() {
+/** Heritage record card for the browse grid (demo styling). */
+function heritageRecordCard(rawRecord) {
+  const H = window.HeritageRecords;
+  const record = H.localizedRecord(rawRecord);
+  const description = record.description || '';
+  const location = (record.places || []).join(currentLang === 'ar' ? '، ' : ', ') || record.area || '';
+  return `<a href="${H.recordHref(rawRecord)}" class="item-card record-card">
+    <img class="record-card-image" src="${esc(H.recordIllustration(rawRecord))}" alt="" loading="lazy" decoding="async">
+    <div class="card-copy">
+      <small>${esc(recordCategoryLabel(rawRecord))}${location ? ' • ' + esc(location) : ''}</small>
+      <h2>${esc(record.title)}</h2>
+      <p>${esc(description.slice(0, 155))}${description.length > 155 ? '…' : ''}</p>
+      <span class="badge">${t('recordCardBadge')}</span>
+      <span class="record-arrow" aria-hidden="true">${currentLang === 'ar' ? '←' : '→'}</span>
+    </div>
+  </a>`;
+}
+
+function renderResults() {
   const container = document.getElementById('heritageResults');
   if (!container) return;
-  const items = await window.HeritageService.getHeritageItems({category,province:locality,era,search:searchTerm});
-  if (items && items.length > 0) {
-    container.innerHTML = items.map(item=>`
-      <a href="#craft/${item.id}" class="item-card">
-        <div class="card-art" style="${item.youtubeId?`background:url('https://img.youtube.com/vi/${item.youtubeId}/hqdefault.jpg') center/cover;position:relative;`:''}">
-          ${item.youtubeId?`
-            <button type="button" class="video-play-overlay-btn" onclick="event.preventDefault();event.stopPropagation();window.openVideoModal('${item.id}');" title="${t('watchVideo')}" aria-label="${t('watchVideo')}">
-              <span class="video-play-circle">
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg>
-              </span>
-              <span class="video-play-tag">🌐 ${t('onlineVideoBadge')}</span>
-            </button>`:boatSvg}
-        </div>
-        <div class="card-copy">
-          <small>${item.category==='craft'?t('catCraft'):item.category==='food'?t('catFood'):t('catMusic')} • ${item.provinceName}</small>
-          <h2>${item.title}</h2><p>${item.summary}</p>
-          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-            <span class="badge">${t('verifiedBadge')}</span>
-            ${item.youtubeId?`<span class="badge" style="background:#b3261e;color:#fff;border-color:#b3261e">${t('videoBadge')}</span>`:''}
-          </div>
-          <p style="margin-top:10px;color:var(--gold);font-weight:bold">${t('exploreStory')}</p>
-        </div>
-      </a>`).join('');
-  } else {
-    container.innerHTML = `<div class="empty"><strong>${t('noResults')}</strong><p>${t('noResultsDesc')}</p><button class="primary" id="resetFilters">${t('viewAll')}</button></div>`;
+  const H = window.HeritageRecords;
+  if (!H) {
+    container.innerHTML = `<div class="empty"><strong>${t('noResults')}</strong></div>`;
+    return;
   }
-  document.querySelectorAll('[data-filter]').forEach(b=>b.classList.toggle('active',b.dataset.filter===category));
+  const stripDiacritics = value => value.replace(/[\u064B-\u065F]/g, '');
+  const query = stripDiacritics(H.normalizeAr(searchTerm)).toLowerCase();
+  const scoped = locality === 'all' ? H.records : H.recordsForProvince(locality);
+  const matches = scoped.filter(record => {
+    const translated = H.localizedRecord(record);
+    const searchable = stripDiacritics(H.normalizeAr(
+      [record.code, record.title, translated.title, translated.description, translated.area, ...translated.places].join(' ')
+    )).toLowerCase();
+    return era === 'all' && (category === 'all' || record.kind === category) && searchable.includes(query);
+  }).sort((a, b) => Number(H.isFeaturedRecord(b)) - Number(H.isFeaturedRecord(a)));
+  container.innerHTML = matches.length
+    ? matches.map(heritageRecordCard).join('')
+    : `<div class="empty"><strong>${t('noResults')}</strong><p>${era !== 'all' ? t('recordsEraNote') : t('noResultsDesc')}</p><button class="primary" id="resetFilters">${t('viewAll')}</button></div>`;
+  document.querySelectorAll('[data-filter]').forEach(b => b.classList.toggle('active', b.dataset.filter === category));
 }
 
 // -----------------------------------------------------------------------------
@@ -2397,7 +2408,7 @@ app.addEventListener('click', e => {
   const ep = e.target.closest('[data-era]');
   if (ep) { era=ep.dataset.era; category='all'; location.hash='heritage'; return; }
 
-  if (e.target.closest('#resetFilters')) { category='all'; locality='all'; era='all'; searchTerm=''; const s=document.getElementById('heritageSearch'); if(s)s.value=''; renderResults(); return; }
+  if (e.target.closest('#resetFilters')) { category='all'; locality='all'; era='all'; searchTerm=''; const s=document.getElementById('heritageSearch'); if(s)s.value=''; const er=document.getElementById('era'); if(er)er.value='all'; const lo=document.getElementById('locality'); if(lo)lo.value='all'; renderResults(); return; }
 
   // Souq empty-state: reset search + category filters
   const clearSouqBtn = e.target.closest('.btn-clear-souq-filters');

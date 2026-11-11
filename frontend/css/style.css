@@ -1535,6 +1535,10 @@ body.night .chat-product-preview-bar {
 /* ===================== HERITAGE RECORDS (record pages) ===================== */
 .record-description { white-space: pre-line; }
 .record-references { color: var(--muted); margin-block: .55rem 1rem; overflow-wrap: anywhere; }
+.record-card .card-copy { position: relative; padding-inline-end: 45px; }
+.record-card-image { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.record-arrow { position: absolute; inset-inline-end: 18px; bottom: 21px; color: var(--gold); }
+.record-card p { line-height: 1.65; }
 .demo-detail-top { align-items: center; gap: 28px; margin-block-end: 26px; }
 .demo-figure { margin: 0; max-width: 490px; }
 .demo-figure img { display: block; width: 100%; max-height: 380px; object-fit: cover; border-radius: 16px; }
